@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://hto3iib8j1gh"]
+
+[ext_resource type="Script" path="res://modules/game_hud/ingame_resource_bar/ingame_resource_bar.gd" id="1_dfjii"]
+
+[node name="IngameResourceBar" type="ProgressBar"]
+offset_right = 557.0
+offset_bottom = 27.0
+size_flags_vertical = 4
+script = ExtResource("1_dfjii")
