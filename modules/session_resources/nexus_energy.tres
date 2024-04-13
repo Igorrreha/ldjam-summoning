@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="NexusEnergy" load_steps=2 format=3 uid="uid://cxpqrg70ms4p2"]
+
+[ext_resource type="Script" path="res://modules/session_resources/nexus_energy.gd" id="1_m1swg"]
+
+[resource]
+script = ExtResource("1_m1swg")
+_accuracy = 0.01
+min_value = 0.0
+max_value = 10.0
