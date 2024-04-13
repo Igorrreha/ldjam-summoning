@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcq8bgxrc4d5g"]
+
+[ext_resource type="Texture2D" uid="uid://dk5q2prkfm8bt" path="res://modules/Enemies/art/человек.png" id="1_psrqc"]
+[ext_resource type="Script" path="res://modules/Enemies/scripts/human_controller.gd" id="2_chmqu"]
+
+[node name="Human" type="Sprite2D"]
+position = Vector2(-408, -136)
+texture = ExtResource("1_psrqc")
+script = ExtResource("2_chmqu")
+speed = 2.0
