@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bcq8bgxrc4d5g"]
+[gd_scene load_steps=6 format=3 uid="uid://bcq8bgxrc4d5g"]
 
 [ext_resource type="Texture2D" uid="uid://dk5q2prkfm8bt" path="res://modules/enemies/art/человек.png" id="1_psrqc"]
 [ext_resource type="Script" path="res://modules/enemies/scripts/human_controller.gd" id="2_chmqu"]
@@ -7,6 +7,9 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jjd5j"]
 radius = 28.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g8x3i"]
+radius = 100.02
 
 [node name="Human" type="Area2D"]
 collision_layer = 2
@@ -25,7 +28,16 @@ collision_layer = 0
 monitorable = false
 
 [node name="AttackCollider" type="CollisionShape2D" parent="AtackArea"]
-position = Vector2(0, 12)
+position = Vector2(0, 19)
 shape = SubResource("CircleShape2D_jjd5j")
 
+[node name="DetectArea" type="Area2D" parent="."]
+monitorable = false
+
+[node name="DetectCollider" type="CollisionShape2D" parent="DetectArea"]
+position = Vector2(0, 20)
+shape = SubResource("CircleShape2D_g8x3i")
+
 [connection signal="area_entered" from="AtackArea" to="." method="_on_atack_area_area_entered"]
+[connection signal="area_entered" from="DetectArea" to="." method="_on_detect_area_area_entered"]
+[connection signal="area_exited" from="DetectArea" to="." method="_on_detect_area_exited"]
