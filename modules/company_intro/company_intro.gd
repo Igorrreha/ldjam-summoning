@@ -2,6 +2,7 @@ extends Sprite2D
 
 
 signal playing_completed
+signal playing_skipped
 
 
 @export var _autostart: bool
@@ -32,7 +33,7 @@ func _ready() -> void:
 	if _skip:
 		hide()
 		
-		playing_completed.emit()
+		playing_skipped.emit()
 		return
 	
 	if _autostart:

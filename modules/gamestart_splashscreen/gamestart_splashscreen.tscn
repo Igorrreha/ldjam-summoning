@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://d3wss5cdpkfn6"]
+[gd_scene load_steps=12 format=3 uid="uid://d3wss5cdpkfn6"]
 
 [ext_resource type="PackedScene" uid="uid://c2a06y0s4s1ef" path="res://modules/company_intro/company_intro.tscn" id="1_oucax"]
 [ext_resource type="Script" path="res://modules/gamestart_splashscreen/gamestart_splashscreen.gd" id="1_uu4jd"]
@@ -19,6 +19,59 @@ noise = SubResource("FastNoiseLite_cft6m")
 shader = ExtResource("3_87164")
 shader_parameter/dissolve_value = 0.0
 shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_bd4ss")
+
+[sub_resource type="Animation" id="Animation_bgr1a"]
+resource_name = "hide"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/dissolve_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_64hd2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/dissolve_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_2i60q"]
+resource_name = "hide_immediate"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/dissolve_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bxgax"]
+_data = {
+"RESET": SubResource("Animation_64hd2"),
+"hide": SubResource("Animation_bgr1a"),
+"hide_immediate": SubResource("Animation_2i60q")
+}
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_ini0w"]
 viewport_path = NodePath("IntroViewport")
@@ -42,6 +95,11 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.184314, 0.156863, 0.219608, 1)
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Back"]
+libraries = {
+"": SubResource("AnimationLibrary_bxgax")
+}
+
 [node name="IntroViewport" type="SubViewport" parent="."]
 disable_3d = true
 transparent_bg = true
@@ -50,6 +108,7 @@ size = Vector2i(168, 60)
 [node name="YliIntro" parent="IntroViewport" instance=ExtResource("1_oucax")]
 position = Vector2(84, 30)
 _autostart = true
+_skip = true
 
 [node name="OuputScreen" type="TextureRect" parent="."]
 texture_filter = 1
@@ -62,4 +121,6 @@ grow_vertical = 2
 texture = SubResource("ViewportTexture_ini0w")
 stretch_mode = 5
 
-[connection signal="playing_completed" from="IntroViewport/YliIntro" to="." method="complete_showing"]
+[connection signal="animation_finished" from="Back/AnimationPlayer" to="." method="complete_showing" unbinds=1]
+[connection signal="playing_completed" from="IntroViewport/YliIntro" to="Back/AnimationPlayer" method="play" binds= ["hide"]]
+[connection signal="playing_skipped" from="IntroViewport/YliIntro" to="Back/AnimationPlayer" method="play" binds= ["hide_immediate"]]

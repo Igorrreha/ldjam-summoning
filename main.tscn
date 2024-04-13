@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://c3pkanavhi8ax"]
+[gd_scene load_steps=3 format=3 uid="uid://c3pkanavhi8ax"]
 
 [ext_resource type="PackedScene" uid="uid://d3wss5cdpkfn6" path="res://modules/gamestart_splashscreen/gamestart_splashscreen.tscn" id="1_1r8an"]
+[ext_resource type="PackedScene" uid="uid://dtttoblwtuilw" path="res://game.tscn" id="1_byb6l"]
 
 [node name="Main" type="Node"]
 
@@ -28,4 +29,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="GamestartSplashscreen" parent="." instance=ExtResource("1_1r8an")]
+[node name="Game" parent="." instance=ExtResource("1_byb6l")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GamestartSplashscreen" parent="CanvasLayer" instance=ExtResource("1_1r8an")]

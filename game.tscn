@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dntgyss35dqps"]
+[gd_scene load_steps=4 format=3 uid="uid://dtttoblwtuilw"]
 
 [sub_resource type="Gradient" id="Gradient_7wdsv"]
 offsets = PackedFloat32Array(0, 0.324675, 0.753247, 1)
@@ -17,6 +17,7 @@ noise = SubResource("FastNoiseLite_hyq8t")
 [node name="Game" type="Node2D"]
 
 [node name="BackNoise" type="Sprite2D" parent="."]
+texture_filter = 1
 position = Vector2(3.05176e-05, -1.90735e-05)
 scale = Vector2(2.25, 1.28125)
 texture = SubResource("NoiseTexture2D_4uss2")
