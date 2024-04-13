@@ -28,7 +28,7 @@ func try_spend(amount: float, ignore_limit: bool = false) -> bool:
 
 
 func try_add(amount: float, ignore_limit: bool = true) -> bool:
-	var new_value = value - amount
+	var new_value = value + amount
 	if not ignore_limit and new_value > min_value:
 		return false
 	
