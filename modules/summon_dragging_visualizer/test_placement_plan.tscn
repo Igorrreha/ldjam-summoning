@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqufs586r2gca"]
+
+[ext_resource type="Texture2D" uid="uid://ckcvtu4qoo631" path="res://icon.svg" id="1_h6ss5"]
+[ext_resource type="Script" path="res://modules/summon_dragging_visualizer/placement_plan.gd" id="1_w524k"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cjxpe"]
+radius = 50.0
+
+[node name="TestPlacementPlan" type="Area2D"]
+collision_layer = 0
+monitorable = false
+script = ExtResource("1_w524k")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(-2.86102e-06, -2.86102e-06)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("1_h6ss5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_cjxpe")
+
+[connection signal="place_become_invalid" from="." to="Sprite" method="set_modulate" binds= [Color(1, 0, 0, 1)]]
+[connection signal="place_become_valid" from="." to="Sprite" method="set_modulate" binds= [Color(0, 1, 0, 1)]]

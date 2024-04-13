@@ -1,0 +1,13 @@
+[gd_scene load_steps=5 format=3 uid="uid://c67nd8ymg0ffh"]
+
+[ext_resource type="Script" path="res://modules/summon_dragging_visualizer/summon_dragging_visualizer.gd" id="1_8ah3u"]
+[ext_resource type="Resource" uid="uid://yxh2yeolu841" path="res://modules/game_hud/game_hud_signals.tres" id="2_wy5ki"]
+[ext_resource type="Resource" uid="uid://pksiotgaoyis" path="res://modules/summon/test_summon.tres" id="3_yvyqk"]
+[ext_resource type="PackedScene" uid="uid://cqufs586r2gca" path="res://modules/summon_dragging_visualizer/test_placement_plan.tscn" id="4_lwik3"]
+
+[node name="SummonDraggingVisulaizer" type="Node2D"]
+script = ExtResource("1_8ah3u")
+_game_hud_signals = ExtResource("2_wy5ki")
+_placement_plan_scene_by_type = {
+ExtResource("3_yvyqk"): ExtResource("4_lwik3")
+}

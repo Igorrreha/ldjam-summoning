@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://dtttoblwtuilw"]
+[gd_scene load_steps=11 format=3 uid="uid://dtttoblwtuilw"]
 
 [ext_resource type="Script" path="res://modules/enemies/scripts/enemies_generator.gd" id="1_8uoqe"]
 [ext_resource type="Texture2D" uid="uid://ckcvtu4qoo631" path="res://icon.svg" id="1_vemo2"]
+[ext_resource type="PackedScene" uid="uid://c67nd8ymg0ffh" path="res://modules/summon_dragging_visualizer/summon_dragging_visulaizer.tscn" id="1_wrqsh"]
 [ext_resource type="PackedScene" uid="uid://bcq8bgxrc4d5g" path="res://modules/enemies/prefabs/human.tscn" id="3_j3pig"]
 
 [sub_resource type="Gradient" id="Gradient_7wdsv"]
@@ -37,6 +38,8 @@ texture_filter = 1
 position = Vector2(3.05176e-05, -1.90735e-05)
 scale = Vector2(2.25, 1.28125)
 texture = SubResource("NoiseTexture2D_4uss2")
+
+[node name="SummonDraggingVisulaizer" parent="." instance=ExtResource("1_wrqsh")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
