@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://ovxlsequh7vl"]
+[gd_scene load_steps=4 format=3 uid="uid://ovxlsequh7vl"]
 
 [ext_resource type="PackedScene" uid="uid://cg4na16ooxpyl" path="res://modules/game_hud/select_summon_button/select_summon_button.tscn" id="1_pkhr3"]
+[ext_resource type="PackedScene" uid="uid://hto3iib8j1gh" path="res://modules/game_hud/ingame_resource_bar/ingame_resource_bar.tscn" id="2_33cgp"]
+[ext_resource type="Resource" uid="uid://cxpqrg70ms4p2" path="res://modules/session_resources/nexus_energy.tres" id="3_me45r"]
 
 [node name="GameHud" type="Control"]
 layout_mode = 3
@@ -32,3 +34,7 @@ layout_mode = 2
 
 [node name="SelectSummonButton" parent="RightPanel/VBoxContainer/SummonsButtons" instance=ExtResource("1_pkhr3")]
 layout_mode = 2
+
+[node name="IngameResourceBar" parent="." instance=ExtResource("2_33cgp")]
+layout_mode = 0
+_ingame_resource = ExtResource("3_me45r")
