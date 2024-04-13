@@ -1,24 +1,27 @@
 class_name Human
-extends Sprite2D
+extends Area2D
 
 
 @export var speed: float
 
 
 var target: Node2D
+var is_moving = true
 
 
-func _init(target: Node2D):
+func setup(position: Vector2, target: Node2D):
+	self.global_position = position
 	self.target = target
 
 
-func _ready() -> void:
-	pass
-
-
 func _process(delta: float) -> void:
-	move_to_target(target)
+	if is_moving:
+		move_to_target(target)
 
 	
 func move_to_target(target: Node2D):
-	position.move_toward(target.position, speed);
+	global_position = global_position.move_toward(target.global_position, speed);
+
+
+func _on_atack_area_area_entered(area: Area2D) -> void:
+	is_moving = false
