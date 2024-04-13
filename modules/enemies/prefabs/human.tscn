@@ -93,6 +93,7 @@ radius = 100.02
 
 [node name="Human" type="Area2D"]
 collision_layer = 2
+collision_mask = 5
 script = ExtResource("2_chmqu")
 speed = 1.0
 
@@ -118,6 +119,8 @@ position = Vector2(0, 19)
 shape = SubResource("CircleShape2D_jjd5j")
 
 [node name="DetectArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 5
 monitorable = false
 
 [node name="DetectCollider" type="CollisionShape2D" parent="DetectArea"]
