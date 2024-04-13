@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://kl8xnd8il83h"]
+
+[ext_resource type="Script" path="res://modules/summon/summon.gd" id="1_e1k8t"]
+[ext_resource type="Texture2D" uid="uid://ckcvtu4qoo631" path="res://icon.svg" id="2_jk4gp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rkinp"]
+radius = 20.0
+
+[node name="Summon" type="Area2D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_e1k8t")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0.500002, -18)
+scale = Vector2(0.273438, 0.46875)
+texture = ExtResource("2_jk4gp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_rkinp")
+
+[connection signal="dead" from="." to="." method="queue_free"]
