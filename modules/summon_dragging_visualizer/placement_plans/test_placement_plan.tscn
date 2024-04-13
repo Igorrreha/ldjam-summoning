@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cqufs586r2gca"]
+[gd_scene load_steps=5 format=3 uid="uid://cqufs586r2gca"]
 
-[ext_resource type="Texture2D" uid="uid://ckcvtu4qoo631" path="res://icon.svg" id="1_h6ss5"]
-[ext_resource type="Script" path="res://modules/summon_dragging_visualizer/placement_plan.gd" id="1_w524k"]
+[ext_resource type="Script" path="res://modules/summon_dragging_visualizer/placement_plans/test_placement_plan.gd" id="1_oqdf3"]
+[ext_resource type="Texture2D" uid="uid://ckcvtu4qoo631" path="res://icon.svg" id="2_syikf"]
+[ext_resource type="Resource" uid="uid://bnjior33nt71c" path="res://modules/session_resources/session_resources.tres" id="2_vjvgu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cjxpe"]
 radius = 50.0
@@ -9,12 +10,13 @@ radius = 50.0
 [node name="TestPlacementPlan" type="Area2D"]
 collision_layer = 0
 monitorable = false
-script = ExtResource("1_w524k")
+script = ExtResource("1_oqdf3")
+_session_resources = ExtResource("2_vjvgu")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(-2.86102e-06, -2.86102e-06)
 scale = Vector2(0.75, 0.75)
-texture = ExtResource("1_h6ss5")
+texture = ExtResource("2_syikf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_cjxpe")

@@ -7,3 +7,4 @@ script = ExtResource("1_m1swg")
 _accuracy = 0.01
 min_value = 0.0
 max_value = 10.0
+value = 2.0

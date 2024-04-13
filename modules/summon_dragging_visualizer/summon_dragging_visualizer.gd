@@ -1,7 +1,8 @@
 extends Node2D
 
 
-signal drag_end_on_valid_place(summon_type: SummonType, position: Vector2)
+signal drag_end_on_valid_place(summon_type: SummonType,
+	placement_plan: PlacementPlan, position: Vector2)
 
 
 @export var _game_hud_signals: GameHudSignals
@@ -31,8 +32,8 @@ func _input(event: InputEvent) -> void:
 	and event.button_index == MOUSE_BUTTON_LEFT:
 		if _placement_plan:
 			if _placement_plan.place_is_valid:
-				drag_end_on_valid_place\
-					.emit(_dragging_summmon_type, _placement_plan.global_position)
+				drag_end_on_valid_place.emit(_dragging_summmon_type,
+					_placement_plan, _placement_plan.global_position)
 			_placement_plan.queue_free()
 		
 		_placement_plan = null

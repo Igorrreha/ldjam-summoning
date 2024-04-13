@@ -2,6 +2,8 @@ class_name PlacementPlan
 extends Area2D
 
 
+@export var _session_resources: SessionResources
+
 var place_is_valid: bool = true
 
 signal place_become_valid
@@ -15,11 +17,15 @@ func _ready() -> void:
 
 
 func _update_place_validity() -> void:
-	var has_overlapping_area = not get_overlapping_areas().is_empty()
-	if place_is_valid == has_overlapping_area:
-		place_is_valid = not has_overlapping_area
+	var result_of_check = _check_place_validity()
+	if place_is_valid != result_of_check:
+		place_is_valid = result_of_check
 		
 		if place_is_valid:
 			place_become_valid.emit()
 		else:
 			place_become_invalid.emit()
+
+
+func _check_place_validity() -> bool:
+	return get_overlapping_areas().is_empty()

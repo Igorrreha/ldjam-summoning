@@ -10,7 +10,7 @@ signal value_changed(new_value: float)
 @export var min_value: float = 0.0
 @export var max_value: float = 100.0
 
-var value: float:
+@export var value: float:
 	get:
 		return snappedf(value, _accuracy)
 	set(v):
