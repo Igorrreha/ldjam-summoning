@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="GameHudSignals" load_steps=2 format=3 uid="uid://yxh2yeolu841"]
+
+[ext_resource type="Script" path="res://modules/game_hud/game_hud_signals.gd" id="1_ep8iw"]
+
+[resource]
+script = ExtResource("1_ep8iw")
