@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="EnemyType" load_steps=2 format=3 uid="uid://c25qnl55makte"]
+
+[ext_resource type="Script" path="res://modules/enemies/enemy_type.gd" id="1_8enqt"]
+
+[resource]
+resource_name = "human_fat_ranger"
+script = ExtResource("1_8enqt")

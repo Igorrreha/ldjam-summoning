@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="GameLevel" load_steps=8 format=3 uid="uid://b06v7yeywaslo"]
+[gd_resource type="Resource" script_class="GameLevel" load_steps=9 format=3 uid="uid://b06v7yeywaslo"]
 
 [ext_resource type="Script" path="res://modules/game_progression/game_level/game_level.gd" id="1_kcjs3"]
 [ext_resource type="Resource" uid="uid://b6wg71k7vjcq5" path="res://modules/game_progression/game_level/waves/solo_human.tres" id="2_34cdk"]
@@ -7,7 +7,8 @@
 [ext_resource type="Resource" uid="uid://bot71ilhxdipl" path="res://modules/game_progression/game_level/waves/three_humans.tres" id="4_glyml"]
 [ext_resource type="Resource" uid="uid://dwgwl36kcl3m4" path="res://modules/game_progression/game_level/waves/three_human_rangers.tres" id="5_54omu"]
 [ext_resource type="Resource" uid="uid://cgqph17e6j1nc" path="res://modules/game_progression/game_level/waves/solo_fat_guy.tres" id="5_jt3uh"]
+[ext_resource type="Resource" uid="uid://cmlynlb48jpjk" path="res://modules/game_progression/game_level/waves/solo_human_fat_ranger.tres" id="6_4vbki"]
 
 [resource]
 script = ExtResource("1_kcjs3")
-waves = Array[Resource("res://modules/game_progression/game_level/game_level_wave.gd")]([ExtResource("2_34cdk"), ExtResource("3_o3crj"), ExtResource("4_f360h"), ExtResource("5_jt3uh"), ExtResource("4_glyml"), ExtResource("5_54omu")])
+waves = Array[Resource("res://modules/game_progression/game_level/game_level_wave.gd")]([ExtResource("2_34cdk"), ExtResource("3_o3crj"), ExtResource("4_f360h"), ExtResource("5_jt3uh"), ExtResource("6_4vbki"), ExtResource("4_glyml"), ExtResource("5_54omu")])

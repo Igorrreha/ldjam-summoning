@@ -1,8 +1,8 @@
 [gd_scene load_steps=14 format=3 uid="uid://bcq8bgxrc4d5g"]
 
-[ext_resource type="Texture2D" uid="uid://sig6o4ksllrl" path="res://modules/enemies/enemy_human.png" id="1_psrqc"]
-[ext_resource type="Script" path="res://modules/enemies/enemy.gd" id="2_chmqu"]
-[ext_resource type="Script" path="res://modules/damageable_area_2d/damageable_area_2d.gd" id="3_2062n"]
+[ext_resource type="Script" path="res://modules/enemies/enemy.gd" id="1_l3eo0"]
+[ext_resource type="Script" path="res://modules/damageable_area_2d/damageable_area_2d.gd" id="2_mgv1s"]
+[ext_resource type="Texture2D" uid="uid://sig6o4ksllrl" path="res://modules/enemies/enemy_human.png" id="3_iwug0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_53o53"]
 radius = 7.0
@@ -273,7 +273,7 @@ motion_mode = 1
 floor_stop_on_slope = false
 floor_block_on_wall = false
 platform_on_leave = 2
-script = ExtResource("2_chmqu")
+script = ExtResource("1_l3eo0")
 speed = 100.0
 attack_power = 1.0
 damageable_area = NodePath("DamageableArea2D")
@@ -308,7 +308,7 @@ shape = SubResource("CircleShape2D_g8x3i")
 [node name="DamageableArea2D" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 5
-script = ExtResource("3_2062n")
+script = ExtResource("2_mgv1s")
 
 [node name="BodyCollider" type="CollisionShape2D" parent="DamageableArea2D"]
 shape = SubResource("CircleShape2D_4to34")
@@ -316,7 +316,7 @@ shape = SubResource("CircleShape2D_4to34")
 [node name="Icon" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(5, -15)
-texture = ExtResource("1_psrqc")
+texture = ExtResource("3_iwug0")
 flip_h = true
 
 [connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_area_entered"]

@@ -11,5 +11,5 @@ enemy_type = ExtResource("2_7s4ga")
 
 [resource]
 script = ExtResource("1_1hgxm")
-duration = 3.0
+duration = 0.0
 slots = Array[ExtResource("3_ij0du")]([SubResource("Resource_frwmh")])
