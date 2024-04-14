@@ -1,5 +1,5 @@
 class_name Human
-extends Area2D
+extends DamageableArea2D
 
 
 @export var speed: float
