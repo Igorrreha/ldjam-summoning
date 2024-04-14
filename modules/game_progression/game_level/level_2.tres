@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="GameLevel" load_steps=12 format=3 uid="uid://covoqk06vvh2x"]
+
+[ext_resource type="Script" path="res://modules/game_progression/game_level/game_level.gd" id="1_vb4vj"]
+[ext_resource type="Resource" uid="uid://b6wg71k7vjcq5" path="res://modules/game_progression/game_level/waves/solo_human.tres" id="2_nybys"]
+[ext_resource type="Script" path="res://modules/game_progression/game_level/game_level_wave.gd" id="3_72vpa"]
+[ext_resource type="Resource" uid="uid://dkqib6vae41y4" path="res://modules/enemies/human.tres" id="4_qrq1t"]
+[ext_resource type="Script" path="res://modules/game_progression/game_level/game_level_wave_slot.gd" id="5_r238w"]
+
+[sub_resource type="Resource" id="Resource_ha8pd"]
+script = ExtResource("5_r238w")
+position = Vector2(0, 0)
+enemy_type = ExtResource("4_qrq1t")
+
+[sub_resource type="Resource" id="Resource_fimxx"]
+script = ExtResource("5_r238w")
+position = Vector2(-30, 30)
+enemy_type = ExtResource("4_qrq1t")
+
+[sub_resource type="Resource" id="Resource_bkwvd"]
+script = ExtResource("5_r238w")
+position = Vector2(30, 30)
+enemy_type = ExtResource("4_qrq1t")
+
+[sub_resource type="Resource" id="Resource_431p8"]
+script = ExtResource("3_72vpa")
+duration = 3.0
+slots = Array[ExtResource("5_r238w")]([SubResource("Resource_ha8pd"), SubResource("Resource_fimxx"), SubResource("Resource_bkwvd")])
+
+[sub_resource type="Resource" id="Resource_ob8ae"]
+script = ExtResource("3_72vpa")
+duration = 0.0
+slots = Array[ExtResource("5_r238w")]([SubResource("Resource_ha8pd"), SubResource("Resource_fimxx"), SubResource("Resource_bkwvd")])
+
+[sub_resource type="Resource" id="Resource_3oqb2"]
+script = ExtResource("3_72vpa")
+duration = 3.0
+slots = Array[ExtResource("5_r238w")]([SubResource("Resource_ha8pd"), SubResource("Resource_fimxx"), SubResource("Resource_bkwvd")])
+
+[resource]
+script = ExtResource("1_vb4vj")
+waves = Array[ExtResource("3_72vpa")]([ExtResource("2_nybys"), SubResource("Resource_431p8"), SubResource("Resource_ob8ae"), SubResource("Resource_3oqb2")])

@@ -11,5 +11,5 @@ enemy_type = ExtResource("2_0rb2u")
 
 [resource]
 script = ExtResource("1_0spkl")
-duration = 3.0
+duration = 0.0
 slots = Array[ExtResource("3_3mgdk")]([SubResource("Resource_oedio")])

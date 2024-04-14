@@ -1,22 +1,25 @@
-[gd_scene load_steps=30 format=3 uid="uid://dtttoblwtuilw"]
+[gd_scene load_steps=26 format=3 uid="uid://dtttoblwtuilw"]
 
 [ext_resource type="Script" path="res://modules/enemies/scripts/enemies_generator.gd" id="1_8uoqe"]
 [ext_resource type="Script" path="res://modules/game_progression/levels_progression_processor.gd" id="1_ngvcy"]
 [ext_resource type="PackedScene" uid="uid://c67nd8ymg0ffh" path="res://modules/summon_dragging_visualizer/summon_dragging_visulaizer.tscn" id="1_wrqsh"]
 [ext_resource type="PackedScene" uid="uid://dli1v618fkrgf" path="res://modules/summon_spawner/summon_spawner.tscn" id="2_ksggh"]
-[ext_resource type="Script" path="res://modules/game_progression/game_level/game_level.gd" id="2_wt1ov"]
-[ext_resource type="Script" path="res://modules/game_progression/game_level/game_level_wave.gd" id="3_1l7r1"]
-[ext_resource type="Resource" uid="uid://b6wg71k7vjcq5" path="res://modules/game_progression/game_level/waves/solo_human.tres" id="3_glakl"]
 [ext_resource type="PackedScene" uid="uid://bcq8bgxrc4d5g" path="res://modules/enemies/prefabs/human.tscn" id="3_j3pig"]
 [ext_resource type="Resource" uid="uid://bnjior33nt71c" path="res://modules/session_resources/session_resources.tres" id="3_l8twg"]
 [ext_resource type="Resource" uid="uid://pksiotgaoyis" path="res://modules/summon/defaul_meelee_summon/default_meelee_summon.tres" id="4_7npjl"]
 [ext_resource type="PackedScene" uid="uid://dsyxcv4468b74" path="res://modules/nexus/nexus.tscn" id="4_42yk5"]
-[ext_resource type="Script" path="res://modules/game_progression/game_level/game_level_wave_slot.gd" id="5_cdkvj"]
 [ext_resource type="PackedScene" uid="uid://cvhov4t3e5g7d" path="res://modules/summon/defaul_meelee_summon/default_meelee_summon.tscn" id="5_pso5y"]
 [ext_resource type="Script" path="res://modules/summon_sacrificion_processor/summon_sacrifition_processor.gd" id="6_bwpnp"]
 [ext_resource type="Resource" uid="uid://c8t8oyii45f06" path="res://modules/summon/summons_signals.tres" id="7_e2u6w"]
 [ext_resource type="Resource" uid="uid://dkqib6vae41y4" path="res://modules/enemies/human.tres" id="7_qdjci"]
+[ext_resource type="Resource" uid="uid://bo2xmoupmm28o" path="res://modules/enemies/human_ranger/human_ranger.tres" id="12_dg3lk"]
+[ext_resource type="PackedScene" uid="uid://ceqm0nyirulvc" path="res://modules/enemies/human_ranger/human_ranger.tscn" id="13_57vcj"]
+[ext_resource type="Resource" uid="uid://b06v7yeywaslo" path="res://modules/game_progression/game_level/level_1.tres" id="13_qswsr"]
+[ext_resource type="Resource" uid="uid://b5xsaaovgd8t6" path="res://modules/enemies/fast_guy/fast_guy.tres" id="14_ift2q"]
 [ext_resource type="Resource" uid="uid://cfduuk254rjq8" path="res://modules/game_state_signals/game_state_signals.tres" id="14_mn131"]
+[ext_resource type="PackedScene" uid="uid://l0rbhm8o4stw" path="res://modules/enemies/fast_guy/fast_guy.tscn" id="15_cbixe"]
+[ext_resource type="Resource" uid="uid://cvbhh85ldyrvp" path="res://modules/enemies/fat_guy/fat_guy.tres" id="16_jy4j1"]
+[ext_resource type="PackedScene" uid="uid://c1rrj106ba23c" path="res://modules/enemies/fat_guy/fat_guy.tscn" id="17_gxpvf"]
 [ext_resource type="Script" path="res://modules/session_resources_start_value_setter/session_resources_start_value_setter.gd" id="18_716ky"]
 
 [sub_resource type="Gradient" id="Gradient_7wdsv"]
@@ -38,40 +41,6 @@ _data = {
 "points": PackedVector2Array(-85.6746, -27.7183, 85.6746, 27.7183, -786, 392, -98.2738, -1.25992, 98.2738, 1.25992, -202, 414, -25.1984, 28.9782, 25.1984, -28.9782, 376, 399, -1.25992, 123.472, 1.25992, -123.472, 400, 69, 25.1984, 22.6786, -25.1984, -22.6786, 375, -269, 157.49, -3.77976, -157.49, 3.77976, -199, -290, 39.0576, -23.9385, -39.0576, 23.9385, -784, -270, 0, 0, 0, 0, -786, 393)
 }
 point_count = 8
-
-[sub_resource type="Resource" id="Resource_ha8pd"]
-script = ExtResource("5_cdkvj")
-position = Vector2(0, 0)
-enemy_type = ExtResource("7_qdjci")
-
-[sub_resource type="Resource" id="Resource_fimxx"]
-script = ExtResource("5_cdkvj")
-position = Vector2(-30, 30)
-enemy_type = ExtResource("7_qdjci")
-
-[sub_resource type="Resource" id="Resource_bkwvd"]
-script = ExtResource("5_cdkvj")
-position = Vector2(30, 30)
-enemy_type = ExtResource("7_qdjci")
-
-[sub_resource type="Resource" id="Resource_431p8"]
-script = ExtResource("3_1l7r1")
-duration = 3.0
-slots = Array[ExtResource("5_cdkvj")]([SubResource("Resource_ha8pd"), SubResource("Resource_fimxx"), SubResource("Resource_bkwvd")])
-
-[sub_resource type="Resource" id="Resource_ob8ae"]
-script = ExtResource("3_1l7r1")
-duration = 0.0
-slots = Array[ExtResource("5_cdkvj")]([SubResource("Resource_ha8pd"), SubResource("Resource_fimxx"), SubResource("Resource_bkwvd")])
-
-[sub_resource type="Resource" id="Resource_3oqb2"]
-script = ExtResource("3_1l7r1")
-duration = 3.0
-slots = Array[ExtResource("5_cdkvj")]([SubResource("Resource_ha8pd"), SubResource("Resource_fimxx"), SubResource("Resource_bkwvd")])
-
-[sub_resource type="Resource" id="Resource_r068o"]
-script = ExtResource("2_wt1ov")
-waves = Array[ExtResource("3_1l7r1")]([ExtResource("3_glakl"), SubResource("Resource_431p8"), SubResource("Resource_ob8ae"), SubResource("Resource_3oqb2")])
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
@@ -108,7 +77,10 @@ curve = SubResource("Curve2D_sv0k5")
 script = ExtResource("1_8uoqe")
 main_tree = NodePath("../MainTree")
 _enemy_scene_by_type = {
-ExtResource("7_qdjci"): ExtResource("3_j3pig")
+ExtResource("7_qdjci"): ExtResource("3_j3pig"),
+ExtResource("12_dg3lk"): ExtResource("13_57vcj"),
+ExtResource("14_ift2q"): ExtResource("15_cbixe"),
+ExtResource("16_jy4j1"): ExtResource("17_gxpvf")
 }
 
 [node name="SpawnPoint" type="PathFollow2D" parent="EnemiesSpawner"]
@@ -117,7 +89,7 @@ rotation = 0.312902
 
 [node name="LevelsProgressionProcessor" type="Node" parent="." node_paths=PackedStringArray("_enemies_spawner")]
 script = ExtResource("1_ngvcy")
-_levels = Array[ExtResource("2_wt1ov")]([SubResource("Resource_r068o")])
+_levels = Array[Resource("res://modules/game_progression/game_level/game_level.gd")]([ExtResource("13_qswsr")])
 _skip_delay = true
 _enemies_spawner = NodePath("../EnemiesSpawner")
 _game_state_signals = ExtResource("14_mn131")

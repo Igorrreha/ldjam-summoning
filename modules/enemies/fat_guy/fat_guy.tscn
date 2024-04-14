@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1rrj106ba23c"]
+
+[ext_resource type="PackedScene" uid="uid://bcq8bgxrc4d5g" path="res://modules/enemies/prefabs/human.tscn" id="1_1hvyh"]
+
+[node name="FatGuy" instance=ExtResource("1_1hvyh")]
+modulate = Color(1, 0, 0, 1)
+speed = 50.0
+attack_power = 5.0
+
+[node name="AnimationPlayer" parent="." index="2"]
+speed_scale = 0.5
+
+[node name="AttackCollider" parent="AttackArea" index="0"]
+debug_color = Color(0.768627, 0.411765, 0.47451, 0.419608)

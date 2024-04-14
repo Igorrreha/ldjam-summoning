@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="EnemyType" load_steps=2 format=3 uid="uid://bo2xmoupmm28o"]
+
+[ext_resource type="Script" path="res://modules/enemies/enemy_type.gd" id="1_th8x8"]
+
+[resource]
+resource_name = "human_ranger"
+script = ExtResource("1_th8x8")

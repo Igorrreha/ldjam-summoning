@@ -295,6 +295,7 @@ monitorable = false
 
 [node name="AttackCollider" type="CollisionShape2D" parent="AttackArea"]
 shape = SubResource("CircleShape2D_jjd5j")
+debug_color = Color(1, 0, 0, 0.32549)
 
 [node name="DetectArea" type="Area2D" parent="."]
 collision_layer = 0

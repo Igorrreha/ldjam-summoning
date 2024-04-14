@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="EnemyType" load_steps=2 format=3 uid="uid://b5xsaaovgd8t6"]
+
+[ext_resource type="Script" path="res://modules/enemies/enemy_type.gd" id="1_6bu0q"]
+
+[resource]
+resource_name = "fast_guy"
+script = ExtResource("1_6bu0q")
