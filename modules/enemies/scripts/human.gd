@@ -30,9 +30,10 @@ func setup(position: Vector2, target: DamageableArea2D):
 func _process(delta: float) -> void:
 	if current_state == HumanStates.MOVING and is_instance_valid(current_target):
 		move_to_target(current_target)
-	elif current_state == HumanStates.ATTACK:
+	elif current_state == HumanStates.ATTACK\
+	or current_state == HumanStates.DEATH:
 		pass
-	else:
+	elif current_state != HumanStates.IDLE:
 		current_state = HumanStates.IDLE
 
 
@@ -90,11 +91,18 @@ func set_anim_with_state(state: HumanStates):
 			animation_player.play("walk")
 		HumanStates.ATTACK:
 			animation_player.play("attack")
+		HumanStates.DEATH:
+			animation_player.play("death")
 
 
 enum HumanStates
 {
-	IDLE,
-	MOVING,
-	ATTACK,
+	IDLE = 0,
+	MOVING = 1,
+	ATTACK = 2,
+	DEATH = 3
 }
+
+
+func _on_damageable_area_2d_dead() -> void:
+	current_state = HumanStates.DEATH

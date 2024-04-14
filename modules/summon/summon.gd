@@ -47,7 +47,8 @@ func on_clicked() -> void:
 
 
 func attack():
-	current_target.apply_damage(_attack_power)
+	if is_instance_valid(current_target):
+		current_target.apply_damage(_attack_power)
 	
 	
 func _on_attack_area_entered(area: Area2D) -> void:
