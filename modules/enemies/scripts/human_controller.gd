@@ -35,7 +35,7 @@ func _process(delta: float) -> void:
 		move_to_target(current_target)
 	elif current_state == HumanStates.attack:
 		pass
-	else:
+	elif current_state != HumanStates.stay:
 		current_state = HumanStates.stay
 
 
