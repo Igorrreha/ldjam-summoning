@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dtttoblwtuilw"]
+[gd_scene load_steps=30 format=3 uid="uid://dtttoblwtuilw"]
 
 [ext_resource type="Script" path="res://modules/enemies/scripts/enemies_generator.gd" id="1_8uoqe"]
 [ext_resource type="Script" path="res://modules/game_progression/levels_progression_processor.gd" id="1_ngvcy"]
@@ -9,10 +9,15 @@
 [ext_resource type="Resource" uid="uid://b6wg71k7vjcq5" path="res://modules/game_progression/game_level/waves/solo_human.tres" id="3_glakl"]
 [ext_resource type="PackedScene" uid="uid://bcq8bgxrc4d5g" path="res://modules/enemies/prefabs/human.tscn" id="3_j3pig"]
 [ext_resource type="Resource" uid="uid://bnjior33nt71c" path="res://modules/session_resources/session_resources.tres" id="3_l8twg"]
+[ext_resource type="Resource" uid="uid://pksiotgaoyis" path="res://modules/summon/defaul_meelee_summon/default_meelee_summon.tres" id="4_7npjl"]
 [ext_resource type="PackedScene" uid="uid://dsyxcv4468b74" path="res://modules/nexus/nexus.tscn" id="4_42yk5"]
 [ext_resource type="Script" path="res://modules/game_progression/game_level/game_level_wave_slot.gd" id="5_cdkvj"]
+[ext_resource type="PackedScene" uid="uid://cvhov4t3e5g7d" path="res://modules/summon/defaul_meelee_summon/default_meelee_summon.tscn" id="5_pso5y"]
+[ext_resource type="Script" path="res://modules/summon_sacrificion_processor/summon_sacrifition_processor.gd" id="6_bwpnp"]
+[ext_resource type="Resource" uid="uid://c8t8oyii45f06" path="res://modules/summon/summons_signals.tres" id="7_e2u6w"]
 [ext_resource type="Resource" uid="uid://dkqib6vae41y4" path="res://modules/enemies/human.tres" id="7_qdjci"]
 [ext_resource type="Resource" uid="uid://cfduuk254rjq8" path="res://modules/game_state_signals/game_state_signals.tres" id="14_mn131"]
+[ext_resource type="Script" path="res://modules/session_resources_start_value_setter/session_resources_start_value_setter.gd" id="18_716ky"]
 
 [sub_resource type="Gradient" id="Gradient_7wdsv"]
 offsets = PackedFloat32Array(0, 0.324675, 0.772871, 1)
@@ -82,6 +87,15 @@ texture = SubResource("NoiseTexture2D_4uss2")
 
 [node name="SummonSpawner" parent="." instance=ExtResource("2_ksggh")]
 _session_resources = ExtResource("3_l8twg")
+_summon_scene_by_type = {
+ExtResource("4_7npjl"): ExtResource("5_pso5y")
+}
+
+[node name="SummonSacrifitionProcessor" type="Node" parent="."]
+script = ExtResource("6_bwpnp")
+_summons_signals = ExtResource("7_e2u6w")
+_session_resources = ExtResource("3_l8twg")
+_default_meelee_summon_type = ExtResource("4_7npjl")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -106,5 +120,9 @@ script = ExtResource("1_ngvcy")
 _levels = Array[ExtResource("2_wt1ov")]([SubResource("Resource_r068o")])
 _enemies_spawner = NodePath("../EnemiesSpawner")
 _game_state_signals = ExtResource("14_mn131")
+
+[node name="SessionResourcesStartValueSetter" type="Node" parent="."]
+script = ExtResource("18_716ky")
+_session_resources = ExtResource("3_l8twg")
 
 [connection signal="drag_end_on_valid_place" from="SummonDraggingVisulaizer" to="SummonSpawner" method="spawn"]

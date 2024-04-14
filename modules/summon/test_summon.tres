@@ -1,7 +1,0 @@
-[gd_resource type="Resource" script_class="SummonType" load_steps=2 format=3 uid="uid://pksiotgaoyis"]
-
-[ext_resource type="Script" path="res://modules/summon/summon_type.gd" id="1_r4m8q"]
-
-[resource]
-resource_name = "test_summon"
-script = ExtResource("1_r4m8q")

@@ -1,5 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://bcq8bgxrc4d5g"]
+[gd_scene load_steps=13 format=3 uid="uid://bcq8bgxrc4d5g"]
+[ext_resource type="Script" path="res://modules/damageable_area_2d/damageable_area_2d.gd" id="3_2062n"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_53o53"]
+radius = 7.0
 [ext_resource type="Texture2D" uid="uid://sig6o4ksllrl" path="res://modules/enemies/art/human.png" id="1_psrqc"]
 [ext_resource type="Script" path="res://modules/enemies/scripts/human.gd" id="2_chmqu"]
 
@@ -8,7 +11,7 @@ length = 0.001
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Icon:rotation")
+tracks/0/path = NodePath("../Icon:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -19,7 +22,7 @@ tracks/0/keys = {
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Icon:scale:x")
+tracks/1/path = NodePath("../Icon:scale:x")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -30,7 +33,7 @@ tracks/1/keys = {
 tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Icon:scale:y")
+tracks/2/path = NodePath("../Icon:scale:y")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -41,7 +44,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Icon:position")
+tracks/3/path = NodePath("../Icon:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -53,7 +56,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Icon:scale")
+tracks/4/path = NodePath("../Icon:scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -70,7 +73,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Icon:position")
+tracks/0/path = NodePath("../Icon:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -82,7 +85,7 @@ tracks/0/keys = {
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Icon:rotation")
+tracks/1/path = NodePath("../Icon:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -93,7 +96,7 @@ tracks/1/keys = {
 tracks/2/type = "method"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath(".")
+tracks/2/path = NodePath("..")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -111,7 +114,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Icon:scale")
+tracks/0/path = NodePath("../Icon:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -123,7 +126,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Icon:position")
+tracks/1/path = NodePath("../Icon:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -135,7 +138,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Icon:rotation")
+tracks/2/path = NodePath("../Icon:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -152,7 +155,7 @@ loop_mode = 2
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Icon:rotation")
+tracks/0/path = NodePath("../Icon:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -163,7 +166,7 @@ tracks/0/keys = {
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Icon:scale:x")
+tracks/1/path = NodePath("../Icon:scale:x")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -174,7 +177,7 @@ tracks/1/keys = {
 tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Icon:scale:y")
+tracks/2/path = NodePath("../Icon:scale:y")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -191,21 +194,23 @@ _data = {
 "walk": SubResource("Animation_trqbf")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_53o53"]
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_jjd5j"]
 radius = 28.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g8x3i"]
 radius = 100.02
 
-[node name="Human" type="Area2D"]
-collision_layer = 2
-collision_mask = 5
-script = ExtResource("2_chmqu")
-speed = 1.0
-attack_power = 2.0
-_max_health = 3.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_4to34"]
+
+[node name="Human" type="CharacterBody2D" node_paths=PackedStringArray("damageable_area")]
+motion_mode = 1
+floor_stop_on_slope = false
+floor_block_on_wall = false
+platform_on_leave = 2
+script = ExtResource("1_mnp02")
+speed = 100.0
+attack_power = 1.0
+damageable_area = NodePath("DamageableArea2D")
 
 [node name="Icon" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -213,13 +218,14 @@ position = Vector2(0, -20)
 texture = ExtResource("1_psrqc")
 flip_h = true
 
+[node name="BodyCollider" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_53o53")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../DamageableArea2D")
 libraries = {
 "": SubResource("AnimationLibrary_ie52g")
 }
-
-[node name="BodyCollider" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_53o53")
 
 [node name="AttackArea" type="Area2D" parent="."]
 collision_layer = 0
@@ -236,6 +242,14 @@ monitorable = false
 
 [node name="DetectCollider" type="CollisionShape2D" parent="DetectArea"]
 shape = SubResource("CircleShape2D_g8x3i")
+
+[node name="DamageableArea2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("3_2062n")
+
+[node name="BodyCollider" type="CollisionShape2D" parent="DamageableArea2D"]
+shape = SubResource("CircleShape2D_4to34")
 
 [connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_area_entered"]
 [connection signal="area_entered" from="DetectArea" to="." method="_on_detect_area_area_entered"]

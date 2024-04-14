@@ -1,10 +1,10 @@
 extends Node
 
 
-
 @export var _autostart: bool
 @export var _current_level_idx: int = 0
 @export var _levels: Array[GameLevel]
+@export var _first_wave_of_level_delay: float = 3
 
 @export var _enemies_spawner: EnemiesSpawner
 @export var _game_state_signals: GameStateSignals
@@ -36,6 +36,10 @@ func stop() -> void:
 
 func _process_current_level() -> void:
 	var current_level = _levels[_current_level_idx]
+	_game_state_signals.level_started.emit(_current_level_idx + 1)
+	
+	await get_tree().create_timer(_first_wave_of_level_delay).timeout
+	
 	for wave: GameLevelWave in current_level.waves:
 		if _stopped:
 			return

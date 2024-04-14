@@ -1,11 +1,10 @@
 class_name Human
-extends DamageableArea2D
+extends CharacterBody2D
 
 
 @export var speed: float
 @export var attack_power: float
-
-@export var atack_timer: Timer
+@export var damageable_area: DamageableArea2D
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
@@ -35,7 +34,7 @@ func _process(delta: float) -> void:
 		move_to_target(current_target)
 	elif current_state == HumanStates.attack:
 		pass
-	elif current_state != HumanStates.stay:
+	else:
 		current_state = HumanStates.stay
 
 
@@ -45,7 +44,8 @@ func change_target(target: DamageableArea2D):
 
 
 func move_to_target(target: DamageableArea2D):
-	global_position = global_position.move_toward(current_target.global_position, speed)
+	velocity = (current_target.global_position - global_position).normalized() * speed
+	move_and_slide()
 
 
 func attack():
@@ -63,7 +63,7 @@ func _on_detect_area_area_entered(area: Area2D) -> void:
 
 
 func _on_detect_area_area_exited(area: Area2D) -> void:
-	for overlapping_area in get_overlapping_areas():
+	for overlapping_area in damageable_area.get_overlapping_areas():
 		if overlapping_area is DamageableArea2D:
 			change_target(overlapping_area)
 			return

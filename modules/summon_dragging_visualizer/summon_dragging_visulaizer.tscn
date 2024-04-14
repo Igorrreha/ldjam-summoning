@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://modules/summon_dragging_visualizer/summon_dragging_visualizer.gd" id="1_8ah3u"]
 [ext_resource type="Resource" uid="uid://yxh2yeolu841" path="res://modules/game_hud/game_hud_signals.tres" id="2_wy5ki"]
-[ext_resource type="Resource" uid="uid://pksiotgaoyis" path="res://modules/summon/test_summon.tres" id="3_yvyqk"]
+[ext_resource type="Resource" uid="uid://pksiotgaoyis" path="res://modules/summon/defaul_meelee_summon/default_meelee_summon.tres" id="3_yvyqk"]
 [ext_resource type="PackedScene" uid="uid://cqufs586r2gca" path="res://modules/summon_dragging_visualizer/placement_plans/test_placement_plan.tscn" id="4_acutv"]
 
 [node name="SummonDraggingVisulaizer" type="Node2D"]
