@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="GameLevelWave" load_steps=5 format=3 uid="uid://b6wg71k7vjcq5"]
+
+[ext_resource type="Script" path="res://modules/game_progression/game_level/game_level_wave.gd" id="1_0spkl"]
+[ext_resource type="Resource" uid="uid://dkqib6vae41y4" path="res://modules/enemies/human.tres" id="2_0rb2u"]
+[ext_resource type="Script" path="res://modules/game_progression/game_level/game_level_wave_slot.gd" id="3_3mgdk"]
+
+[sub_resource type="Resource" id="Resource_oedio"]
+script = ExtResource("3_3mgdk")
+position = Vector2(0, 0)
+enemy_type = ExtResource("2_0rb2u")
+
+[resource]
+script = ExtResource("1_0spkl")
+duration = 3.0
+slots = Array[ExtResource("3_3mgdk")]([SubResource("Resource_oedio")])
