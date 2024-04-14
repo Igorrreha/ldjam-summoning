@@ -36,7 +36,8 @@ func move_to_target(target: DamageableArea2D):
 
 
 func attack():
-	current_target.apply_damage(attack_power)
+	if is_instance_valid(current_target):
+		current_target.apply_damage(attack_power)
 
 
 func _on_attack_area_area_entered(area: Area2D) -> void:
@@ -60,6 +61,7 @@ func _on_detect_area_area_exited(area: Area2D) -> void:
 		change_target(main_target)
 	else:
 		is_moving = false
+		atack_timer.stop()
 
 
 func _on_atack_timer_timeout() -> void:
