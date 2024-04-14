@@ -1,9 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://kl8xnd8il83h"]
+[gd_scene load_steps=12 format=3 uid="uid://kl8xnd8il83h"]
 
 [ext_resource type="Script" path="res://modules/summon/summon.gd" id="1_e1k8t"]
+[ext_resource type="Resource" uid="uid://c8t8oyii45f06" path="res://modules/summon/summons_signals.tres" id="2_5l2wv"]
 [ext_resource type="Texture2D" uid="uid://cllir73812ifw" path="res://modules/nexus/under_tree.png" id="2_cses6"]
 [ext_resource type="Texture2D" uid="uid://djde3pxrhu3vt" path="res://modules/summon/standard_summon.png" id="2_yfd2i"]
-[ext_resource type="Resource" uid="uid://c8t8oyii45f06" path="res://modules/summon/summons_signals.tres" id="2_5l2wv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rkinp"]
 radius = 20.0
