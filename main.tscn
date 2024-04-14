@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c3pkanavhi8ax"]
+[gd_scene load_steps=6 format=3 uid="uid://c3pkanavhi8ax"]
 
 [ext_resource type="PackedScene" uid="uid://d3wss5cdpkfn6" path="res://modules/gamestart_splashscreen/gamestart_splashscreen.tscn" id="1_1r8an"]
 [ext_resource type="PackedScene" uid="uid://dtttoblwtuilw" path="res://game.tscn" id="1_byb6l"]
 [ext_resource type="PackedScene" uid="uid://ovxlsequh7vl" path="res://modules/game_hud/game_hud.tscn" id="1_ui2nv"]
 [ext_resource type="PackedScene" uid="uid://cw5sq1not35fx" path="res://modules/main_menu/main_menu.tscn" id="2_ryy64"]
+[ext_resource type="PackedScene" uid="uid://c05exain5xqqy" path="res://modules/game_over_menu/game_over_menu.tscn" id="3_0e54r"]
 
 [node name="Main" type="Node"]
 
@@ -12,6 +13,9 @@
 [node name="GameHud" parent="Ui" instance=ExtResource("1_ui2nv")]
 
 [node name="MainMenu" parent="Ui" instance=ExtResource("2_ryy64")]
+
+[node name="GameOverMenu" parent="Ui" instance=ExtResource("3_0e54r")]
+visible = false
 
 [node name="GamestartSplashscreen" parent="Ui" instance=ExtResource("1_1r8an")]
 

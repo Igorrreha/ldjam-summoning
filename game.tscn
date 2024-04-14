@@ -1,8 +1,7 @@
-[gd_scene load_steps=27 format=3 uid="uid://dtttoblwtuilw"]
+[gd_scene load_steps=25 format=3 uid="uid://dtttoblwtuilw"]
 
 [ext_resource type="Script" path="res://modules/enemies/scripts/enemies_generator.gd" id="1_8uoqe"]
 [ext_resource type="Script" path="res://modules/game_progression/levels_progression_processor.gd" id="1_ngvcy"]
-[ext_resource type="Texture2D" uid="uid://ckcvtu4qoo631" path="res://icon.svg" id="1_vemo2"]
 [ext_resource type="PackedScene" uid="uid://c67nd8ymg0ffh" path="res://modules/summon_dragging_visualizer/summon_dragging_visulaizer.tscn" id="1_wrqsh"]
 [ext_resource type="PackedScene" uid="uid://dli1v618fkrgf" path="res://modules/summon_spawner/summon_spawner.tscn" id="2_ksggh"]
 [ext_resource type="Script" path="res://modules/game_progression/game_level/game_level.gd" id="2_wt1ov"]
@@ -10,7 +9,7 @@
 [ext_resource type="Resource" uid="uid://b6wg71k7vjcq5" path="res://modules/game_progression/game_level/waves/solo_human.tres" id="3_glakl"]
 [ext_resource type="PackedScene" uid="uid://bcq8bgxrc4d5g" path="res://modules/enemies/prefabs/human.tscn" id="3_j3pig"]
 [ext_resource type="Resource" uid="uid://bnjior33nt71c" path="res://modules/session_resources/session_resources.tres" id="3_l8twg"]
-[ext_resource type="Script" path="res://modules/damageable_area_2d/damageable_area_2d.gd" id="4_6mard"]
+[ext_resource type="PackedScene" uid="uid://dsyxcv4468b74" path="res://modules/nexus/nexus.tscn" id="4_42yk5"]
 [ext_resource type="Script" path="res://modules/game_progression/game_level/game_level_wave_slot.gd" id="5_cdkvj"]
 [ext_resource type="Resource" uid="uid://dkqib6vae41y4" path="res://modules/enemies/human.tres" id="7_qdjci"]
 [ext_resource type="Resource" uid="uid://cfduuk254rjq8" path="res://modules/game_state_signals/game_state_signals.tres" id="14_mn131"]
@@ -28,9 +27,6 @@ fractal_gain = 1.665
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4uss2"]
 color_ramp = SubResource("Gradient_7wdsv")
 noise = SubResource("FastNoiseLite_hyq8t")
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_xg4vy"]
-radius = 67.42
 
 [sub_resource type="Curve2D" id="Curve2D_sv0k5"]
 _data = {
@@ -89,17 +85,7 @@ _session_resources = ExtResource("3_l8twg")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="MainTree" type="Area2D" parent="."]
-position = Vector2(0, -2)
-collision_mask = 2
-script = ExtResource("4_6mard")
-_max_health = 100.0
-
-[node name="Icon" type="Sprite2D" parent="MainTree"]
-texture = ExtResource("1_vemo2")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MainTree"]
-shape = SubResource("CircleShape2D_xg4vy")
+[node name="MainTree" parent="." instance=ExtResource("4_42yk5")]
 
 [node name="EnemiesSpawner" type="Path2D" parent="." node_paths=PackedStringArray("main_tree")]
 y_sort_enabled = true
@@ -122,4 +108,3 @@ _enemies_spawner = NodePath("../EnemiesSpawner")
 _game_state_signals = ExtResource("14_mn131")
 
 [connection signal="drag_end_on_valid_place" from="SummonDraggingVisulaizer" to="SummonSpawner" method="spawn"]
-[connection signal="dead" from="MainTree" to="MainTree" method="queue_free"]

@@ -11,6 +11,7 @@ extends Node
 
 
 var _started: bool
+var _stopped: bool
 
 
 func _ready() -> void:
@@ -18,6 +19,7 @@ func _ready() -> void:
 		start()
 	
 	_game_state_signals.game_started.connect(start)
+	_game_state_signals.game_over.connect(stop)
 
 
 func start() -> void:
@@ -28,8 +30,15 @@ func start() -> void:
 	_process_current_level()
 
 
+func stop() -> void:
+	_stopped = true
+
+
 func _process_current_level() -> void:
 	var current_level = _levels[_current_level_idx]
 	for wave: GameLevelWave in current_level.waves:
+		if _stopped:
+			return
+		
 		_enemies_spawner.spawn_wave(wave)
 		await get_tree().create_timer(wave.duration).timeout

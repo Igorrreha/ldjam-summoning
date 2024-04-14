@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://c05exain5xqqy"]
+
+[ext_resource type="Theme" uid="uid://bbgunevbft2h4" path="res://modules/default_theme/default_theme.tres" id="1_brjyq"]
+[ext_resource type="Script" path="res://modules/game_over_menu/game_over_menu.gd" id="2_rasn0"]
+[ext_resource type="Script" path="res://modules/game_over_menu/play_again_button.gd" id="2_sksfq"]
+[ext_resource type="Resource" uid="uid://cfduuk254rjq8" path="res://modules/game_state_signals/game_state_signals.tres" id="3_unjni"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_4yf1c"]
+font_size = 50
+shadow_size = 7
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(0, 5)
+
+[node name="GameOverMenu" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_brjyq")
+script = ExtResource("2_rasn0")
+_game_state_signals = ExtResource("3_unjni")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -42.5
+offset_top = -21.5
+offset_right = 42.5
+offset_bottom = 21.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Game over"
+label_settings = SubResource("LabelSettings_4yf1c")
+horizontal_alignment = 1
+
+[node name="PlayAgainButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Play again!"
+script = ExtResource("2_sksfq")
+_game_state_signals = ExtResource("3_unjni")
+
+[connection signal="pressed" from="VBoxContainer/PlayAgainButton" to="." method="hide"]
