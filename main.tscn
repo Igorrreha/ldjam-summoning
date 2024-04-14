@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://c3pkanavhi8ax"]
+[gd_scene load_steps=8 format=3 uid="uid://c3pkanavhi8ax"]
 
 [ext_resource type="PackedScene" uid="uid://d3wss5cdpkfn6" path="res://modules/gamestart_splashscreen/gamestart_splashscreen.tscn" id="1_1r8an"]
 [ext_resource type="PackedScene" uid="uid://dtttoblwtuilw" path="res://game.tscn" id="1_byb6l"]
 [ext_resource type="PackedScene" uid="uid://ovxlsequh7vl" path="res://modules/game_hud/game_hud.tscn" id="1_ui2nv"]
 [ext_resource type="PackedScene" uid="uid://cw5sq1not35fx" path="res://modules/main_menu/main_menu.tscn" id="2_ryy64"]
 [ext_resource type="PackedScene" uid="uid://c05exain5xqqy" path="res://modules/game_over_menu/game_over_menu.tscn" id="3_0e54r"]
+[ext_resource type="Script" path="res://modules/game_restarter/game_restarter.gd" id="6_rxp6k"]
+[ext_resource type="Resource" uid="uid://cfduuk254rjq8" path="res://modules/game_state_signals/game_state_signals.tres" id="7_7crwr"]
 
 [node name="Main" type="Node"]
 
@@ -19,4 +21,8 @@ visible = false
 
 [node name="GamestartSplashscreen" parent="Ui" instance=ExtResource("1_1r8an")]
 
-[node name="Game" parent="." instance=ExtResource("1_byb6l")]
+[node name="GameRestarter" type="Node" parent="." node_paths=PackedStringArray("_game_container")]
+script = ExtResource("6_rxp6k")
+_game_container = NodePath("..")
+_game_scene = ExtResource("1_byb6l")
+_game_state_signals = ExtResource("7_7crwr")
