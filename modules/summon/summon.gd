@@ -10,6 +10,10 @@ var current_state: PlantStates:
 @export var _type: SummonType
 @export var _summon_signals: SummonsSignals
 @export var _clickable_graphics: Sprite2D
+@export var _attack_power: float
+
+
+var current_target: DamageableArea2D
 
 
 func _ready() -> void:
@@ -40,6 +44,16 @@ func play_anim_with_state(state: PlantStates):
 func on_clicked() -> void:
 	_summon_signals.summon_sacrificed.emit(_type, global_position)
 	queue_free()
+
+
+func attack():
+	current_target.apply_damage(_attack_power)
+	
+	
+func _on_attack_area_entered(area: Area2D) -> void:
+	if area is DamageableArea2D:
+		current_target = area
+		current_state = PlantStates.Attack
 
 
 func _input(event: InputEvent) -> void:

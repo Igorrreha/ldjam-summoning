@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://kl8xnd8il83h"]
+[gd_scene load_steps=13 format=3 uid="uid://kl8xnd8il83h"]
 
 [ext_resource type="Script" path="res://modules/summon/summon.gd" id="1_e1k8t"]
 [ext_resource type="Resource" uid="uid://c8t8oyii45f06" path="res://modules/summon/summons_signals.tres" id="2_5l2wv"]
@@ -157,6 +157,20 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [0.0, -0.0767945, 0.0959931, 0.0]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"attack"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_bdyvs"]
@@ -386,12 +400,16 @@ _data = {
 "spawn": SubResource("Animation_8lx61")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_fthks"]
+radius = 55.0364
+
 [node name="Summon" type="Area2D" node_paths=PackedStringArray("_clickable_graphics")]
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_e1k8t")
 _summon_signals = ExtResource("2_5l2wv")
 _clickable_graphics = NodePath("Sprite2D")
+_attack_power = 5.0
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -413,3 +431,13 @@ libraries = {
 "": SubResource("AnimationLibrary_a0vjt")
 }
 autoplay = "spawn"
+
+[node name="AttackArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 3
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+shape = SubResource("CircleShape2D_fthks")
+
+[connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_entered"]
