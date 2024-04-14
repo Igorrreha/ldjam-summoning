@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dtttoblwtuilw"]
+[gd_scene load_steps=13 format=3 uid="uid://dtttoblwtuilw"]
 
 [ext_resource type="Script" path="res://modules/enemies/scripts/enemies_generator.gd" id="1_8uoqe"]
 [ext_resource type="Texture2D" uid="uid://ckcvtu4qoo631" path="res://icon.svg" id="1_vemo2"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dli1v618fkrgf" path="res://modules/summon_spawner/summon_spawner.tscn" id="2_ksggh"]
 [ext_resource type="PackedScene" uid="uid://bcq8bgxrc4d5g" path="res://modules/enemies/prefabs/human.tscn" id="3_j3pig"]
 [ext_resource type="Resource" uid="uid://bnjior33nt71c" path="res://modules/session_resources/session_resources.tres" id="3_l8twg"]
+[ext_resource type="Script" path="res://modules/damageable_area_2d/damageable_area_2d.gd" id="4_6mard"]
 
 [sub_resource type="Gradient" id="Gradient_7wdsv"]
 offsets = PackedFloat32Array(0, 0.324675, 0.753247, 1)
@@ -50,6 +51,8 @@ _session_resources = ExtResource("3_l8twg")
 [node name="MainTree" type="Area2D" parent="."]
 position = Vector2(0, -2)
 collision_mask = 2
+script = ExtResource("4_6mard")
+_max_health = 100.0
 
 [node name="Icon" type="Sprite2D" parent="MainTree"]
 texture = ExtResource("1_vemo2")

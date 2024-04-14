@@ -1,7 +1,7 @@
 extends Path2D
 
 
-@export var main_tree: Node2D
+@export var main_tree: DamageableArea2D
 @export var human_scene: PackedScene
 
 

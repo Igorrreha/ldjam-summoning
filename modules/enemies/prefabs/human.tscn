@@ -91,11 +91,13 @@ radius = 28.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_g8x3i"]
 radius = 100.02
 
-[node name="Human" type="Area2D"]
+[node name="Human" type="Area2D" node_paths=PackedStringArray("atack_timer")]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("2_chmqu")
 speed = 1.0
+attack_power = 10.0
+atack_timer = NodePath("AtackTimer")
 _max_health = 3.0
 
 [node name="Icon" type="Sprite2D" parent="."]
@@ -111,11 +113,11 @@ autoplay = "walk"
 [node name="BodyCollider" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_53o53")
 
-[node name="AtackArea" type="Area2D" parent="."]
+[node name="AttackArea" type="Area2D" parent="."]
 collision_layer = 0
 monitorable = false
 
-[node name="AttackCollider" type="CollisionShape2D" parent="AtackArea"]
+[node name="AttackCollider" type="CollisionShape2D" parent="AttackArea"]
 shape = SubResource("CircleShape2D_jjd5j")
 
 [node name="DetectArea" type="Area2D" parent="."]
@@ -126,6 +128,8 @@ monitorable = false
 [node name="DetectCollider" type="CollisionShape2D" parent="DetectArea"]
 shape = SubResource("CircleShape2D_g8x3i")
 
-[connection signal="area_entered" from="AtackArea" to="." method="_on_atack_area_area_entered"]
+[node name="AtackTimer" type="Timer" parent="."]
+
+[connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_area_entered"]
 [connection signal="area_entered" from="DetectArea" to="." method="_on_detect_area_area_entered"]
-[connection signal="area_exited" from="DetectArea" to="." method="_on_detect_area_exited"]
+[connection signal="area_exited" from="DetectArea" to="." method="_on_detect_area_area_exited"]
