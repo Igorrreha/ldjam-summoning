@@ -73,3 +73,4 @@ position = Vector2(-786, 392)
 rotation = 0.312902
 
 [connection signal="drag_end_on_valid_place" from="SummonDraggingVisulaizer" to="SummonSpawner" method="spawn"]
+[connection signal="dead" from="MainTree" to="MainTree" method="queue_free"]

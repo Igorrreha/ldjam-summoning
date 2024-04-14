@@ -133,3 +133,4 @@ shape = SubResource("CircleShape2D_g8x3i")
 [connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_area_entered"]
 [connection signal="area_entered" from="DetectArea" to="." method="_on_detect_area_area_entered"]
 [connection signal="area_exited" from="DetectArea" to="." method="_on_detect_area_area_exited"]
+[connection signal="timeout" from="AtackTimer" to="." method="_on_atack_timer_timeout"]

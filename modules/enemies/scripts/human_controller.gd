@@ -12,7 +12,6 @@ var main_target: DamageableArea2D
 var current_target: DamageableArea2D
 
 var is_moving = true
-var is_attack = false
 
 
 func setup(position: Vector2, target: DamageableArea2D):
@@ -22,13 +21,14 @@ func setup(position: Vector2, target: DamageableArea2D):
 
 
 func _process(delta: float) -> void:
-	if is_moving:
+	if is_moving and is_instance_valid(current_target):
 		move_to_target(current_target)
 
 
 func change_target(target: DamageableArea2D):
 	self.current_target = target
 	is_moving = true
+	atack_timer.stop()
 
 
 func move_to_target(target: DamageableArea2D):
@@ -41,9 +41,8 @@ func attack():
 
 func _on_attack_area_area_entered(area: Area2D) -> void:
 	is_moving = false
-	is_attack = true
 	attack()
-	
+	atack_timer.start()
 
 
 func _on_detect_area_area_entered(area: Area2D) -> void:
@@ -57,4 +56,11 @@ func _on_detect_area_area_exited(area: Area2D) -> void:
 			change_target(overlapping_area)
 			return
 	
-	change_target(main_target)
+	if is_instance_valid(main_target):
+		change_target(main_target)
+	else:
+		is_moving = false
+
+
+func _on_atack_timer_timeout() -> void:
+	attack()
