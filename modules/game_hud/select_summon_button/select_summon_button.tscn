@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cg4na16ooxpyl"]
 
-[ext_resource type="Texture2D" uid="uid://ckcvtu4qoo631" path="res://icon.svg" id="1_piigy"]
+[ext_resource type="Texture2D" uid="uid://ckcvtu4qoo631" path="res://godot.svg" id="1_piigy"]
 [ext_resource type="Script" path="res://modules/game_hud/select_summon_button/select_summon_button.gd" id="2_o4w6f"]
 [ext_resource type="Resource" uid="uid://yxh2yeolu841" path="res://modules/game_hud/game_hud_signals.tres" id="3_svjx5"]
 [ext_resource type="Resource" uid="uid://pksiotgaoyis" path="res://modules/summon/defaul_meelee_summon/default_meelee_summon.tres" id="4_gioj4"]
