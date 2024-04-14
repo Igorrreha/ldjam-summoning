@@ -211,6 +211,7 @@ _max_health = 3.0
 texture_filter = 1
 position = Vector2(0, -20)
 texture = ExtResource("1_psrqc")
+flip_h = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://modules/nexus/nexus.gd" id="1_q4wri"]
 [ext_resource type="Resource" uid="uid://cfduuk254rjq8" path="res://modules/game_state_signals/game_state_signals.tres" id="2_hogx3"]
-[ext_resource type="Texture2D" uid="uid://cedh4jw00sv1x" path="res://modules/nexus/древо.png" id="3_2nmgg"]
-[ext_resource type="Texture2D" uid="uid://cllir73812ifw" path="res://modules/nexus/под_деревом.png" id="3_pi02u"]
+[ext_resource type="Texture2D" uid="uid://cllir73812ifw" path="res://modules/nexus/under_tree.png" id="3_pi02u"]
+[ext_resource type="Texture2D" uid="uid://cedh4jw00sv1x" path="res://modules/nexus/main_tree.png" id="4_qx5em"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xg4vy"]
 radius = 40.0125
@@ -24,7 +24,7 @@ texture = ExtResource("3_pi02u")
 texture_filter = 1
 position = Vector2(0.999992, -99)
 scale = Vector2(2.02344, 2.02344)
-texture = ExtResource("3_2nmgg")
+texture = ExtResource("4_qx5em")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 8)

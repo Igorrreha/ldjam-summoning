@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cllir73812ifw"
-path="res://.godot/imported/под_деревом.png-4084cac19284b85f21ac2caec59aaf23.ctex"
+path="res://.godot/imported/under_tree.png-4151ad77112528905f7b9a63070a0fa9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://modules/nexus/под_деревом.png"
-dest_files=["res://.godot/imported/под_деревом.png-4084cac19284b85f21ac2caec59aaf23.ctex"]
+source_file="res://modules/nexus/under_tree.png"
+dest_files=["res://.godot/imported/under_tree.png-4151ad77112528905f7b9a63070a0fa9.ctex"]
 
 [params]
 
