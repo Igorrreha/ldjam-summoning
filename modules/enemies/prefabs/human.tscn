@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://bcq8bgxrc4d5g"]
 
-[ext_resource type="Texture2D" uid="uid://dk5q2prkfm8bt" path="res://modules/enemies/art/human.png" id="1_psrqc"]
+[ext_resource type="Texture2D" uid="uid://sig6o4ksllrl" path="res://modules/enemies/art/human.png" id="1_psrqc"]
 [ext_resource type="Script" path="res://modules/enemies/scripts/human_controller.gd" id="2_chmqu"]
 
 [sub_resource type="Animation" id="Animation_ufcsp"]
@@ -208,6 +208,7 @@ attack_power = 2.0
 _max_health = 3.0
 
 [node name="Icon" type="Sprite2D" parent="."]
+texture_filter = 1
 position = Vector2(0, -20)
 texture = ExtResource("1_psrqc")
 

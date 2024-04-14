@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://sig6o4ksllrl"
-path="res://.godot/imported/human.png-d75b4463856ea92e726d26d7d882d6d3.ctex"
+uid="uid://djde3pxrhu3vt"
+path="res://.godot/imported/standard_summon.png-51620e33311afd468017b530e5c561df.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://modules/enemies/art/human.png"
-dest_files=["res://.godot/imported/human.png-d75b4463856ea92e726d26d7d882d6d3.ctex"]
+source_file="res://modules/summon/standard_summon.png"
+dest_files=["res://.godot/imported/standard_summon.png-51620e33311afd468017b530e5c561df.ctex"]
 
 [params]
 

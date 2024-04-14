@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://sig6o4ksllrl"
-path="res://.godot/imported/human.png-d75b4463856ea92e726d26d7d882d6d3.ctex"
+uid="uid://cedh4jw00sv1x"
+path="res://.godot/imported/древо.png-55ae6876a4e39cc06c17e20a454acc99.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://modules/enemies/art/human.png"
-dest_files=["res://.godot/imported/human.png-d75b4463856ea92e726d26d7d882d6d3.ctex"]
+source_file="res://modules/nexus/древо.png"
+dest_files=["res://.godot/imported/древо.png-55ae6876a4e39cc06c17e20a454acc99.ctex"]
 
 [params]
 
