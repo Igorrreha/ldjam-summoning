@@ -1,17 +1,21 @@
 [gd_scene load_steps=5 format=3 uid="uid://cw5sq1not35fx"]
 
 [ext_resource type="Theme" uid="uid://bbgunevbft2h4" path="res://modules/default_theme/default_theme.tres" id="1_4boo8"]
-[ext_resource type="Script" path="res://modules/main_menu/start_game_button.gd" id="1_g15ey"]
+[ext_resource type="Script" path="res://modules/main_menu/main_menu.gd" id="2_kumc6"]
 [ext_resource type="Resource" uid="uid://cfduuk254rjq8" path="res://modules/game_state_signals/game_state_signals.tres" id="2_kvqye"]
 [ext_resource type="Script" path="res://modules/main_menu/exit_game_button.gd" id="2_w088o"]
 
-[node name="MainMenu" type="Panel"]
+[node name="MainMenu" type="Panel" node_paths=PackedStringArray("_start_button")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_4boo8")
+script = ExtResource("2_kumc6")
+_skip = true
+_start_button = NodePath("VBoxContainer/StartGameButton")
+_game_state_signals = ExtResource("2_kvqye")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -30,12 +34,8 @@ grow_vertical = 2
 [node name="StartGameButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Start"
-script = ExtResource("1_g15ey")
-_game_state_signals = ExtResource("2_kvqye")
 
 [node name="ExitGameButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Exit"
 script = ExtResource("2_w088o")
-
-[connection signal="pressed" from="VBoxContainer/StartGameButton" to="." method="hide"]

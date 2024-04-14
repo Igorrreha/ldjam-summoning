@@ -118,6 +118,7 @@ rotation = 0.312902
 [node name="LevelsProgressionProcessor" type="Node" parent="." node_paths=PackedStringArray("_enemies_spawner")]
 script = ExtResource("1_ngvcy")
 _levels = Array[ExtResource("2_wt1ov")]([SubResource("Resource_r068o")])
+_skip_delay = true
 _enemies_spawner = NodePath("../EnemiesSpawner")
 _game_state_signals = ExtResource("14_mn131")
 

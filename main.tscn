@@ -21,6 +21,7 @@
 visible = false
 
 [node name="LevelStartPanel" parent="Ui" instance=ExtResource("4_hi1r0")]
+_skip = true
 
 [node name="GamestartSplashscreen" parent="Ui" instance=ExtResource("1_1r8an")]
 
