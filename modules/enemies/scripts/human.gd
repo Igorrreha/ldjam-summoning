@@ -5,18 +5,16 @@ extends CharacterBody2D
 @export var speed: float
 @export var attack_power: float
 @export var damageable_area: DamageableArea2D
+@export var attack_area: Area2D
+@export var detect_area: Area2D
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 
 var main_target: DamageableArea2D
 var current_target: DamageableArea2D
-	#set(v):
-	#	current_target = v
-	#	if not is_instance_valid(main_target) and not is_instance_valid(current_target) and get_overlapping_areas().is_empty():
-	#		set_anim_with_state(HumanStates.stay)
 
-var current_state = HumanStates.moving:
+var current_state = HumanStates.MOVING:
 	set(v):
 		current_state = v
 		set_anim_with_state(v)
@@ -26,21 +24,24 @@ func setup(position: Vector2, target: DamageableArea2D):
 	self.global_position = position
 	self.main_target = target
 	current_target = main_target
-	set_anim_with_state(HumanStates.moving)
+	set_anim_with_state(HumanStates.MOVING)
 
 
 func _process(delta: float) -> void:
-	if current_state == HumanStates.moving and is_instance_valid(current_target):
+	if current_state == HumanStates.MOVING and is_instance_valid(current_target):
 		move_to_target(current_target)
-	elif current_state == HumanStates.attack:
+	elif current_state == HumanStates.ATTACK:
 		pass
 	else:
-		current_state = HumanStates.stay
+		current_state = HumanStates.IDLE
 
 
 func change_target(target: DamageableArea2D):
 	self.current_target = target
-	current_state = HumanStates.moving
+	if attack_area.overlaps_area(target):
+		current_state = HumanStates.ATTACK
+	else:
+		current_state = HumanStates.MOVING
 
 
 func move_to_target(target: DamageableArea2D):
@@ -54,16 +55,23 @@ func attack():
 
 
 func _on_attack_area_area_entered(area: Area2D) -> void:
-	current_state = HumanStates.attack
+	if current_state != HumanStates.ATTACK:
+		current_state = HumanStates.ATTACK
 
 
 func _on_detect_area_area_entered(area: Area2D) -> void:
-	if area is DamageableArea2D:
+	if main_target == current_target\
+	and area is DamageableArea2D:
 		change_target(area)
 
 
 func _on_detect_area_area_exited(area: Area2D) -> void:
-	for overlapping_area in damageable_area.get_overlapping_areas():
+	if area != current_target:
+		return
+	
+	await get_tree().process_frame
+	
+	for overlapping_area in detect_area.get_overlapping_areas():
 		if overlapping_area is DamageableArea2D:
 			change_target(overlapping_area)
 			return
@@ -71,22 +79,22 @@ func _on_detect_area_area_exited(area: Area2D) -> void:
 	if is_instance_valid(main_target):
 		change_target(main_target)
 	else:
-		current_state = HumanStates.stay
-		
-		
+		current_state = HumanStates.IDLE
+
+
 func set_anim_with_state(state: HumanStates):
 	match state:
-		HumanStates.stay:
+		HumanStates.IDLE:
 			animation_player.play("idle")
-		HumanStates.moving:
+		HumanStates.MOVING:
 			animation_player.play("walk")
-		HumanStates.attack:
+		HumanStates.ATTACK:
 			animation_player.play("attack")
 
 
 enum HumanStates
 {
-	stay,
-	moving,
-	attack,
+	IDLE,
+	MOVING,
+	ATTACK,
 }

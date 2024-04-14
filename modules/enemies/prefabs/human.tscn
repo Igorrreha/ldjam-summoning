@@ -203,7 +203,7 @@ radius = 100.02
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4to34"]
 
-[node name="Human" type="CharacterBody2D" node_paths=PackedStringArray("damageable_area")]
+[node name="Human" type="CharacterBody2D" node_paths=PackedStringArray("damageable_area", "attack_area", "detect_area")]
 motion_mode = 1
 floor_stop_on_slope = false
 floor_block_on_wall = false
@@ -212,6 +212,8 @@ script = ExtResource("2_chmqu")
 speed = 100.0
 attack_power = 1.0
 damageable_area = NodePath("DamageableArea2D")
+attack_area = NodePath("AttackArea")
+detect_area = NodePath("DetectArea")
 
 [node name="Icon" type="Sprite2D" parent="."]
 texture_filter = 1
