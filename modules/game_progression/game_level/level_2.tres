@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://modules/game_progression/game_level/game_level.gd" id="1_vb4vj"]
 [ext_resource type="Resource" uid="uid://b6wg71k7vjcq5" path="res://modules/game_progression/game_level/waves/solo_human.tres" id="2_nybys"]
 [ext_resource type="Script" path="res://modules/game_progression/game_level/game_level_wave.gd" id="3_72vpa"]
-[ext_resource type="Resource" uid="uid://dkqib6vae41y4" path="res://modules/enemies/human.tres" id="4_qrq1t"]
+[ext_resource type="Resource" uid="uid://dkqib6vae41y4" path="res://modules/enemies/human_meelee/human_meelee.tres" id="4_qrq1t"]
 [ext_resource type="Script" path="res://modules/game_progression/game_level/game_level_wave_slot.gd" id="5_r238w"]
 
 [sub_resource type="Resource" id="Resource_ha8pd"]

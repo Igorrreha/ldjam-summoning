@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://l0rbhm8o4stw"]
 
-[ext_resource type="PackedScene" uid="uid://bcq8bgxrc4d5g" path="res://modules/enemies/prefabs/human.tscn" id="1_mogs1"]
+[ext_resource type="PackedScene" uid="uid://bcq8bgxrc4d5g" path="res://modules/enemies/human_meelee/human_meelee.tscn" id="1_ypi1i"]
 
-[node name="FastGuy" instance=ExtResource("1_mogs1")]
+[node name="FastGuy" instance=ExtResource("1_ypi1i")]
 modulate = Color(0, 0, 1, 1)
 speed = 150.0
 attack_power = 0.5

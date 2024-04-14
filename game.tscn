@@ -1,17 +1,17 @@
 [gd_scene load_steps=26 format=3 uid="uid://dtttoblwtuilw"]
 
-[ext_resource type="Script" path="res://modules/enemies/scripts/enemies_generator.gd" id="1_8uoqe"]
 [ext_resource type="Script" path="res://modules/game_progression/levels_progression_processor.gd" id="1_ngvcy"]
 [ext_resource type="PackedScene" uid="uid://c67nd8ymg0ffh" path="res://modules/summon_dragging_visualizer/summon_dragging_visulaizer.tscn" id="1_wrqsh"]
 [ext_resource type="PackedScene" uid="uid://dli1v618fkrgf" path="res://modules/summon_spawner/summon_spawner.tscn" id="2_ksggh"]
-[ext_resource type="PackedScene" uid="uid://bcq8bgxrc4d5g" path="res://modules/enemies/prefabs/human.tscn" id="3_j3pig"]
 [ext_resource type="Resource" uid="uid://bnjior33nt71c" path="res://modules/session_resources/session_resources.tres" id="3_l8twg"]
 [ext_resource type="Resource" uid="uid://pksiotgaoyis" path="res://modules/summon/defaul_meelee_summon/default_meelee_summon.tres" id="4_7npjl"]
 [ext_resource type="PackedScene" uid="uid://dsyxcv4468b74" path="res://modules/nexus/nexus.tscn" id="4_42yk5"]
 [ext_resource type="PackedScene" uid="uid://cvhov4t3e5g7d" path="res://modules/summon/defaul_meelee_summon/default_meelee_summon.tscn" id="5_pso5y"]
 [ext_resource type="Script" path="res://modules/summon_sacrificion_processor/summon_sacrifition_processor.gd" id="6_bwpnp"]
 [ext_resource type="Resource" uid="uid://c8t8oyii45f06" path="res://modules/summon/summons_signals.tres" id="7_e2u6w"]
-[ext_resource type="Resource" uid="uid://dkqib6vae41y4" path="res://modules/enemies/human.tres" id="7_qdjci"]
+[ext_resource type="Script" path="res://modules/enemies/enemies_generator.gd" id="9_4ukip"]
+[ext_resource type="Resource" uid="uid://dkqib6vae41y4" path="res://modules/enemies/human_meelee/human_meelee.tres" id="10_sh18u"]
+[ext_resource type="PackedScene" uid="uid://bcq8bgxrc4d5g" path="res://modules/enemies/human_meelee/human_meelee.tscn" id="11_j74bq"]
 [ext_resource type="Resource" uid="uid://bo2xmoupmm28o" path="res://modules/enemies/human_ranger/human_ranger.tres" id="12_dg3lk"]
 [ext_resource type="PackedScene" uid="uid://ceqm0nyirulvc" path="res://modules/enemies/human_ranger/human_ranger.tscn" id="13_57vcj"]
 [ext_resource type="Resource" uid="uid://b06v7yeywaslo" path="res://modules/game_progression/game_level/level_1.tres" id="13_qswsr"]
@@ -74,10 +74,10 @@ _default_meelee_summon_type = ExtResource("4_7npjl")
 y_sort_enabled = true
 position = Vector2(201, -64)
 curve = SubResource("Curve2D_sv0k5")
-script = ExtResource("1_8uoqe")
+script = ExtResource("9_4ukip")
 main_tree = NodePath("../MainTree")
 _enemy_scene_by_type = {
-ExtResource("7_qdjci"): ExtResource("3_j3pig"),
+ExtResource("10_sh18u"): ExtResource("11_j74bq"),
 ExtResource("12_dg3lk"): ExtResource("13_57vcj"),
 ExtResource("14_ift2q"): ExtResource("15_cbixe"),
 ExtResource("16_jy4j1"): ExtResource("17_gxpvf")

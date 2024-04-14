@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c1rrj106ba23c"]
 
-[ext_resource type="PackedScene" uid="uid://bcq8bgxrc4d5g" path="res://modules/enemies/prefabs/human.tscn" id="1_1hvyh"]
+[ext_resource type="PackedScene" uid="uid://bcq8bgxrc4d5g" path="res://modules/enemies/human_meelee/human_meelee.tscn" id="1_1hvyh"]
 
 [node name="FatGuy" instance=ExtResource("1_1hvyh")]
 modulate = Color(1, 0, 0, 1)

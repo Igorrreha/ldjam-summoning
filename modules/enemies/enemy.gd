@@ -1,4 +1,4 @@
-class_name Human
+class_name Enemy
 extends CharacterBody2D
 
 
@@ -14,7 +14,7 @@ extends CharacterBody2D
 var main_target: DamageableArea2D
 var current_target: DamageableArea2D
 
-var current_state = HumanStates.MOVING:
+var current_state = EnemyStates.MOVING:
 	set(v):
 		current_state = v
 		set_anim_with_state(v)
@@ -24,25 +24,25 @@ func setup(position: Vector2, target: DamageableArea2D):
 	self.global_position = position
 	self.main_target = target
 	current_target = main_target
-	set_anim_with_state(HumanStates.MOVING)
+	set_anim_with_state(EnemyStates.MOVING)
 
 
 func _process(delta: float) -> void:
-	if current_state == HumanStates.MOVING and is_instance_valid(current_target):
+	if current_state == EnemyStates.MOVING and is_instance_valid(current_target):
 		move_to_target(current_target)
-	elif current_state == HumanStates.ATTACK\
-	or current_state == HumanStates.DEATH:
+	elif current_state == EnemyStates.ATTACK\
+	or current_state == EnemyStates.DEATH:
 		pass
-	elif current_state != HumanStates.IDLE:
-		current_state = HumanStates.IDLE
+	elif current_state != EnemyStates.IDLE:
+		current_state = EnemyStates.IDLE
 
 
 func change_target(target: DamageableArea2D):
 	self.current_target = target
 	if attack_area.overlaps_area(target):
-		current_state = HumanStates.ATTACK
+		current_state = EnemyStates.ATTACK
 	else:
-		current_state = HumanStates.MOVING
+		current_state = EnemyStates.MOVING
 
 
 func move_to_target(target: DamageableArea2D):
@@ -56,8 +56,8 @@ func attack():
 
 
 func _on_attack_area_area_entered(area: Area2D) -> void:
-	if current_state != HumanStates.ATTACK:
-		current_state = HumanStates.ATTACK
+	if current_state != EnemyStates.ATTACK:
+		current_state = EnemyStates.ATTACK
 
 
 func _on_detect_area_area_entered(area: Area2D) -> void:
@@ -80,22 +80,22 @@ func _on_detect_area_area_exited(area: Area2D) -> void:
 	if is_instance_valid(main_target):
 		change_target(main_target)
 	else:
-		current_state = HumanStates.IDLE
+		current_state = EnemyStates.IDLE
 
 
-func set_anim_with_state(state: HumanStates):
+func set_anim_with_state(state: EnemyStates):
 	match state:
-		HumanStates.IDLE:
+		EnemyStates.IDLE:
 			animation_player.play("idle")
-		HumanStates.MOVING:
+		EnemyStates.MOVING:
 			animation_player.play("walk")
-		HumanStates.ATTACK:
+		EnemyStates.ATTACK:
 			animation_player.play("attack")
-		HumanStates.DEATH:
+		EnemyStates.DEATH:
 			animation_player.play("death")
 
 
-enum HumanStates
+enum EnemyStates
 {
 	IDLE = 0,
 	MOVING = 1,
@@ -105,4 +105,4 @@ enum HumanStates
 
 
 func _on_damageable_area_2d_dead() -> void:
-	current_state = HumanStates.DEATH
+	current_state = EnemyStates.DEATH
