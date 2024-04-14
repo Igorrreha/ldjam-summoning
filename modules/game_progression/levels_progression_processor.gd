@@ -1,19 +1,30 @@
 extends Node
 
 
+
 @export var _autostart: bool
 @export var _current_level_idx: int = 0
 @export var _levels: Array[GameLevel]
 
 @export var _enemies_spawner: EnemiesSpawner
+@export var _game_state_signals: GameStateSignals
+
+
+var _started: bool
 
 
 func _ready() -> void:
 	if _autostart:
 		start()
+	
+	_game_state_signals.game_started.connect(start)
 
 
 func start() -> void:
+	if _started:
+		return
+	
+	_started = true
 	_process_current_level()
 
 

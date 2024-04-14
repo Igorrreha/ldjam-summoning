@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="GameStateSignals" load_steps=2 format=3 uid="uid://cfduuk254rjq8"]
+
+[ext_resource type="Script" path="res://modules/game_state_signals/game_state_signals.gd" id="1_nrj4m"]
+
+[resource]
+script = ExtResource("1_nrj4m")
