@@ -1,6 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://bpbituybtev3d"]
+[gd_scene load_steps=5 format=3 uid="uid://bpbituybtev3d"]
 
 [ext_resource type="PackedScene" uid="uid://bcq8bgxrc4d5g" path="res://modules/enemies/human_meelee/human_meelee.tscn" id="1_ofbiy"]
+[ext_resource type="Shader" path="res://modules/shaders/mix_color.gdshader" id="2_q48k0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mcb52"]
+resource_local_to_scene = true
+shader = ExtResource("2_q48k0")
+shader_parameter/_color = Color(1, 0, 0, 1)
+shader_parameter/_amount = 0.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5uh4s"]
 radius = 100.0
@@ -9,11 +16,8 @@ radius = 100.0
 speed = 50.0
 attack_power = 5.0
 
-[node name="AnimationPlayer" parent="." index="1"]
-speed_scale = 0.5
+[node name="Icon" parent="Visual" index="1"]
+material = SubResource("ShaderMaterial_mcb52")
 
 [node name="AttackCollider" parent="AttackArea" index="0"]
 shape = SubResource("CircleShape2D_5uh4s")
-
-[node name="Icon" parent="." index="5"]
-modulate = Color(0.498039, 0.141176, 0.129412, 1)
