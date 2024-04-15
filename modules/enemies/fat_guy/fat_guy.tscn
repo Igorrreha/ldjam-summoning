@@ -11,7 +11,7 @@ shader_parameter/_color = Color(1, 0, 0, 1)
 shader_parameter/_amount = 0.0
 
 [node name="FatGuy" instance=ExtResource("1_1qt1h")]
-speed = 50.0
+speed = 40.0
 attack_power = 5.0
 
 [node name="Icon" parent="Visual" index="1"]
