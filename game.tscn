@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://dtttoblwtuilw"]
+[gd_scene load_steps=34 format=3 uid="uid://dtttoblwtuilw"]
 
 [ext_resource type="Script" path="res://modules/game_progression/levels_progression_processor.gd" id="1_ngvcy"]
 [ext_resource type="PackedScene" uid="uid://c67nd8ymg0ffh" path="res://modules/summon_dragging_visualizer/summon_dragging_visulaizer.tscn" id="1_wrqsh"]
@@ -15,6 +15,7 @@
 [ext_resource type="Resource" uid="uid://dkqib6vae41y4" path="res://modules/enemies/human_meelee/human_meelee.tres" id="10_sh18u"]
 [ext_resource type="PackedScene" uid="uid://bcq8bgxrc4d5g" path="res://modules/enemies/human_meelee/human_meelee.tscn" id="11_j74bq"]
 [ext_resource type="Resource" uid="uid://bo2xmoupmm28o" path="res://modules/enemies/human_ranger/human_ranger.tres" id="12_dg3lk"]
+[ext_resource type="AudioStream" uid="uid://dp8pd00ryuxwl" path="res://modules/sounds/loose_game.ogg" id="12_ge42t"]
 [ext_resource type="PackedScene" uid="uid://5uux81rltce2" path="res://modules/enemies/human_ranger/human_range.tscn" id="13_57vcj"]
 [ext_resource type="Resource" uid="uid://b06v7yeywaslo" path="res://modules/game_progression/game_level/level_1.tres" id="13_qswsr"]
 [ext_resource type="Resource" uid="uid://b5xsaaovgd8t6" path="res://modules/enemies/fast_guy/fast_guy.tres" id="14_ift2q"]
@@ -88,7 +89,9 @@ _default_meelee_summon_type = ExtResource("4_7npjl")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="MainTree" parent="." instance=ExtResource("4_42yk5")]
+[node name="MainTree" parent="." node_paths=PackedStringArray("audio_player") instance=ExtResource("4_42yk5")]
+audio_player = NodePath("../AudioStreamPlayer2D")
+loose_game_sound = ExtResource("12_ge42t")
 
 [node name="EnemiesSpawner" type="Path2D" parent="." node_paths=PackedStringArray("_main_tree", "_enemies_container")]
 y_sort_enabled = true
