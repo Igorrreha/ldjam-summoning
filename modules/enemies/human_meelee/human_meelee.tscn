@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://modules/enemies/enemy.gd" id="1_l3eo0"]
 [ext_resource type="Script" path="res://modules/damageable_area_2d/damageable_area_2d.gd" id="2_mgv1s"]
-[ext_resource type="Texture2D" uid="uid://sig6o4ksllrl" path="res://modules/enemies/enemy_human.png" id="3_iwug0"]
+[ext_resource type="Texture2D" uid="uid://sig6o4ksllrl" path="res://modules/enemies/human_meelee/enemy_human.png" id="3_crye6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_53o53"]
 radius = 7.0
@@ -268,7 +268,7 @@ radius = 100.02
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4to34"]
 
-[node name="Human" type="CharacterBody2D" node_paths=PackedStringArray("damageable_area", "attack_area", "detect_area")]
+[node name="HumanMelee" type="CharacterBody2D" node_paths=PackedStringArray("damageable_area", "attack_area", "detect_area")]
 motion_mode = 1
 floor_stop_on_slope = false
 floor_block_on_wall = false
@@ -316,7 +316,7 @@ shape = SubResource("CircleShape2D_4to34")
 [node name="Icon" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(5, -15)
-texture = ExtResource("3_iwug0")
+texture = ExtResource("3_crye6")
 flip_h = true
 
 [connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_area_entered"]

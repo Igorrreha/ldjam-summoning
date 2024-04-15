@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://sig6o4ksllrl"
-path="res://.godot/imported/enemy_human.png-7a75291502b20eb592ff1dfd89856f4f.ctex"
+uid="uid://cnw020kwyv34b"
+path="res://.godot/imported/human_ranger_without_stone.png-e78ed3d6b2e868bf13216d0472daeec0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://modules/enemies/enemy_human.png"
-dest_files=["res://.godot/imported/enemy_human.png-7a75291502b20eb592ff1dfd89856f4f.ctex"]
+source_file="res://modules/enemies/human_ranger/human_ranger_without_stone.png"
+dest_files=["res://.godot/imported/human_ranger_without_stone.png-e78ed3d6b2e868bf13216d0472daeec0.ctex"]
 
 [params]
 
