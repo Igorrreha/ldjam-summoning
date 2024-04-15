@@ -101,7 +101,7 @@ _default_range_summon_type = ExtResource("4_ga1b4")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="MainTree" parent="." node_paths=PackedStringArray("audio_player") instance=ExtResource("4_42yk5")]
-audio_player = NodePath("../AudioStreamPlayer2D")
+audio_player = NodePath("../MusicStartTimer/AudioStreamPlayer2D")
 loose_game_sound = ExtResource("12_ge42t")
 
 [node name="EnemiesSpawner" type="Path2D" parent="." node_paths=PackedStringArray("_main_tree", "_enemies_container")]
@@ -146,9 +146,14 @@ _session_resources = ExtResource("3_l8twg")
 _summons_signals = ExtResource("7_e2u6w")
 _locked_summons = Array[Resource("res://modules/summon/summon_type.gd")]([ExtResource("4_ga1b4")])
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="MusicStartTimer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+autostart = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="MusicStartTimer"]
 stream = ExtResource("28_q01g6")
 volume_db = -20.0
-autoplay = true
 
 [connection signal="drag_end_on_valid_place" from="SummonDraggingVisulaizer" to="SummonSpawner" method="spawn"]
+[connection signal="timeout" from="MusicStartTimer" to="MusicStartTimer/AudioStreamPlayer2D" method="play"]
