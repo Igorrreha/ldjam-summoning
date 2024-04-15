@@ -6,5 +6,6 @@ extends DamageableArea2D
 
 
 func _notification(what: int) -> void:
-	if what == NOTIFICATION_EXIT_TREE:
+	if what == NOTIFICATION_EXIT_TREE\
+	and _health <= 0:
 		_game_state_signals.game_over.emit()

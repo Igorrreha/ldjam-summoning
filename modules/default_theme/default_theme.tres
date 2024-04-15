@@ -33,4 +33,5 @@ Button/styles/focus = SubResource("StyleBoxEmpty_1caj5")
 Button/styles/hover = SubResource("StyleBoxFlat_ndl5o")
 Button/styles/normal = SubResource("StyleBoxFlat_3g7rn")
 Button/styles/pressed = SubResource("StyleBoxFlat_kkvl6")
+RichTextLabel/font_sizes/normal_font_size = 56
 VBoxContainer/constants/separation = 20
