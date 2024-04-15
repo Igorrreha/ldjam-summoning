@@ -27,6 +27,9 @@ var reload_timer: Timer
 
 var current_state = RangerStates.MOVING:
 	set(v):
+		if current_state == RangerStates.DEATH:
+			return
+			
 		current_state = v
 		set_anim_with_state(v)
 		
@@ -65,6 +68,9 @@ func _process(delta: float) -> void:
 		
 		
 func reloaded():
+	if current_state == RangerStates.DEATH:
+		return
+		
 	animation_player.play("reloaded")
 	await animation_player.animation_finished
 	
@@ -96,6 +102,10 @@ func attack():
 		audio_player.play()
 		
 	await animation_player.animation_finished
+	
+	if current_state == RangerStates.DEATH:
+		return
+	
 	is_reloaded = false
 	current_state = RangerStates.RELOAD
 
@@ -124,6 +134,9 @@ func _on_detect_area_area_exited(area: Area2D) -> void:
 
 
 func check_targets_in_detect_area():
+	if current_state == RangerStates.DEATH:
+		return
+		
 	for overlapping_area in detect_area.get_overlapping_areas():
 		if overlapping_area is DamageableArea2D:
 			change_target(overlapping_area)

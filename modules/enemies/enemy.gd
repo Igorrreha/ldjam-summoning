@@ -21,6 +21,9 @@ var current_target: DamageableArea2D
 
 var current_state = EnemyStates.MOVING:
 	set(v):
+		if current_state == EnemyStates.DEATH:
+			return
+			
 		current_state = v
 		set_anim_with_state(v)
 
