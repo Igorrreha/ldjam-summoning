@@ -13,6 +13,8 @@ extends Node
 @export var _summons_signals: SummonsSignals
 @export var _enemies_count_provider: EnemiesCountProvider
 
+@export var _session_resources: SessionResources
+
 @export var _levels: Array[GameLevel]
 
 
@@ -57,6 +59,9 @@ func _process_current_level() -> void:
 			await get_tree().create_timer(event.time_seconds).timeout
 		elif event is UnlockSummonGameLevelEvent:
 			_summons_signals.summon_unlock_requested.emit(event.summon_type)
+		elif event is IncreaseMaxNexusEnergyGameLevelEvent:
+			_session_resources.nexus_energy.max_value += event.increase_amount
+			_session_resources.nexus_energy.value += event.increase_amount
 	
 	_on_level_processing_completed()
 

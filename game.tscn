@@ -79,6 +79,12 @@ _summons_signals = ExtResource("7_e2u6w")
 _session_resources = ExtResource("3_l8twg")
 _default_meelee_summon_type = ExtResource("4_7npjl")
 
+[node name="SummonDeathProcessor" type="Node" parent="."]
+script = ExtResource("27_wmc14")
+_summons_signals = ExtResource("7_e2u6w")
+_session_resources = ExtResource("3_l8twg")
+_default_meelee_summon_type = ExtResource("4_7npjl")
+
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="MainTree" parent="." instance=ExtResource("4_42yk5")]
@@ -116,16 +122,11 @@ _enemies_spawner = NodePath("../EnemiesSpawner")
 _game_state_signals = ExtResource("14_mn131")
 _summons_signals = ExtResource("7_e2u6w")
 _enemies_count_provider = NodePath("../EnemiesCountProvider")
+_session_resources = ExtResource("3_l8twg")
 _levels = Array[Resource("res://modules/game_progression/game_level/game_level.gd")]([ExtResource("13_qswsr")])
 
 [node name="SessionResourcesStartValueSetter" type="Node" parent="."]
 script = ExtResource("18_716ky")
 _session_resources = ExtResource("3_l8twg")
-
-[node name="SummonDeathProcessor" type="Node" parent="."]
-script = ExtResource("27_wmc14")
-_summons_signals = ExtResource("7_e2u6w")
-_session_resources = ExtResource("3_l8twg")
-_default_meelee_summon_type = ExtResource("4_7npjl")
 
 [connection signal="drag_end_on_valid_place" from="SummonDraggingVisulaizer" to="SummonSpawner" method="spawn"]

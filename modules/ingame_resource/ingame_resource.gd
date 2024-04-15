@@ -8,7 +8,10 @@ signal value_changed(new_value: float)
 @export var _accuracy: float = 1.0
 
 @export var min_value: float = 0.0
-@export var max_value: float = 100.0
+@export var max_value: float = 100.0:
+	set(v):
+		max_value = v
+		value_changed.emit(value)
 
 @export var value: float:
 	get:
