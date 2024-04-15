@@ -11,9 +11,13 @@ extends CharacterBody2D
 var is_reloaded = false
 @onready var stone_icon: Sprite2D = $StoneIcon
 
+@export var attack_sound: AudioStream
+@export var steps_sound: AudioStream
+@export var death_sound: AudioStream
+
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var look_updater: LookUpdater = $LookUpdater
-
+@onready var audio_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 var main_target: DamageableArea2D
 var current_target: DamageableArea2D
@@ -42,6 +46,10 @@ func setup(position: Vector2, target: DamageableArea2D):
 	reload_timer.timeout.connect(reloaded)
 	
 	look_updater.update_look.emit(main_target)
+	
+	audio_player.stream = steps_sound
+	await get_tree().create_timer(randf_range(0.0, 0.5)).timeout
+	audio_player.play()
 
 
 func _process(delta: float) -> void:
@@ -53,6 +61,7 @@ func _process(delta: float) -> void:
 		pass
 	elif current_state != RangerStates.IDLE:
 		current_state = RangerStates.IDLE
+		audio_player.stop()
 		
 		
 func reloaded():
@@ -72,6 +81,7 @@ func change_target(target: DamageableArea2D):
 			current_state = RangerStates.ATTACK
 	else:
 		current_state = RangerStates.MOVING
+		audio_player.stream = steps_sound
 
 
 func move_to_target(target: DamageableArea2D):
@@ -82,6 +92,8 @@ func move_to_target(target: DamageableArea2D):
 func attack():
 	if is_instance_valid(current_target):
 		current_target.apply_damage(attack_power)
+		audio_player.stream = attack_sound
+		audio_player.play()
 		
 	await animation_player.animation_finished
 	is_reloaded = false
@@ -136,6 +148,8 @@ func set_anim_with_state(state: RangerStates):
 			animation_player.play("attack")
 		RangerStates.DEATH:
 			animation_player.play("death")
+			audio_player.stream = death_sound
+			audio_player.play()
 
 
 enum RangerStates

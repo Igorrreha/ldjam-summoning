@@ -8,8 +8,13 @@ extends CharacterBody2D
 @export var attack_area: Area2D
 @export var detect_area: Area2D
 
+@export var attack_sound: AudioStream
+@export var steps_sound: AudioStream
+@export var death_sound: AudioStream
+
 @onready var animation_player: AnimationPlayer = $Visual/AnimationPlayer
 @onready var look_updater: LookUpdater = $Visual/LookUpdater
+@onready var audio_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 var main_target: DamageableArea2D
 var current_target: DamageableArea2D
@@ -26,6 +31,9 @@ func setup(position: Vector2, target: DamageableArea2D):
 	current_target = main_target
 	set_anim_with_state(EnemyStates.MOVING)
 	look_updater.update_look.emit(main_target)
+	audio_player.stream = steps_sound
+	await get_tree().create_timer(randf_range(0.0, 0.5)).timeout
+	audio_player.play()
 
 
 func _process(delta: float) -> void:
@@ -36,6 +44,7 @@ func _process(delta: float) -> void:
 		pass
 	elif current_state != EnemyStates.IDLE:
 		current_state = EnemyStates.IDLE
+		audio_player.stop()
 
 
 func change_target(target: DamageableArea2D):
@@ -45,6 +54,7 @@ func change_target(target: DamageableArea2D):
 		current_state = EnemyStates.ATTACK
 	else:
 		current_state = EnemyStates.MOVING
+		audio_player.stream = steps_sound
 
 
 func move_to_target(target: DamageableArea2D):
@@ -54,6 +64,8 @@ func move_to_target(target: DamageableArea2D):
 
 func attack():
 	if is_instance_valid(current_target):
+		audio_player.stream = attack_sound
+		audio_player.play()
 		current_target.apply_damage(attack_power)
 
 
@@ -95,6 +107,8 @@ func set_anim_with_state(state: EnemyStates):
 			animation_player.play("attack")
 		EnemyStates.DEATH:
 			animation_player.play("death")
+			audio_player.stream = death_sound
+			audio_player.play()
 
 
 enum EnemyStates
