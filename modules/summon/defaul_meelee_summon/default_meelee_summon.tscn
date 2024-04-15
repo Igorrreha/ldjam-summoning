@@ -1,7 +1,32 @@
-[gd_scene load_steps=3 format=3 uid="uid://cvhov4t3e5g7d"]
+[gd_scene load_steps=8 format=3 uid="uid://cvhov4t3e5g7d"]
 
 [ext_resource type="PackedScene" uid="uid://kl8xnd8il83h" path="res://modules/summon/summon.tscn" id="1_s1ppp"]
 [ext_resource type="Resource" uid="uid://pksiotgaoyis" path="res://modules/summon/defaul_meelee_summon/default_meelee_summon.tres" id="2_3gxw5"]
+[ext_resource type="Shader" path="res://modules/shaders/damage.gdshader" id="3_vio4r"]
+
+[sub_resource type="Gradient" id="Gradient_amwvt"]
+offsets = PackedFloat32Array(0.331839, 0.681614)
+colors = PackedColorArray(0.552941, 0.309804, 0, 1, 0.552941, 0.309804, 0, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_rwegw"]
+frequency = 0.1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jsap7"]
+width = 64
+height = 64
+color_ramp = SubResource("Gradient_amwvt")
+noise = SubResource("FastNoiseLite_rwegw")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yv70i"]
+resource_local_to_scene = true
+shader = ExtResource("3_vio4r")
+shader_parameter/_hit_color = Color(1, 0, 0, 0.705882)
+shader_parameter/_hit_amount = 0.0
+shader_parameter/_blood_amount = 0.0
+shader_parameter/_blood_texture = SubResource("NoiseTexture2D_jsap7")
 
 [node name="DefaultMeeleeSummon" instance=ExtResource("1_s1ppp")]
 _type = ExtResource("2_3gxw5")
+
+[node name="Sprite2D" parent="." index="1"]
+material = SubResource("ShaderMaterial_yv70i")

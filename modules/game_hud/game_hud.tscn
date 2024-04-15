@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://ovxlsequh7vl"]
+[gd_scene load_steps=7 format=3 uid="uid://ovxlsequh7vl"]
 
 [ext_resource type="PackedScene" uid="uid://cg4na16ooxpyl" path="res://modules/game_hud/select_summon_button/select_summon_button.tscn" id="1_pkhr3"]
 [ext_resource type="PackedScene" uid="uid://hto3iib8j1gh" path="res://modules/game_hud/ingame_resource_bar/ingame_resource_bar.tscn" id="2_33cgp"]
 [ext_resource type="Texture2D" uid="uid://djde3pxrhu3vt" path="res://modules/summon/defaul_meelee_summon/standard_summon.png" id="2_x6ei7"]
+[ext_resource type="Texture2D" uid="uid://d057qhr8407av" path="res://modules/summon/default_range_summon/idle.png" id="3_1g5qu"]
 [ext_resource type="Resource" uid="uid://cxpqrg70ms4p2" path="res://modules/session_resources/nexus_energy.tres" id="3_me45r"]
+[ext_resource type="Resource" uid="uid://ddgubjuv1pmjs" path="res://modules/summon/default_range_summon/default_range_summon.tres" id="4_in4ea"]
 
 [node name="GameHud" type="Control"]
 layout_mode = 3
@@ -33,11 +35,18 @@ horizontal_alignment = 1
 
 [node name="SummonsButtons" type="VBoxContainer" parent="RightPanel/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 40
 
 [node name="SelectSummonButton" parent="RightPanel/VBoxContainer/SummonsButtons" instance=ExtResource("1_pkhr3")]
 layout_mode = 2
 texture_normal = ExtResource("2_x6ei7")
 stretch_mode = 3
+
+[node name="SelectRangeSummonButton2" parent="RightPanel/VBoxContainer/SummonsButtons" instance=ExtResource("1_pkhr3")]
+layout_mode = 2
+texture_normal = ExtResource("3_1g5qu")
+stretch_mode = 3
+_summon_type = ExtResource("4_in4ea")
 
 [node name="IngameResourceBar" parent="." instance=ExtResource("2_33cgp")]
 layout_mode = 0
