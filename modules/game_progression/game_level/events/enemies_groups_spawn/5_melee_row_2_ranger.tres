@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="EnemiesGroupSpawnGameLevelEvent" load_steps=12 format=3 uid="uid://cgi55fd7xy8hn"]
+
+[ext_resource type="Script" path="res://modules/game_progression/game_level/events/enemies_group_spawn.gd" id="1_ysbdh"]
+[ext_resource type="Resource" uid="uid://dkqib6vae41y4" path="res://modules/enemies/human_meelee/human_meelee.tres" id="2_3a3r2"]
+[ext_resource type="Script" path="res://modules/game_progression/game_level/events/enemies_group_slot.gd" id="3_qp7d0"]
+[ext_resource type="Resource" uid="uid://bo2xmoupmm28o" path="res://modules/enemies/human_ranger/human_ranger.tres" id="4_3cmap"]
+
+[sub_resource type="Resource" id="Resource_1gk4d"]
+script = ExtResource("3_qp7d0")
+position = Vector2(0, 0)
+enemy_type = ExtResource("2_3a3r2")
+
+[sub_resource type="Resource" id="Resource_7tfv2"]
+script = ExtResource("3_qp7d0")
+position = Vector2(-30, 0)
+enemy_type = ExtResource("2_3a3r2")
+
+[sub_resource type="Resource" id="Resource_ikj4w"]
+script = ExtResource("3_qp7d0")
+position = Vector2(-60, 0)
+enemy_type = ExtResource("2_3a3r2")
+
+[sub_resource type="Resource" id="Resource_v0xhi"]
+script = ExtResource("3_qp7d0")
+position = Vector2(30, 0)
+enemy_type = ExtResource("2_3a3r2")
+
+[sub_resource type="Resource" id="Resource_iastt"]
+script = ExtResource("3_qp7d0")
+position = Vector2(60, 0)
+enemy_type = ExtResource("2_3a3r2")
+
+[sub_resource type="Resource" id="Resource_515xm"]
+script = ExtResource("3_qp7d0")
+position = Vector2(-15, 30)
+enemy_type = ExtResource("4_3cmap")
+
+[sub_resource type="Resource" id="Resource_ahncm"]
+script = ExtResource("3_qp7d0")
+position = Vector2(15, 30)
+enemy_type = ExtResource("4_3cmap")
+
+[resource]
+script = ExtResource("1_ysbdh")
+slots = Array[ExtResource("3_qp7d0")]([SubResource("Resource_1gk4d"), SubResource("Resource_7tfv2"), SubResource("Resource_ikj4w"), SubResource("Resource_v0xhi"), SubResource("Resource_iastt"), SubResource("Resource_515xm"), SubResource("Resource_ahncm")])

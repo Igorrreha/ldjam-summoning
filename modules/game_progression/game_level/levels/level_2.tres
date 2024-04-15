@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="GameLevel" load_steps=11 format=3 uid="uid://d0rthi3ed5712"]
+
+[ext_resource type="Script" path="res://modules/game_progression/game_level/game_level.gd" id="1_4lkvc"]
+[ext_resource type="Script" path="res://modules/game_progression/game_level/events/increase_max_nexus_energy.gd" id="1_d4hnn"]
+[ext_resource type="Resource" uid="uid://b6wg71k7vjcq5" path="res://modules/game_progression/game_level/events/enemies_groups_spawn/1_melee.tres" id="2_o6xov"]
+[ext_resource type="Script" path="res://modules/game_progression/game_level/events/wait_time.gd" id="3_g0evs"]
+[ext_resource type="Resource" uid="uid://bruv8qf1ir6t4" path="res://modules/game_progression/game_level/events/enemies_groups_spawn/3_melee.tres" id="4_nvfkd"]
+[ext_resource type="Resource" uid="uid://bj8dcscos0jee" path="res://modules/game_progression/game_level/events/enemies_groups_spawn/1_melee_fast.tres" id="5_jbh0h"]
+
+[sub_resource type="Resource" id="Resource_dqfxd"]
+script = ExtResource("1_d4hnn")
+increase_amount = 1
+
+[sub_resource type="Resource" id="Resource_3n0gs"]
+script = ExtResource("3_g0evs")
+time_seconds = 6.0
+
+[sub_resource type="Resource" id="Resource_allr3"]
+script = ExtResource("3_g0evs")
+time_seconds = 4.0
+
+[sub_resource type="Resource" id="Resource_j3kat"]
+script = ExtResource("3_g0evs")
+time_seconds = 2.0
+
+[resource]
+script = ExtResource("1_4lkvc")
+events_queue = Array[Resource("res://modules/game_progression/game_level/game_level_event.gd")]([SubResource("Resource_dqfxd"), ExtResource("2_o6xov"), SubResource("Resource_3n0gs"), ExtResource("4_nvfkd"), SubResource("Resource_allr3"), ExtResource("5_jbh0h"), SubResource("Resource_j3kat"), ExtResource("5_jbh0h"), SubResource("Resource_j3kat"), ExtResource("4_nvfkd"), SubResource("Resource_j3kat"), ExtResource("5_jbh0h")])

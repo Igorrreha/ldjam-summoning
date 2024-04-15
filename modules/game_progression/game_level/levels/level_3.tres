@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="GameLevel" load_steps=7 format=3 uid="uid://2xy5dh4371xd"]
+
+[ext_resource type="Resource" uid="uid://dg1e3ddod6xit" path="res://modules/game_progression/game_level/events/enemies_groups_spawn/1_ranger.tres" id="1_el7fm"]
+[ext_resource type="Script" path="res://modules/game_progression/game_level/events/wait_time.gd" id="2_io602"]
+[ext_resource type="Resource" uid="uid://4ksk40gy07gy" path="res://modules/game_progression/game_level/events/enemies_groups_spawn/2_melee_1_ranger.tres" id="3_5p861"]
+[ext_resource type="Script" path="res://modules/game_progression/game_level/game_level.gd" id="4_mgu8l"]
+
+[sub_resource type="Resource" id="Resource_3ss7k"]
+script = ExtResource("2_io602")
+time_seconds = 7.0
+
+[sub_resource type="Resource" id="Resource_m64ob"]
+script = ExtResource("2_io602")
+time_seconds = 5.0
+
+[resource]
+script = ExtResource("4_mgu8l")
+events_queue = Array[Resource("res://modules/game_progression/game_level/game_level_event.gd")]([ExtResource("1_el7fm"), SubResource("Resource_3ss7k"), ExtResource("1_el7fm"), ExtResource("1_el7fm"), SubResource("Resource_m64ob"), ExtResource("3_5p861")])
