@@ -84,13 +84,15 @@ ExtResource("4_ga1b4"): ExtResource("8_gv7hc")
 script = ExtResource("6_bwpnp")
 _summons_signals = ExtResource("7_e2u6w")
 _session_resources = ExtResource("3_l8twg")
-_default_meelee_summon_type = ExtResource("4_7npjl")
+_default_melee_summon_type = ExtResource("4_7npjl")
+_default_range_summon_type = ExtResource("4_ga1b4")
 
 [node name="SummonDeathProcessor" type="Node" parent="."]
 script = ExtResource("27_wmc14")
 _summons_signals = ExtResource("7_e2u6w")
 _session_resources = ExtResource("3_l8twg")
-_default_meelee_summon_type = ExtResource("4_7npjl")
+_default_melee_summon_type = ExtResource("4_7npjl")
+_default_range_summon_type = ExtResource("4_ga1b4")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -132,7 +134,7 @@ _game_state_signals = ExtResource("14_mn131")
 _summons_signals = ExtResource("7_e2u6w")
 _enemies_count_provider = NodePath("../EnemiesCountProvider")
 _session_resources = ExtResource("3_l8twg")
-_levels = Array[Resource("res://modules/game_progression/game_level/game_level.gd")]([ExtResource("26_cklsl"), ExtResource("27_f5nio"), ExtResource("28_3ceem"), ExtResource("29_j5tap"), ExtResource("26_vge02"), ExtResource("26_x4ldw")])
+_levels = Array[Resource("res://modules/game_progression/game_level/game_level.gd")]([ExtResource("26_x4ldw"), ExtResource("26_cklsl"), ExtResource("27_f5nio"), ExtResource("28_3ceem"), ExtResource("29_j5tap"), ExtResource("26_vge02")])
 
 [node name="SessionStartValuesSetter" type="Node" parent="."]
 script = ExtResource("27_hndhk")

@@ -14,3 +14,7 @@ func spawn(type: SummonType, placement_plan: PlacementPlan,
 	if placement_plan is StandartSummonPlacementPlan:
 		_session_resources.nexus_energy\
 			.try_spend(placement_plan.nexus_energy_cost, true)
+	elif placement_plan is RangeSummonPlacementPlan:
+		_session_resources.nexus_energy\
+			.try_spend(placement_plan.nexus_energy_cost, true)
+	
