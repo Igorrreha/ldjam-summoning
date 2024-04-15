@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="GameLevelWave" load_steps=5 format=3 uid="uid://dg1e3ddod6xit"]
+[gd_resource type="Resource" script_class="EnemiesGroupSpawnGameLevelEvent" load_steps=5 format=3 uid="uid://dg1e3ddod6xit"]
 
 [ext_resource type="Script" path="res://modules/game_progression/game_level/events/enemies_group_spawn.gd" id="1_6lxrw"]
 [ext_resource type="Resource" uid="uid://bo2xmoupmm28o" path="res://modules/enemies/human_ranger/human_ranger.tres" id="2_jqp33"]
@@ -11,5 +11,4 @@ enemy_type = ExtResource("2_jqp33")
 
 [resource]
 script = ExtResource("1_6lxrw")
-duration = 0.0
 slots = Array[ExtResource("3_jfkih")]([SubResource("Resource_jq6x6")])

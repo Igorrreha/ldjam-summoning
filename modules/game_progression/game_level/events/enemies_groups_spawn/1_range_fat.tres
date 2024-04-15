@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="GameLevelWave" load_steps=5 format=3 uid="uid://cmlynlb48jpjk"]
+[gd_resource type="Resource" script_class="EnemiesGroupSpawnGameLevelEvent" load_steps=5 format=3 uid="uid://cmlynlb48jpjk"]
 
 [ext_resource type="Script" path="res://modules/game_progression/game_level/events/enemies_group_spawn.gd" id="1_ui5vu"]
 [ext_resource type="Resource" uid="uid://c25qnl55makte" path="res://modules/enemies/human_fat_ranger/human_fat_ranger.tres" id="2_gvybi"]
@@ -11,5 +11,4 @@ enemy_type = ExtResource("2_gvybi")
 
 [resource]
 script = ExtResource("1_ui5vu")
-duration = 3.0
 slots = Array[ExtResource("3_llads")]([SubResource("Resource_s3u6s")])

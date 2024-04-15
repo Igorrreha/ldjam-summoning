@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="EnemiesGroupSpawnGameLevelEvent" load_steps=8 format=3 uid="uid://4ksk40gy07gy"]
+
+[ext_resource type="Script" path="res://modules/game_progression/game_level/events/enemies_group_spawn.gd" id="1_hbv0h"]
+[ext_resource type="Resource" uid="uid://dkqib6vae41y4" path="res://modules/enemies/human_meelee/human_meelee.tres" id="2_6q6pr"]
+[ext_resource type="Script" path="res://modules/game_progression/game_level/events/enemies_group_slot.gd" id="3_vat2m"]
+[ext_resource type="Resource" uid="uid://bo2xmoupmm28o" path="res://modules/enemies/human_ranger/human_ranger.tres" id="4_rq0r4"]
+
+[sub_resource type="Resource" id="Resource_vlmq2"]
+script = ExtResource("3_vat2m")
+position = Vector2(30, 0)
+enemy_type = ExtResource("2_6q6pr")
+
+[sub_resource type="Resource" id="Resource_eytvl"]
+script = ExtResource("3_vat2m")
+position = Vector2(-30, 0)
+enemy_type = ExtResource("2_6q6pr")
+
+[sub_resource type="Resource" id="Resource_pmge1"]
+script = ExtResource("3_vat2m")
+position = Vector2(0, 35)
+enemy_type = ExtResource("4_rq0r4")
+
+[resource]
+script = ExtResource("1_hbv0h")
+slots = Array[ExtResource("3_vat2m")]([SubResource("Resource_vlmq2"), SubResource("Resource_eytvl"), SubResource("Resource_pmge1")])
