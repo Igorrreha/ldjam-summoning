@@ -45,9 +45,9 @@ noise = SubResource("FastNoiseLite_hyq8t")
 
 [sub_resource type="Curve2D" id="Curve2D_sv0k5"]
 _data = {
-"points": PackedVector2Array(-85.6746, -27.7183, 85.6746, 27.7183, -786, 392, -98.2738, -1.25992, 98.2738, 1.25992, -202, 414, -25.1984, 28.9782, 25.1984, -28.9782, 376, 399, -1.25992, 123.472, 1.25992, -123.472, 400, 69, 25.1984, 22.6786, -25.1984, -22.6786, 375, -269, 157.49, -3.77976, -157.49, 3.77976, -199, -290, 39.0576, -23.9385, -39.0576, 23.9385, -784, -270, 0, 0, 0, 0, -786, 393)
+"points": PackedVector2Array(75.4303, 0.796488, -75.4303, -0.796488, -608, -292, 34.4611, -28.4678, -34.4611, 28.4678, -797, -276, -19.944, -21.5079, 19.944, 21.5079, -787, 399, -25.1984, 28.9782, 25.1984, -28.9782, 380, 396, 27.3724, 18.8775, -27.3724, -18.8775, 383, -269, 64.8411, 2.85724, -64.8411, -2.85724, 207, -283)
 }
-point_count = 8
+point_count = 6
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
@@ -95,8 +95,8 @@ ExtResource("18_adxo7"): ExtResource("19_6785f")
 }
 
 [node name="SpawnPoint" type="PathFollow2D" parent="EnemiesSpawner"]
-position = Vector2(-786, 392)
-rotation = 0.312902
+position = Vector2(-608, -292)
+rotation = -3.13103
 
 [node name="EnemiesContainer" type="Node2D" parent="EnemiesSpawner"]
 y_sort_enabled = true
