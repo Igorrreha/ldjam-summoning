@@ -4,6 +4,9 @@ extends DamageableArea2D
 var animation_player: AnimationPlayer
 var current_state: PlantStates:
 	set(v):
+		if current_state == PlantStates.DEATH:
+			return
+			
 		current_state = v
 		play_anim_with_state(v)
 
@@ -12,9 +15,13 @@ var current_state: PlantStates:
 @export var _clickable_graphics: Sprite2D
 @export var _attack_power: float
 
+@export var spawn_sound: AudioStream
+@export var attack_sound: AudioStream
+@export var death_sound: AudioStream
 
 var attack_area: Area2D 
 var current_target: DamageableArea2D
+@onready var audio_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 
 func _ready() -> void:
@@ -39,11 +46,16 @@ func play_anim_with_state(state: PlantStates):
 			animation_player.play("idle")
 		PlantStates.SPAWN:
 			animation_player.play("spawn")
+			audio_player.stream = spawn_sound
+			audio_player.play()
 		PlantStates.ATTACK:
 			animation_player.play("attack")
 		PlantStates.DEATH:
 			animation_player.play("death")
+			audio_player.stream = death_sound
+			audio_player.play()
 			await animation_player.animation_finished
+			audio_player.stop()
 			#надо заменить удаление логикогой прехеода в собираемый объект
 			queue_free()
 
@@ -56,6 +68,8 @@ func on_clicked() -> void:
 func attack():
 	if is_instance_valid(current_target):
 		current_target.apply_damage(_attack_power)
+		audio_player.stream = attack_sound
+		audio_player.play()
 	
 	
 func _on_attack_area_entered(area: Area2D) -> void:

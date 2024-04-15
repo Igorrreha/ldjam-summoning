@@ -1,10 +1,13 @@
-[gd_scene load_steps=22 format=3 uid="uid://bl4px13v58q61"]
+[gd_scene load_steps=25 format=3 uid="uid://bl4px13v58q61"]
 
 [ext_resource type="Script" path="res://modules/summon/summon.gd" id="1_4h8vp"]
 [ext_resource type="Resource" uid="uid://pksiotgaoyis" path="res://modules/summon/defaul_meelee_summon/default_meelee_summon.tres" id="2_fb8qm"]
 [ext_resource type="Shader" path="res://modules/shaders/mix_color.gdshader" id="3_4sprt"]
 [ext_resource type="Resource" uid="uid://c8t8oyii45f06" path="res://modules/summon/summons_signals.tres" id="3_hg7wh"]
+[ext_resource type="AudioStream" uid="uid://bx5g0prbe157w" path="res://modules/summon/plant_spawn.mp3" id="4_483qp"]
 [ext_resource type="Texture2D" uid="uid://cllir73812ifw" path="res://modules/nexus/under_tree.png" id="4_vvvaf"]
+[ext_resource type="AudioStream" uid="uid://clx43prxo8jjb" path="res://modules/summon/plant_attack.mp3" id="5_a4fsm"]
+[ext_resource type="AudioStream" uid="uid://dcb5y4yb3eovx" path="res://modules/summon/plant_dead.mp3" id="6_620bb"]
 [ext_resource type="Texture2D" uid="uid://c5mw2528ihahh" path="res://modules/summon/default_range_summon/root.png" id="6_bgc3a"]
 [ext_resource type="Texture2D" uid="uid://jv0hnsbp5n5r" path="res://modules/summon/default_range_summon/stem.png" id="7_g5aa8"]
 [ext_resource type="Texture2D" uid="uid://c6nlviegx7pev" path="res://modules/summon/default_range_summon/head.png" id="8_2l2n7"]
@@ -997,6 +1000,9 @@ _type = ExtResource("2_fb8qm")
 _summon_signals = ExtResource("3_hg7wh")
 _clickable_graphics = NodePath("RootSprite")
 _attack_power = 5.0
+spawn_sound = ExtResource("4_483qp")
+attack_sound = ExtResource("5_a4fsm")
+death_sound = ExtResource("6_620bb")
 
 [node name="UnderSprite" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -1048,6 +1054,11 @@ shape = SubResource("CircleShape2D_fthks")
 libraries = {
 "": SubResource("AnimationLibrary_s8g3y")
 }
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_483qp")
+volume_db = -15.0
+autoplay = true
 
 [connection signal="damaged" from="." to="DamageEffectAnimationPlayer" method="play" binds= ["damaged"]]
 [connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_entered"]

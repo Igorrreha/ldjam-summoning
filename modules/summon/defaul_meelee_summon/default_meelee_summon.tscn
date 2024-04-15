@@ -1,8 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://cvhov4t3e5g7d"]
+[gd_scene load_steps=11 format=3 uid="uid://cvhov4t3e5g7d"]
 
 [ext_resource type="PackedScene" uid="uid://kl8xnd8il83h" path="res://modules/summon/summon.tscn" id="1_s1ppp"]
 [ext_resource type="Resource" uid="uid://pksiotgaoyis" path="res://modules/summon/defaul_meelee_summon/default_meelee_summon.tres" id="2_3gxw5"]
+[ext_resource type="AudioStream" uid="uid://bx5g0prbe157w" path="res://modules/summon/plant_spawn.mp3" id="3_oyxo3"]
 [ext_resource type="Shader" path="res://modules/shaders/damage.gdshader" id="3_vio4r"]
+[ext_resource type="AudioStream" uid="uid://clx43prxo8jjb" path="res://modules/summon/plant_attack.mp3" id="4_b47r4"]
+[ext_resource type="AudioStream" uid="uid://dcb5y4yb3eovx" path="res://modules/summon/plant_dead.mp3" id="5_quh6t"]
 
 [sub_resource type="Gradient" id="Gradient_amwvt"]
 offsets = PackedFloat32Array(0.331839, 0.681614)
@@ -27,6 +30,14 @@ shader_parameter/_blood_texture = SubResource("NoiseTexture2D_jsap7")
 
 [node name="DefaultMeeleeSummon" instance=ExtResource("1_s1ppp")]
 _type = ExtResource("2_3gxw5")
+spawn_sound = ExtResource("3_oyxo3")
+attack_sound = ExtResource("4_b47r4")
+death_sound = ExtResource("5_quh6t")
 
 [node name="Sprite2D" parent="." index="1"]
 material = SubResource("ShaderMaterial_yv70i")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="7"]
+stream = ExtResource("3_oyxo3")
+volume_db = -15.0
+autoplay = true
