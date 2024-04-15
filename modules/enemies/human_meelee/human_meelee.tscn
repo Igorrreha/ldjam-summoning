@@ -3,17 +3,14 @@
 [ext_resource type="Script" path="res://modules/enemies/enemy.gd" id="1_l3eo0"]
 [ext_resource type="Script" path="res://modules/damageable_area_2d/damageable_area_2d.gd" id="2_mgv1s"]
 [ext_resource type="Texture2D" uid="uid://sig6o4ksllrl" path="res://modules/enemies/human_meelee/enemy_human.png" id="3_crye6"]
-[ext_resource type="Script" path="res://modules/look_updater/look_updater.gd" id="4_j8j33"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_53o53"]
-radius = 7.0
+[ext_resource type="Script" path="res://modules/look_updater/look_updater.gd" id="4_7mqkl"]
 
 [sub_resource type="Animation" id="Animation_ufcsp"]
 length = 0.001
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Icon:rotation")
+tracks/0/path = NodePath("Visual/Icon:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -24,7 +21,7 @@ tracks/0/keys = {
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Icon:scale:x")
+tracks/1/path = NodePath("Visual/Icon:scale:x")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -35,7 +32,7 @@ tracks/1/keys = {
 tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Icon:scale:y")
+tracks/2/path = NodePath("Visual/Icon:scale:y")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -46,7 +43,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Icon:position")
+tracks/3/path = NodePath("Visual/Icon:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -58,7 +55,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Icon:scale")
+tracks/4/path = NodePath("Visual/Icon:scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -70,7 +67,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Icon:position")
+tracks/5/path = NodePath("Visual/Icon:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -82,7 +79,7 @@ tracks/5/keys = {
 tracks/6/type = "bezier"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Icon:rotation")
+tracks/6/path = NodePath("Visual/Icon:rotation")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -98,7 +95,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Icon:position")
+tracks/0/path = NodePath("Visual/Icon:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -110,7 +107,7 @@ tracks/0/keys = {
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Icon:rotation")
+tracks/1/path = NodePath("Visual/Icon:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -139,7 +136,7 @@ length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Icon:position")
+tracks/0/path = NodePath("Visual/Icon:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -151,7 +148,7 @@ tracks/0/keys = {
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Icon:rotation")
+tracks/1/path = NodePath("Visual/Icon:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -180,7 +177,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Icon:scale")
+tracks/0/path = NodePath("Visual/Icon:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -192,7 +189,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Icon:position")
+tracks/1/path = NodePath("Visual/Icon:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -204,7 +201,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Icon:rotation")
+tracks/2/path = NodePath("Visual/Icon:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -221,7 +218,7 @@ loop_mode = 2
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Icon:rotation")
+tracks/0/path = NodePath("Visual/Icon:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -232,7 +229,7 @@ tracks/0/keys = {
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Icon:scale:x")
+tracks/1/path = NodePath("Visual/Icon:scale:x")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -243,7 +240,7 @@ tracks/1/keys = {
 tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Icon:scale:y")
+tracks/2/path = NodePath("Visual/Icon:scale:y")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -260,6 +257,9 @@ _data = {
 "idle": SubResource("Animation_86jl4"),
 "walk": SubResource("Animation_trqbf")
 }
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_53o53"]
+radius = 7.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jjd5j"]
 radius = 28.0
@@ -281,13 +281,26 @@ damageable_area = NodePath("DamageableArea2D")
 attack_area = NodePath("AttackArea")
 detect_area = NodePath("DetectArea")
 
-[node name="BodyCollider" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_53o53")
+[node name="Visual" type="Node2D" parent="."]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Visual"]
+root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_ie52g")
 }
+
+[node name="Icon" type="Sprite2D" parent="Visual"]
+texture_filter = 1
+position = Vector2(5, -15)
+texture = ExtResource("3_crye6")
+flip_h = true
+
+[node name="LookUpdater" type="Node2D" parent="Visual" node_paths=PackedStringArray("object_transform")]
+script = ExtResource("4_7mqkl")
+object_transform = NodePath("..")
+
+[node name="BodyCollider" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_53o53")
 
 [node name="AttackArea" type="Area2D" parent="."]
 collision_layer = 0
@@ -313,16 +326,6 @@ script = ExtResource("2_mgv1s")
 
 [node name="BodyCollider" type="CollisionShape2D" parent="DamageableArea2D"]
 shape = SubResource("CircleShape2D_4to34")
-
-[node name="Icon" type="Sprite2D" parent="."]
-texture_filter = 1
-position = Vector2(5, -15)
-texture = ExtResource("3_crye6")
-flip_h = true
-
-[node name="LookUpdater" type="Node2D" parent="." node_paths=PackedStringArray("object_transform")]
-script = ExtResource("4_j8j33")
-object_transform = NodePath("..")
 
 [connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_area_entered"]
 [connection signal="area_entered" from="DetectArea" to="." method="_on_detect_area_area_entered"]

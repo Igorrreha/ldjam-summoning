@@ -8,8 +8,8 @@ extends CharacterBody2D
 @export var attack_area: Area2D
 @export var detect_area: Area2D
 
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var look_updater: LookUpdater = $LookUpdater
+@onready var animation_player: AnimationPlayer = $Visual/AnimationPlayer
+@onready var look_updater: LookUpdater = $Visual/LookUpdater
 
 var main_target: DamageableArea2D
 var current_target: DamageableArea2D
