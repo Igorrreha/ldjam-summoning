@@ -1,9 +1,41 @@
-[gd_scene load_steps=2 format=3 uid="uid://hto3iib8j1gh"]
+[gd_scene load_steps=5 format=3 uid="uid://hto3iib8j1gh"]
 
 [ext_resource type="Script" path="res://modules/game_hud/ingame_resource_bar/ingame_resource_bar.gd" id="1_dfjii"]
+[ext_resource type="Texture2D" uid="uid://cqcmh1ilhnt0b" path="res://modules/game_hud/frame_leaves.png" id="1_nr667"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lmch3"]
+atlas = ExtResource("1_nr667")
+region = Rect2(30, 0, 32, 18.655)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jsj3p"]
+texture = SubResource("AtlasTexture_lmch3")
+expand_margin_top = 4.0
+expand_margin_bottom = 9.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
 
 [node name="IngameResourceBar" type="ProgressBar"]
 offset_right = 557.0
 offset_bottom = 27.0
 size_flags_vertical = 4
+theme_override_constants/outline_size = 9
+theme_override_styles/fill = SubResource("StyleBoxTexture_jsj3p")
+value = 48.39
+show_percentage = false
 script = ExtResource("1_dfjii")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 1
