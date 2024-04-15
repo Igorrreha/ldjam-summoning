@@ -111,6 +111,7 @@ _enemies_container = NodePath("../EnemiesSpawner/EnemiesContainer")
 
 [node name="LevelsProgressionProcessor" type="Node" parent="." node_paths=PackedStringArray("_enemies_spawner", "_enemies_count_provider")]
 script = ExtResource("1_ngvcy")
+_skip_delays = true
 _enemies_spawner = NodePath("../EnemiesSpawner")
 _game_state_signals = ExtResource("14_mn131")
 _enemies_count_provider = NodePath("../EnemiesCountProvider")
