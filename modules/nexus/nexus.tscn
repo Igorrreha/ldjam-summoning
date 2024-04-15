@@ -1,35 +1,63 @@
-[gd_scene load_steps=15 format=3 uid="uid://dsyxcv4468b74"]
+[gd_scene load_steps=18 format=3 uid="uid://dsyxcv4468b74"]
 
 [ext_resource type="Script" path="res://modules/nexus/nexus.gd" id="1_q4wri"]
 [ext_resource type="Resource" uid="uid://cfduuk254rjq8" path="res://modules/game_state_signals/game_state_signals.tres" id="2_hogx3"]
 [ext_resource type="Texture2D" uid="uid://cllir73812ifw" path="res://modules/nexus/under_tree.png" id="3_pi02u"]
-[ext_resource type="Shader" path="res://modules/shaders/damage.gdshader" id="4_au6wq"]
+[ext_resource type="Shader" path="res://modules/shaders/tree_shader.gdshader" id="4_jnj23"]
 [ext_resource type="Texture2D" uid="uid://cedh4jw00sv1x" path="res://modules/nexus/main_tree.png" id="4_qx5em"]
 [ext_resource type="Script" path="res://modules/damageable_area_2d/blood_amount_setter/blood_amount_setter.gd" id="5_7ufr1"]
 
-[sub_resource type="Gradient" id="Gradient_rnrir"]
+[sub_resource type="Gradient" id="Gradient_ifnw3"]
 offsets = PackedFloat32Array(0.331839, 0.681614)
 colors = PackedColorArray(0.552941, 0.309804, 0, 1, 0.552941, 0.309804, 0, 0)
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_fijeb"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_hawb8"]
 frequency = 0.1808
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xkkfi"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_nma22"]
 width = 64
 height = 64
-color_ramp = SubResource("Gradient_rnrir")
-noise = SubResource("FastNoiseLite_fijeb")
+color_ramp = SubResource("Gradient_ifnw3")
+noise = SubResource("FastNoiseLite_hawb8")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_cnj3m"]
+[sub_resource type="Gradient" id="Gradient_l4ql4"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_g8kw6"]
+frequency = 0.1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8cmdq"]
+width = 64
+height = 64
+color_ramp = SubResource("Gradient_l4ql4")
+noise = SubResource("FastNoiseLite_g8kw6")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5i4bv"]
 resource_local_to_scene = true
-shader = ExtResource("4_au6wq")
+shader = ExtResource("4_jnj23")
 shader_parameter/_hit_color = Color(1, 0, 0, 0.705882)
 shader_parameter/_hit_amount = 0.0
-shader_parameter/_blood_amount = null
-shader_parameter/_blood_texture = SubResource("NoiseTexture2D_xkkfi")
+shader_parameter/_blood_amount = 0.0
+shader_parameter/_distortion_amount = 0.02
+shader_parameter/_distortion_y_cap = 0.7
+shader_parameter/_blood_texture = SubResource("NoiseTexture2D_nma22")
+shader_parameter/_distortion_texture = SubResource("NoiseTexture2D_8cmdq")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xg4vy"]
 radius = 40.0125
+
+[sub_resource type="Animation" id="Animation_xsomm"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Icon:material:shader_parameter/_hit_amount")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
 
 [sub_resource type="Animation" id="Animation_ni1yb"]
 resource_name = "damaged"
@@ -44,20 +72,6 @@ tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(1, -0.25, 0, 0.122061, 0.000347495, 0, -0.0566265, 0.732707, 0.25, 0),
 "times": PackedFloat32Array(0, 0.2)
-}
-
-[sub_resource type="Animation" id="Animation_xsomm"]
-length = 0.001
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Icon:material:shader_parameter/_hit_amount")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8aac5"]
@@ -80,7 +94,7 @@ texture = ExtResource("3_pi02u")
 
 [node name="Icon" type="Sprite2D" parent="."]
 texture_filter = 1
-material = SubResource("ShaderMaterial_cnj3m")
+material = SubResource("ShaderMaterial_5i4bv")
 position = Vector2(0.999992, -99)
 scale = Vector2(2.02344, 2.02344)
 texture = ExtResource("4_qx5em")
