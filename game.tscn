@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dtttoblwtuilw"]
+[gd_scene load_steps=30 format=3 uid="uid://dtttoblwtuilw"]
 
 [ext_resource type="Script" path="res://modules/game_progression/levels_progression_processor.gd" id="1_ngvcy"]
 [ext_resource type="PackedScene" uid="uid://c67nd8ymg0ffh" path="res://modules/summon_dragging_visualizer/summon_dragging_visulaizer.tscn" id="1_wrqsh"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cvhov4t3e5g7d" path="res://modules/summon/defaul_meelee_summon/default_meelee_summon.tscn" id="5_pso5y"]
 [ext_resource type="Script" path="res://modules/summon_sacrificion_processor/summon_sacrifition_processor.gd" id="6_bwpnp"]
 [ext_resource type="Resource" uid="uid://c8t8oyii45f06" path="res://modules/summon/summons_signals.tres" id="7_e2u6w"]
+[ext_resource type="Script" path="res://modules/summon_death_processor/summon_death_processor.gd" id="8_oso3l"]
 [ext_resource type="Script" path="res://modules/enemies/enemies_generator.gd" id="9_4ukip"]
 [ext_resource type="Resource" uid="uid://dkqib6vae41y4" path="res://modules/enemies/human_meelee/human_meelee.tres" id="10_sh18u"]
 [ext_resource type="PackedScene" uid="uid://bcq8bgxrc4d5g" path="res://modules/enemies/human_meelee/human_meelee.tscn" id="11_j74bq"]
@@ -71,6 +72,12 @@ ExtResource("4_7npjl"): ExtResource("5_pso5y")
 
 [node name="SummonSacrifitionProcessor" type="Node" parent="."]
 script = ExtResource("6_bwpnp")
+_summons_signals = ExtResource("7_e2u6w")
+_session_resources = ExtResource("3_l8twg")
+_default_meelee_summon_type = ExtResource("4_7npjl")
+
+[node name="SummonDeathProcessor" type="Node" parent="."]
+script = ExtResource("8_oso3l")
 _summons_signals = ExtResource("7_e2u6w")
 _session_resources = ExtResource("3_l8twg")
 _default_meelee_summon_type = ExtResource("4_7npjl")
