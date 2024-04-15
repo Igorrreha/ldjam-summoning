@@ -9,7 +9,7 @@ extends CharacterBody2D
 @export var detect_area: Area2D
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-
+@onready var look_updater: LookUpdater = $LookUpdater
 
 var main_target: DamageableArea2D
 var current_target: DamageableArea2D
@@ -25,6 +25,7 @@ func setup(position: Vector2, target: DamageableArea2D):
 	self.main_target = target
 	current_target = main_target
 	set_anim_with_state(EnemyStates.MOVING)
+	look_updater._update_look.emit(main_target)
 
 
 func _process(delta: float) -> void:
@@ -38,6 +39,7 @@ func _process(delta: float) -> void:
 
 
 func change_target(target: DamageableArea2D):
+	look_updater._update_look.emit(target)
 	self.current_target = target
 	if attack_area.overlaps_area(target):
 		current_state = EnemyStates.ATTACK

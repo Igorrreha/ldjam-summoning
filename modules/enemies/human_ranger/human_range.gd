@@ -12,6 +12,7 @@ var is_reloaded = false
 @onready var stone_icon: Sprite2D = $StoneIcon
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var look_updater: LookUpdater = $LookUpdater
 
 
 var main_target: DamageableArea2D
@@ -39,6 +40,8 @@ func setup(position: Vector2, target: DamageableArea2D):
 	set_anim_with_state(RangerStates.MOVING)
 	reload_timer = $ReloadTimer
 	reload_timer.timeout.connect(reloaded)
+	
+	look_updater._update_look.emit(main_target)
 
 
 func _process(delta: float) -> void:
@@ -62,6 +65,7 @@ func reloaded():
 
 
 func change_target(target: DamageableArea2D):
+	look_updater._update_look.emit(target)
 	self.current_target = target
 	if attack_area.overlaps_area(target):
 		if is_reloaded:

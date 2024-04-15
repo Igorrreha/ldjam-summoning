@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://bcq8bgxrc4d5g"]
+[gd_scene load_steps=15 format=3 uid="uid://bcq8bgxrc4d5g"]
 
 [ext_resource type="Script" path="res://modules/enemies/enemy.gd" id="1_l3eo0"]
 [ext_resource type="Script" path="res://modules/damageable_area_2d/damageable_area_2d.gd" id="2_mgv1s"]
 [ext_resource type="Texture2D" uid="uid://sig6o4ksllrl" path="res://modules/enemies/human_meelee/enemy_human.png" id="3_crye6"]
+[ext_resource type="Script" path="res://modules/look_updater/LookUpdater.gd" id="4_j8j33"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_53o53"]
 radius = 7.0
@@ -318,6 +319,10 @@ texture_filter = 1
 position = Vector2(5, -15)
 texture = ExtResource("3_crye6")
 flip_h = true
+
+[node name="LookUpdater" type="Node2D" parent="." node_paths=PackedStringArray("object_transform")]
+script = ExtResource("4_j8j33")
+object_transform = NodePath("..")
 
 [connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_area_entered"]
 [connection signal="area_entered" from="DetectArea" to="." method="_on_detect_area_area_entered"]
