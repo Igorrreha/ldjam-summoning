@@ -13,10 +13,10 @@ extends Path2D
 	#spawn_enemies(10)
 
 
-func spawn_wave(wave: GameLevelWave) -> void:
+func spawn_wave(group: Array[EnemiesGroupSlot]) -> void:
 	var wave_position = _get_random_spawn_position()
 	var moving_angle = main_tree.global_position.angle_to(wave_position)
-	for slot: GameLevelWaveSlot in wave.slots:
+	for slot: EnemiesGroupSlot in group:
 		var spawn_position = slot.position.rotated(moving_angle)
 		_spawn_enemy(slot.enemy_type, wave_position - spawn_position)
 

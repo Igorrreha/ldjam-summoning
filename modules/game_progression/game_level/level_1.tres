@@ -1,14 +1,26 @@
 [gd_resource type="Resource" script_class="GameLevel" load_steps=9 format=3 uid="uid://b06v7yeywaslo"]
 
 [ext_resource type="Script" path="res://modules/game_progression/game_level/game_level.gd" id="1_kcjs3"]
-[ext_resource type="Resource" uid="uid://b6wg71k7vjcq5" path="res://modules/game_progression/game_level/waves/solo_human.tres" id="2_34cdk"]
-[ext_resource type="Resource" uid="uid://dg1e3ddod6xit" path="res://modules/game_progression/game_level/waves/solo_human_ranger.tres" id="3_o3crj"]
-[ext_resource type="Resource" uid="uid://bj8dcscos0jee" path="res://modules/game_progression/game_level/waves/solo_fast_guy.tres" id="4_f360h"]
-[ext_resource type="Resource" uid="uid://bot71ilhxdipl" path="res://modules/game_progression/game_level/waves/three_humans.tres" id="4_glyml"]
-[ext_resource type="Resource" uid="uid://dwgwl36kcl3m4" path="res://modules/game_progression/game_level/waves/three_human_rangers.tres" id="5_54omu"]
-[ext_resource type="Resource" uid="uid://cgqph17e6j1nc" path="res://modules/game_progression/game_level/waves/solo_fat_guy.tres" id="5_jt3uh"]
-[ext_resource type="Resource" uid="uid://cmlynlb48jpjk" path="res://modules/game_progression/game_level/waves/solo_human_fat_ranger.tres" id="6_4vbki"]
+[ext_resource type="Resource" uid="uid://b6wg71k7vjcq5" path="res://modules/game_progression/game_level/events/enemies_groups_spawn/solo_human.tres" id="1_tdhk0"]
+[ext_resource type="Script" path="res://modules/game_progression/game_level/events/wait_time.gd" id="2_kex3n"]
+[ext_resource type="Resource" uid="uid://bot71ilhxdipl" path="res://modules/game_progression/game_level/events/enemies_groups_spawn/three_humans.tres" id="3_t2wu2"]
+
+[sub_resource type="Resource" id="Resource_fmod0"]
+script = ExtResource("2_kex3n")
+time_seconds = 5.0
+
+[sub_resource type="Resource" id="Resource_x75kt"]
+script = ExtResource("2_kex3n")
+time_seconds = 3.0
+
+[sub_resource type="Resource" id="Resource_io7gg"]
+script = ExtResource("2_kex3n")
+time_seconds = 5.0
+
+[sub_resource type="Resource" id="Resource_4fpw2"]
+script = ExtResource("2_kex3n")
+time_seconds = 5.0
 
 [resource]
 script = ExtResource("1_kcjs3")
-waves = Array[Resource("res://modules/game_progression/game_level/game_level_wave.gd")]([ExtResource("2_34cdk"), ExtResource("3_o3crj"), ExtResource("4_f360h"), ExtResource("5_jt3uh"), ExtResource("6_4vbki"), ExtResource("4_glyml"), ExtResource("5_54omu")])
+events_queue = Array[Resource("res://modules/game_progression/game_level/game_level_event.gd")]([ExtResource("1_tdhk0"), SubResource("Resource_fmod0"), ExtResource("1_tdhk0"), SubResource("Resource_x75kt"), ExtResource("1_tdhk0"), SubResource("Resource_io7gg"), ExtResource("3_t2wu2"), SubResource("Resource_4fpw2"), ExtResource("3_t2wu2"), ExtResource("1_tdhk0"), ExtResource("1_tdhk0")])

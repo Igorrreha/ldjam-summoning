@@ -43,9 +43,11 @@ func _process_current_level() -> void:
 	if not _skip_delay:
 		await get_tree().create_timer(_first_wave_of_level_delay).timeout
 	
-	for wave: GameLevelWave in current_level.waves:
+	for event: GameLevelEvent in current_level.events_queue:
 		if _stopped:
 			return
 		
-		_enemies_spawner.spawn_wave(wave)
-		await get_tree().create_timer(wave.duration).timeout
+		if event is EnemiesGroupSpawnGameLevelEvent:
+			_enemies_spawner.spawn_wave(event.slots)
+		elif event is WaitTimeGameLevelEvent:
+			await get_tree().create_timer(event.time_seconds).timeout

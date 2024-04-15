@@ -1,4 +1,4 @@
-class_name GameLevelWaveSlot
+class_name EnemiesGroupSlot
 extends Resource
 
 
