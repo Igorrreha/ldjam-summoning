@@ -10,6 +10,14 @@ signal damaged
 @onready var _health: float = _max_health
 
 
+func get_max_health() -> float:
+	return _max_health
+
+
+func get_health() -> float:
+	return _health
+
+
 func apply_damage(amount: float) -> void:
 	_health = clamp(_health - amount, 0, _max_health)
 	

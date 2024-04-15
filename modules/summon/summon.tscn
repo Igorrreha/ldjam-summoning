@@ -1,16 +1,32 @@
-[gd_scene load_steps=18 format=3 uid="uid://kl8xnd8il83h"]
+[gd_scene load_steps=22 format=3 uid="uid://kl8xnd8il83h"]
 
 [ext_resource type="Script" path="res://modules/summon/summon.gd" id="1_e1k8t"]
 [ext_resource type="Resource" uid="uid://c8t8oyii45f06" path="res://modules/summon/summons_signals.tres" id="2_5l2wv"]
 [ext_resource type="Texture2D" uid="uid://cllir73812ifw" path="res://modules/nexus/under_tree.png" id="2_cses6"]
-[ext_resource type="Shader" path="res://modules/shaders/mix_color.gdshader" id="4_3rsvy"]
+[ext_resource type="Shader" path="res://modules/shaders/damage.gdshader" id="4_x25wd"]
 [ext_resource type="Texture2D" uid="uid://djde3pxrhu3vt" path="res://modules/summon/defaul_meelee_summon/standard_summon.png" id="5_bd234"]
+[ext_resource type="Script" path="res://modules/damageable_area_2d/blood_amount_setter/blood_amount_setter.gd" id="6_rl4ks"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bufjt"]
+[sub_resource type="Gradient" id="Gradient_amwvt"]
+offsets = PackedFloat32Array(0.331839, 0.681614)
+colors = PackedColorArray(0.552941, 0.309804, 0, 1, 0.552941, 0.309804, 0, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_rwegw"]
+frequency = 0.1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jsap7"]
+width = 64
+height = 64
+color_ramp = SubResource("Gradient_amwvt")
+noise = SubResource("FastNoiseLite_rwegw")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p1y8u"]
 resource_local_to_scene = true
-shader = ExtResource("4_3rsvy")
-shader_parameter/_color = Color(1, 0, 0, 1)
-shader_parameter/_amount = 0.0
+shader = ExtResource("4_x25wd")
+shader_parameter/_hit_color = Color(1, 0, 0, 0.705882)
+shader_parameter/_hit_amount = 0.0
+shader_parameter/_blood_amount = 0.0
+shader_parameter/_blood_texture = SubResource("NoiseTexture2D_jsap7")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rkinp"]
 radius = 20.0
@@ -68,7 +84,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Sprite2D2:position")
+tracks/4/path = NodePath("Basement:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -80,7 +96,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Sprite2D2:scale")
+tracks/5/path = NodePath("Basement:scale")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -92,7 +108,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Sprite2D2:rotation")
+tracks/6/path = NodePath("Basement:rotation")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -104,7 +120,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Sprite2D2:modulate")
+tracks/7/path = NodePath("Basement:modulate")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -185,7 +201,7 @@ resource_name = "death"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D2:modulate")
+tracks/0/path = NodePath("Basement:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -197,7 +213,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D2:scale")
+tracks/1/path = NodePath("Basement:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -350,7 +366,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D2:position")
+tracks/3/path = NodePath("Basement:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -362,7 +378,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Sprite2D2:scale")
+tracks/4/path = NodePath("Basement:scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -374,7 +390,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Sprite2D2:rotation")
+tracks/5/path = NodePath("Basement:rotation")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -415,7 +431,7 @@ length = 0.001
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:material:shader_parameter/_amount")
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/_hit_amount")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -430,7 +446,7 @@ length = 0.2
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:material:shader_parameter/_amount")
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/_hit_amount")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -453,15 +469,14 @@ _summon_signals = ExtResource("2_5l2wv")
 _clickable_graphics = NodePath("Sprite2D")
 _attack_power = 10.0
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
+[node name="Basement" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(2, 1)
 scale = Vector2(0.827869, 0.827869)
 texture = ExtResource("2_cses6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture_filter = 1
-material = SubResource("ShaderMaterial_bufjt")
+material = SubResource("ShaderMaterial_p1y8u")
 position = Vector2(-1, -28)
 scale = Vector2(0.869207, 0.912599)
 texture = ExtResource("5_bd234")
@@ -488,6 +503,11 @@ libraries = {
 "": SubResource("AnimationLibrary_s8g3y")
 }
 
-[connection signal="damaged" from="." to="DamageEffectAnimationPlayer" method="play" binds= ["damaged"]]
+[node name="BloodAmountSetter" type="Node" parent="." node_paths=PackedStringArray("_damageable_area", "_sprite")]
+script = ExtResource("6_rl4ks")
+_damageable_area = NodePath("..")
+_sprite = NodePath("../Sprite2D")
+
+[connection signal="damaged" from="." to="DamageEffectAnimationPlayer" method="play" binds= ["damaged", 0.0]]
 [connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_entered"]
 [connection signal="area_exited" from="AttackArea" to="." method="_on_attack_area_exited"]
