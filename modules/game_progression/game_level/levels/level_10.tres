@@ -1,0 +1,58 @@
+[gd_resource type="Resource" script_class="GameLevel" load_steps=23 format=3 uid="uid://b784081uyclan"]
+
+[ext_resource type="Script" path="res://modules/game_progression/game_level/events/increase_max_nexus_energy.gd" id="1_tjwss"]
+[ext_resource type="Resource" uid="uid://cgqph17e6j1nc" path="res://modules/game_progression/game_level/events/enemies_groups_spawn/1_melee_fat.tres" id="2_u2p61"]
+[ext_resource type="Script" path="res://modules/game_progression/game_level/events/wait_time.gd" id="3_gtdo1"]
+[ext_resource type="Resource" uid="uid://dr63t6ot3vcxv" path="res://modules/game_progression/game_level/events/enemies_groups_spawn/1_melee_fat_3_ranger.tres" id="4_aa2j4"]
+[ext_resource type="Resource" uid="uid://bkac6w0sr080c" path="res://modules/game_progression/game_level/events/enemies_groups_spawn/5_melee_row.tres" id="5_qvar0"]
+[ext_resource type="Resource" uid="uid://cgi55fd7xy8hn" path="res://modules/game_progression/game_level/events/enemies_groups_spawn/5_melee_row_2_ranger.tres" id="6_qpppn"]
+[ext_resource type="Resource" uid="uid://bj8dcscos0jee" path="res://modules/game_progression/game_level/events/enemies_groups_spawn/1_melee_fast.tres" id="7_ec75w"]
+[ext_resource type="Resource" uid="uid://bruv8qf1ir6t4" path="res://modules/game_progression/game_level/events/enemies_groups_spawn/3_melee.tres" id="8_jynh0"]
+[ext_resource type="Resource" uid="uid://cmlynlb48jpjk" path="res://modules/game_progression/game_level/events/enemies_groups_spawn/1_range_fat.tres" id="9_sxvs2"]
+[ext_resource type="Resource" uid="uid://dlh8kxtlykus2" path="res://modules/game_progression/game_level/events/enemies_groups_spawn/11_melee_row.tres" id="10_3f6rj"]
+[ext_resource type="Resource" uid="uid://baii26erotdx2" path="res://modules/game_progression/game_level/events/enemies_groups_spawn/3_ranger_fat.tres" id="11_pnm5j"]
+[ext_resource type="Script" path="res://modules/game_progression/game_level/game_level.gd" id="12_hbo1h"]
+
+[sub_resource type="Resource" id="Resource_ekhnp"]
+script = ExtResource("1_tjwss")
+increase_amount = 1
+
+[sub_resource type="Resource" id="Resource_ioj5n"]
+script = ExtResource("3_gtdo1")
+time_seconds = 8.0
+
+[sub_resource type="Resource" id="Resource_eptgf"]
+script = ExtResource("3_gtdo1")
+time_seconds = 12.0
+
+[sub_resource type="Resource" id="Resource_8mns7"]
+script = ExtResource("3_gtdo1")
+time_seconds = 12.0
+
+[sub_resource type="Resource" id="Resource_yok2c"]
+script = ExtResource("3_gtdo1")
+time_seconds = 15.0
+
+[sub_resource type="Resource" id="Resource_x0vkr"]
+script = ExtResource("3_gtdo1")
+time_seconds = 5.0
+
+[sub_resource type="Resource" id="Resource_3an2q"]
+script = ExtResource("3_gtdo1")
+time_seconds = 3.0
+
+[sub_resource type="Resource" id="Resource_7vmu1"]
+script = ExtResource("3_gtdo1")
+time_seconds = 5.0
+
+[sub_resource type="Resource" id="Resource_2lplc"]
+script = ExtResource("3_gtdo1")
+time_seconds = 15.0
+
+[sub_resource type="Resource" id="Resource_ieeff"]
+script = ExtResource("3_gtdo1")
+time_seconds = 5.0
+
+[resource]
+script = ExtResource("12_hbo1h")
+events_queue = Array[Resource("res://modules/game_progression/game_level/game_level_event.gd")]([SubResource("Resource_ekhnp"), ExtResource("2_u2p61"), ExtResource("2_u2p61"), SubResource("Resource_ioj5n"), ExtResource("4_aa2j4"), ExtResource("5_qvar0"), SubResource("Resource_eptgf"), ExtResource("2_u2p61"), ExtResource("2_u2p61"), ExtResource("6_qpppn"), SubResource("Resource_8mns7"), ExtResource("6_qpppn"), ExtResource("6_qpppn"), ExtResource("7_ec75w"), ExtResource("7_ec75w"), ExtResource("8_jynh0"), SubResource("Resource_yok2c"), ExtResource("9_sxvs2"), ExtResource("8_jynh0"), SubResource("Resource_x0vkr"), ExtResource("8_jynh0"), SubResource("Resource_3an2q"), ExtResource("8_jynh0"), SubResource("Resource_7vmu1"), ExtResource("4_aa2j4"), SubResource("Resource_2lplc"), ExtResource("10_3f6rj"), SubResource("Resource_ieeff"), ExtResource("11_pnm5j")])

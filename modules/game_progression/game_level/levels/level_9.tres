@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="GameLevel" load_steps=14 format=3 uid="uid://bkk3yxnxhaf8n"]
+
+[ext_resource type="Resource" uid="uid://bkac6w0sr080c" path="res://modules/game_progression/game_level/events/enemies_groups_spawn/5_melee_row.tres" id="1_du3c8"]
+[ext_resource type="Script" path="res://modules/game_progression/game_level/events/wait_time.gd" id="2_j77w4"]
+[ext_resource type="Resource" uid="uid://cgqph17e6j1nc" path="res://modules/game_progression/game_level/events/enemies_groups_spawn/1_melee_fat.tres" id="3_d30l5"]
+[ext_resource type="Resource" uid="uid://bj8dcscos0jee" path="res://modules/game_progression/game_level/events/enemies_groups_spawn/1_melee_fast.tres" id="4_r4ely"]
+[ext_resource type="Resource" uid="uid://hwkjxx86siug" path="res://modules/game_progression/game_level/events/enemies_groups_spawn/3_ranger_row.tres" id="5_wl6iq"]
+[ext_resource type="Resource" uid="uid://dr63t6ot3vcxv" path="res://modules/game_progression/game_level/events/enemies_groups_spawn/1_melee_fat_3_ranger.tres" id="6_042te"]
+[ext_resource type="Resource" uid="uid://cmlynlb48jpjk" path="res://modules/game_progression/game_level/events/enemies_groups_spawn/1_range_fat.tres" id="7_522wc"]
+[ext_resource type="Script" path="res://modules/game_progression/game_level/game_level.gd" id="8_bd3km"]
+
+[sub_resource type="Resource" id="Resource_nefvb"]
+script = ExtResource("2_j77w4")
+time_seconds = 3.0
+
+[sub_resource type="Resource" id="Resource_yk13g"]
+script = ExtResource("2_j77w4")
+time_seconds = 7.0
+
+[sub_resource type="Resource" id="Resource_euq15"]
+script = ExtResource("2_j77w4")
+time_seconds = 10.0
+
+[sub_resource type="Resource" id="Resource_fe0sx"]
+script = ExtResource("2_j77w4")
+time_seconds = 12.0
+
+[sub_resource type="Resource" id="Resource_1xchx"]
+script = ExtResource("2_j77w4")
+time_seconds = 7.0
+
+[resource]
+script = ExtResource("8_bd3km")
+events_queue = Array[Resource("res://modules/game_progression/game_level/game_level_event.gd")]([ExtResource("1_du3c8"), SubResource("Resource_nefvb"), ExtResource("1_du3c8"), SubResource("Resource_yk13g"), ExtResource("3_d30l5"), ExtResource("4_r4ely"), ExtResource("4_r4ely"), SubResource("Resource_euq15"), ExtResource("5_wl6iq"), ExtResource("5_wl6iq"), ExtResource("5_wl6iq"), ExtResource("5_wl6iq"), SubResource("Resource_fe0sx"), ExtResource("6_042te"), ExtResource("1_du3c8"), SubResource("Resource_1xchx"), ExtResource("7_522wc")])

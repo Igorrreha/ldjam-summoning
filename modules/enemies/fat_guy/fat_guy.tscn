@@ -22,4 +22,4 @@ texture = ExtResource("3_t2rqw")
 debug_color = Color(0.768627, 0.411765, 0.47451, 0.419608)
 
 [node name="DamageableArea2D" parent="." index="4"]
-_max_health = 15.0
+_max_health = 30.0

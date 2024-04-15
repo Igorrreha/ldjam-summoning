@@ -35,3 +35,4 @@ position = Vector2(1, 9)
 
 [node name="DamageableArea2D" parent="." index="4"]
 position = Vector2(1, 9)
+_max_health = 30.0
