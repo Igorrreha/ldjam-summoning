@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://5uux81rltce2"]
+[gd_scene load_steps=29 format=3 uid="uid://5uux81rltce2"]
 
 [ext_resource type="Script" path="res://modules/enemies/human_ranger/human_range.gd" id="1_v260s"]
 [ext_resource type="Script" path="res://modules/damageable_area_2d/damageable_area_2d.gd" id="2_7i4fa"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://cowvu678h4ayn" path="res://modules/enemies/human_steps.ogg" id="3_w80c3"]
 [ext_resource type="Script" path="res://modules/look_updater/look_updater.gd" id="4_lyw3x"]
 [ext_resource type="AudioStream" uid="uid://dvvt8ad321l1d" path="res://modules/enemies/human_death.ogg" id="4_vuj5h"]
+[ext_resource type="Shader" path="res://modules/shaders/damage.gdshader" id="6_443m0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_53o53"]
 radius = 7.0
@@ -519,6 +520,41 @@ _data = {
 "walk": SubResource("Animation_trqbf")
 }
 
+[sub_resource type="Animation" id="Animation_olu57"]
+resource_name = "damaged"
+length = 0.2
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Icon:material:shader_parameter/_hit_amount")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.180265, 0.00520146, 0, -0.1, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2)
+}
+
+[sub_resource type="Animation" id="Animation_4c3jb"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Icon:material:shader_parameter/_hit_amount")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_axxpw"]
+_data = {
+"RESET": SubResource("Animation_4c3jb"),
+"damaged": SubResource("Animation_olu57")
+}
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_jjd5j"]
 radius = 81.0
 
@@ -526,6 +562,27 @@ radius = 81.0
 radius = 132.034
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4to34"]
+
+[sub_resource type="Gradient" id="Gradient_fhvdv"]
+offsets = PackedFloat32Array(0.331839, 0.681614)
+colors = PackedColorArray(1, 0, 0, 0.705882, 1, 0, 0, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_38g4g"]
+frequency = 0.2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_cqox1"]
+width = 64
+height = 64
+color_ramp = SubResource("Gradient_fhvdv")
+noise = SubResource("FastNoiseLite_38g4g")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ja87c"]
+resource_local_to_scene = true
+shader = ExtResource("6_443m0")
+shader_parameter/_hit_color = Color(1, 0, 0, 0.54902)
+shader_parameter/_hit_amount = 0.0
+shader_parameter/_blood_amount = 0.0
+shader_parameter/_blood_texture = SubResource("NoiseTexture2D_cqox1")
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_w14cd"]
 load_path = "res://.godot/imported/human_ranger_without_stone.png-e78ed3d6b2e868bf13216d0472daeec0.ctex"
@@ -551,6 +608,11 @@ shape = SubResource("CircleShape2D_53o53")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_ie52g")
+}
+
+[node name="DamageEffectAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_axxpw")
 }
 
 [node name="AttackArea" type="Area2D" parent="."]
@@ -580,6 +642,7 @@ shape = SubResource("CircleShape2D_4to34")
 
 [node name="Icon" type="Sprite2D" parent="."]
 texture_filter = 1
+material = SubResource("ShaderMaterial_ja87c")
 position = Vector2(1, -15)
 texture = SubResource("CompressedTexture2D_w14cd")
 flip_h = true
@@ -606,4 +669,5 @@ volume_db = -20.0
 [connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_area_entered"]
 [connection signal="area_entered" from="DetectArea" to="." method="_on_detect_area_area_entered"]
 [connection signal="area_exited" from="DetectArea" to="." method="_on_detect_area_area_exited"]
+[connection signal="damaged" from="DamageableArea2D" to="DamageEffectAnimationPlayer" method="play" binds= ["damaged", 0.0]]
 [connection signal="dead" from="DamageableArea2D" to="." method="_on_damageable_area_2d_dead"]
