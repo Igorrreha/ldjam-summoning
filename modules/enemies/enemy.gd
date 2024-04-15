@@ -25,7 +25,7 @@ func setup(position: Vector2, target: DamageableArea2D):
 	self.main_target = target
 	current_target = main_target
 	set_anim_with_state(EnemyStates.MOVING)
-	look_updater._update_look.emit(main_target)
+	look_updater.update_look.emit(main_target)
 
 
 func _process(delta: float) -> void:
@@ -39,7 +39,7 @@ func _process(delta: float) -> void:
 
 
 func change_target(target: DamageableArea2D):
-	look_updater._update_look.emit(target)
+	look_updater.update_look.emit(target)
 	self.current_target = target
 	if attack_area.overlaps_area(target):
 		current_state = EnemyStates.ATTACK

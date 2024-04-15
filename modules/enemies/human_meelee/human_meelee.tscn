@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://modules/enemies/enemy.gd" id="1_l3eo0"]
 [ext_resource type="Script" path="res://modules/damageable_area_2d/damageable_area_2d.gd" id="2_mgv1s"]
 [ext_resource type="Texture2D" uid="uid://sig6o4ksllrl" path="res://modules/enemies/human_meelee/enemy_human.png" id="3_crye6"]
-[ext_resource type="Script" path="res://modules/look_updater/LookUpdater.gd" id="4_j8j33"]
+[ext_resource type="Script" path="res://modules/look_updater/look_updater.gd" id="4_j8j33"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_53o53"]
 radius = 7.0

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://modules/enemies/human_ranger/human_range.gd" id="1_v260s"]
 [ext_resource type="Script" path="res://modules/damageable_area_2d/damageable_area_2d.gd" id="2_7i4fa"]
 [ext_resource type="Texture2D" uid="uid://ditbmtbwqlxh5" path="res://modules/enemies/human_ranger/human_ranger_stone.png" id="3_8ehle"]
-[ext_resource type="Script" path="res://modules/look_updater/LookUpdater.gd" id="4_lyw3x"]
+[ext_resource type="Script" path="res://modules/look_updater/look_updater.gd" id="4_lyw3x"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_53o53"]
 radius = 7.0
