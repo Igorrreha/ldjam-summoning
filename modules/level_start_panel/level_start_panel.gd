@@ -15,5 +15,9 @@ func _on_level_started(number: int) -> void:
 	if _skip:
 		return
 	
-	_title.text = "Level %s" % number
+	if number < 10:
+		_title.text = "Level %s" % number
+	else:
+		_title.text = "LAST LEVEL!"
+	
 	_animation_player.play("show")

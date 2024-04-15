@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://dtttoblwtuilw"]
+[gd_scene load_steps=43 format=3 uid="uid://dtttoblwtuilw"]
 
 [ext_resource type="Script" path="res://modules/game_progression/levels_progression_processor.gd" id="1_ngvcy"]
 [ext_resource type="PackedScene" uid="uid://c67nd8ymg0ffh" path="res://modules/summon_dragging_visualizer/summon_dragging_visulaizer.tscn" id="1_wrqsh"]
@@ -27,8 +27,17 @@
 [ext_resource type="Script" path="res://modules/enemies_count_provider/enemies_count_provider.gd" id="20_2ce02"]
 [ext_resource type="Resource" uid="uid://b784081uyclan" path="res://modules/game_progression/game_level/levels/level_10.tres" id="27_hme1h"]
 [ext_resource type="Script" path="res://modules/session_start_values_setter/session_start_values_setter.gd" id="27_hndhk"]
+[ext_resource type="Resource" uid="uid://b06v7yeywaslo" path="res://modules/game_progression/game_level/levels/level_1.tres" id="27_i1nr5"]
 [ext_resource type="Script" path="res://modules/summon_death_processor/summon_death_processor.gd" id="27_wmc14"]
+[ext_resource type="Resource" uid="uid://d0rthi3ed5712" path="res://modules/game_progression/game_level/levels/level_2.tres" id="28_4rhuc"]
 [ext_resource type="AudioStream" uid="uid://cqt6po72e5vdn" path="res://modules/sounds/rise_of_spirits.ogg" id="28_q01g6"]
+[ext_resource type="Resource" uid="uid://2xy5dh4371xd" path="res://modules/game_progression/game_level/levels/level_3.tres" id="29_17t7e"]
+[ext_resource type="Resource" uid="uid://dcwllferpntxs" path="res://modules/game_progression/game_level/levels/level_4.tres" id="30_2gnyo"]
+[ext_resource type="Resource" uid="uid://beh7s0xj71o8" path="res://modules/game_progression/game_level/levels/level_5.tres" id="31_e7nb4"]
+[ext_resource type="Resource" uid="uid://ddfna6vpmg6bq" path="res://modules/game_progression/game_level/levels/level_6.tres" id="32_lfdc8"]
+[ext_resource type="Resource" uid="uid://cn5cjvx1thhph" path="res://modules/game_progression/game_level/levels/level_7.tres" id="33_bkqcp"]
+[ext_resource type="Resource" uid="uid://bsodcla3jo3hl" path="res://modules/game_progression/game_level/levels/level_8.tres" id="34_uahe1"]
+[ext_resource type="Resource" uid="uid://bkk3yxnxhaf8n" path="res://modules/game_progression/game_level/levels/level_9.tres" id="35_80yhn"]
 
 [sub_resource type="Gradient" id="Gradient_7wdsv"]
 offsets = PackedFloat32Array(0, 0.413793, 0.697318, 0.988506)
@@ -94,7 +103,6 @@ _default_range_summon_type = ExtResource("4_ga1b4")
 [node name="MainTree" parent="." node_paths=PackedStringArray("audio_player") instance=ExtResource("4_42yk5")]
 audio_player = NodePath("../AudioStreamPlayer2D")
 loose_game_sound = ExtResource("12_ge42t")
-_max_health = 20.0
 
 [node name="EnemiesSpawner" type="Path2D" parent="." node_paths=PackedStringArray("_main_tree", "_enemies_container")]
 y_sort_enabled = true
@@ -124,13 +132,13 @@ _enemies_container = NodePath("../EnemiesSpawner/EnemiesContainer")
 
 [node name="LevelsProgressionProcessor" type="Node" parent="." node_paths=PackedStringArray("_enemies_spawner", "_enemies_count_provider")]
 script = ExtResource("1_ngvcy")
-_skip_delays = true
+_level_end_delay = 2.0
 _enemies_spawner = NodePath("../EnemiesSpawner")
 _game_state_signals = ExtResource("14_mn131")
 _summons_signals = ExtResource("7_e2u6w")
 _enemies_count_provider = NodePath("../EnemiesCountProvider")
 _session_resources = ExtResource("3_l8twg")
-_levels = Array[Resource("res://modules/game_progression/game_level/game_level.gd")]([ExtResource("27_hme1h")])
+_levels = Array[Resource("res://modules/game_progression/game_level/game_level.gd")]([ExtResource("27_i1nr5"), ExtResource("28_4rhuc"), ExtResource("29_17t7e"), ExtResource("30_2gnyo"), ExtResource("31_e7nb4"), ExtResource("32_lfdc8"), ExtResource("33_bkqcp"), ExtResource("34_uahe1"), ExtResource("35_80yhn"), ExtResource("27_hme1h")])
 
 [node name="SessionStartValuesSetter" type="Node" parent="."]
 script = ExtResource("27_hndhk")
