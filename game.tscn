@@ -22,10 +22,10 @@
 [ext_resource type="PackedScene" uid="uid://l0rbhm8o4stw" path="res://modules/enemies/fast_guy/fast_guy.tscn" id="15_cbixe"]
 [ext_resource type="Resource" uid="uid://cvbhh85ldyrvp" path="res://modules/enemies/fat_guy/fat_guy.tres" id="16_jy4j1"]
 [ext_resource type="PackedScene" uid="uid://c1rrj106ba23c" path="res://modules/enemies/fat_guy/fat_guy.tscn" id="17_gxpvf"]
-[ext_resource type="Script" path="res://modules/session_resources_start_value_setter/session_resources_start_value_setter.gd" id="18_716ky"]
 [ext_resource type="Resource" uid="uid://c25qnl55makte" path="res://modules/enemies/human_fat_ranger/human_fat_ranger.tres" id="18_adxo7"]
 [ext_resource type="PackedScene" uid="uid://bpbituybtev3d" path="res://modules/enemies/human_fat_ranger/human_fat_ranger.tscn" id="19_6785f"]
 [ext_resource type="Script" path="res://modules/enemies_count_provider/enemies_count_provider.gd" id="20_2ce02"]
+[ext_resource type="Script" path="res://modules/session_start_values_setter/session_start_values_setter.gd" id="27_hndhk"]
 [ext_resource type="Script" path="res://modules/summon_death_processor/summon_death_processor.gd" id="27_wmc14"]
 [ext_resource type="AudioStream" uid="uid://cqt6po72e5vdn" path="res://modules/sounds/rise_of_spirits.ogg" id="28_q01g6"]
 
@@ -126,9 +126,11 @@ _enemies_count_provider = NodePath("../EnemiesCountProvider")
 _session_resources = ExtResource("3_l8twg")
 _levels = Array[Resource("res://modules/game_progression/game_level/game_level.gd")]([ExtResource("13_qswsr")])
 
-[node name="SessionResourcesStartValueSetter" type="Node" parent="."]
-script = ExtResource("18_716ky")
+[node name="SessionStartValuesSetter" type="Node" parent="."]
+script = ExtResource("27_hndhk")
 _session_resources = ExtResource("3_l8twg")
+_summons_signals = ExtResource("7_e2u6w")
+_locked_summons = Array[Resource("res://modules/summon/summon_type.gd")]([ExtResource("4_ga1b4")])
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("28_q01g6")

@@ -17,6 +17,10 @@ func _ready() -> void:
 	_summons_signals.summon_unlock_requested.connect(func(summon_type):
 		if summon_type == _summon_type:
 			show())
+	
+	_summons_signals.summon_lock_requested.connect(func(summon_type):
+		if summon_type == _summon_type:
+			hide())
 
 
 func _on_button_down() -> void:
@@ -25,7 +29,8 @@ func _on_button_down() -> void:
 
 func on_focused():
 	_leaves_frame.visible = true
-	
-	
+
+
 func on_unfocused():
 	_leaves_frame.visible = false
+
