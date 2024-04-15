@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://bcq8bgxrc4d5g"]
+[gd_scene load_steps=20 format=3 uid="uid://bcq8bgxrc4d5g"]
 
 [ext_resource type="Script" path="res://modules/enemies/enemy.gd" id="1_l3eo0"]
 [ext_resource type="Script" path="res://modules/damageable_area_2d/damageable_area_2d.gd" id="2_mgv1s"]
+[ext_resource type="Shader" path="res://modules/shaders/mix_color.gdshader" id="2_v4t8a"]
 [ext_resource type="Texture2D" uid="uid://sig6o4ksllrl" path="res://modules/enemies/human_meelee/enemy_human.png" id="3_crye6"]
 [ext_resource type="Script" path="res://modules/look_updater/look_updater.gd" id="4_7mqkl"]
 
@@ -258,6 +259,47 @@ _data = {
 "walk": SubResource("Animation_trqbf")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_buru4"]
+resource_local_to_scene = true
+shader = ExtResource("2_v4t8a")
+shader_parameter/_color = Color(1, 0, 0, 1)
+shader_parameter/_amount = 0.0
+
+[sub_resource type="Animation" id="Animation_t8n0v"]
+resource_name = "damaged"
+length = 0.2
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Icon:material:shader_parameter/_amount")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.0725179, -0.0119955, 0, -0.0416862, 0.835007, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2)
+}
+
+[sub_resource type="Animation" id="Animation_6usdj"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Icon:material:shader_parameter/_amount")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c1imb"]
+_data = {
+"RESET": SubResource("Animation_6usdj"),
+"damaged": SubResource("Animation_t8n0v")
+}
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_53o53"]
 radius = 7.0
 
@@ -291,6 +333,7 @@ libraries = {
 
 [node name="Icon" type="Sprite2D" parent="Visual"]
 texture_filter = 1
+material = SubResource("ShaderMaterial_buru4")
 position = Vector2(5, -15)
 texture = ExtResource("3_crye6")
 flip_h = true
@@ -298,6 +341,11 @@ flip_h = true
 [node name="LookUpdater" type="Node2D" parent="Visual" node_paths=PackedStringArray("object_transform")]
 script = ExtResource("4_7mqkl")
 object_transform = NodePath("..")
+
+[node name="DamageEffectAnimationPlayer" type="AnimationPlayer" parent="Visual"]
+libraries = {
+"": SubResource("AnimationLibrary_c1imb")
+}
 
 [node name="BodyCollider" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_53o53")
@@ -330,4 +378,5 @@ shape = SubResource("CircleShape2D_4to34")
 [connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_area_entered"]
 [connection signal="area_entered" from="DetectArea" to="." method="_on_detect_area_area_entered"]
 [connection signal="area_exited" from="DetectArea" to="." method="_on_detect_area_area_exited"]
+[connection signal="damaged" from="DamageableArea2D" to="Visual/DamageEffectAnimationPlayer" method="play" binds= ["damaged"]]
 [connection signal="dead" from="DamageableArea2D" to="." method="_on_damageable_area_2d_dead"]
