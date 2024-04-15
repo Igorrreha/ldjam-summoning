@@ -11,6 +11,6 @@ func spawn(type: SummonType, placement_plan: PlacementPlan,
 	add_child(instance)
 	instance.global_position = global_position
 	
-	if placement_plan is TestPlacementPlan:
+	if placement_plan is StandartSummonPlacementPlan:
 		_session_resources.nexus_energy\
 			.try_spend(placement_plan.nexus_energy_cost, true)

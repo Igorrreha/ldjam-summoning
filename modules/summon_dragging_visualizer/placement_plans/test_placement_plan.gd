@@ -1,4 +1,4 @@
-class_name TestPlacementPlan
+class_name StandartSummonPlacementPlan
 extends PlacementPlan
 
 

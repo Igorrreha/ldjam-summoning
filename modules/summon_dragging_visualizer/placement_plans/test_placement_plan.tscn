@@ -1,25 +1,85 @@
-[gd_scene load_steps=5 format=3 uid="uid://cqufs586r2gca"]
+[gd_scene load_steps=9 format=3 uid="uid://cqufs586r2gca"]
 
 [ext_resource type="Script" path="res://modules/summon_dragging_visualizer/placement_plans/test_placement_plan.gd" id="1_oqdf3"]
-[ext_resource type="Texture2D" uid="uid://ckcvtu4qoo631" path="res://godot.svg" id="2_syikf"]
 [ext_resource type="Resource" uid="uid://bnjior33nt71c" path="res://modules/session_resources/session_resources.tres" id="2_vjvgu"]
+[ext_resource type="Texture2D" uid="uid://djde3pxrhu3vt" path="res://modules/summon/defaul_meelee_summon/standard_summon.png" id="3_6gawb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cjxpe"]
 radius = 50.0
 
-[node name="TestPlacementPlan" type="Area2D"]
+[sub_resource type="Animation" id="Animation_iktue"]
+resource_name = "valid_placement"
+length = 1.2
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.733333, 0.894118, 0.615686, 1), Color(0.160784, 0.545098, 0.0117647, 1), Color(0.733333, 0.894118, 0.615686, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3jmr7"]
+resource_name = "invalid_placement"
+length = 1.2
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.862745, 0.564706, 0.537255, 1), Color(1, 0.109804, 0.290196, 1), Color(0.862745, 0.564706, 0.537255, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_7s3tp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_76qdp"]
+_data = {
+"RESET": SubResource("Animation_7s3tp"),
+"invalid_placement": SubResource("Animation_3jmr7"),
+"valid_placement": SubResource("Animation_iktue")
+}
+
+[node name="StandartSummonPlacementPlan" type="Area2D"]
 collision_layer = 0
 monitorable = false
 script = ExtResource("1_oqdf3")
 _session_resources = ExtResource("2_vjvgu")
 
 [node name="Sprite" type="Sprite2D" parent="."]
+texture_filter = 1
 position = Vector2(-2.86102e-06, -2.86102e-06)
 scale = Vector2(0.75, 0.75)
-texture = ExtResource("2_syikf")
+texture = ExtResource("3_6gawb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_cjxpe")
 
-[connection signal="place_become_invalid" from="." to="Sprite" method="set_modulate" binds= [Color(1, 0, 0, 1)]]
-[connection signal="place_become_valid" from="." to="Sprite" method="set_modulate" binds= [Color(0, 1, 0, 1)]]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_76qdp")
+}

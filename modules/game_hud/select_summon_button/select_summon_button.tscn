@@ -1,13 +1,26 @@
-[gd_scene load_steps=5 format=3 uid="uid://cg4na16ooxpyl"]
+[gd_scene load_steps=6 format=3 uid="uid://cg4na16ooxpyl"]
 
 [ext_resource type="Texture2D" uid="uid://ckcvtu4qoo631" path="res://godot.svg" id="1_piigy"]
 [ext_resource type="Script" path="res://modules/game_hud/select_summon_button/select_summon_button.gd" id="2_o4w6f"]
 [ext_resource type="Resource" uid="uid://yxh2yeolu841" path="res://modules/game_hud/game_hud_signals.tres" id="3_svjx5"]
 [ext_resource type="Resource" uid="uid://pksiotgaoyis" path="res://modules/summon/defaul_meelee_summon/default_meelee_summon.tres" id="4_gioj4"]
+[ext_resource type="Texture2D" uid="uid://cqcmh1ilhnt0b" path="res://modules/game_hud/frame_leaves.png" id="5_n2p14"]
 
 [node name="SelectSummonButton" type="TextureButton"]
+size_flags_horizontal = 4
+size_flags_vertical = 4
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("1_piigy")
 script = ExtResource("2_o4w6f")
 _game_hud_signals = ExtResource("3_svjx5")
 _summon_type = ExtResource("4_gioj4")
+
+[node name="LeavesFrameTexture" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_n2p14")
