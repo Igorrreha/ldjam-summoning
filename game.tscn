@@ -114,6 +114,7 @@ script = ExtResource("1_ngvcy")
 _skip_delays = true
 _enemies_spawner = NodePath("../EnemiesSpawner")
 _game_state_signals = ExtResource("14_mn131")
+_summons_signals = ExtResource("7_e2u6w")
 _enemies_count_provider = NodePath("../EnemiesCountProvider")
 _levels = Array[Resource("res://modules/game_progression/game_level/game_level.gd")]([ExtResource("13_qswsr")])
 

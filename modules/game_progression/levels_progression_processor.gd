@@ -10,6 +10,7 @@ extends Node
 
 @export var _enemies_spawner: EnemiesSpawner
 @export var _game_state_signals: GameStateSignals
+@export var _summons_signals: SummonsSignals
 @export var _enemies_count_provider: EnemiesCountProvider
 
 @export var _levels: Array[GameLevel]
@@ -54,6 +55,8 @@ func _process_current_level() -> void:
 			_enemies_spawner.spawn_wave(event.slots)
 		elif event is WaitTimeGameLevelEvent:
 			await get_tree().create_timer(event.time_seconds).timeout
+		elif event is UnlockSummonGameLevelEvent:
+			_summons_signals.summon_unlock_requested.emit(event.summon_type)
 	
 	_on_level_processing_completed()
 

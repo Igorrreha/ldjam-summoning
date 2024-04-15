@@ -2,6 +2,7 @@ extends TextureButton
 
 
 @export var _game_hud_signals: GameHudSignals
+@export var _summons_signals: SummonsSignals
 @export var _summon_type: SummonType
 
 @onready var _leaves_frame: TextureRect = $LeavesFrameTexture
@@ -12,6 +13,10 @@ func _ready() -> void:
 	
 	mouse_entered.connect(on_focused)
 	mouse_exited.connect(on_unfocused)
+	
+	_summons_signals.summon_unlock_requested.connect(func(summon_type):
+		if summon_type == _summon_type:
+			show())
 
 
 func _on_button_down() -> void:

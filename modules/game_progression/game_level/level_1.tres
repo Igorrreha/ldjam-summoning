@@ -1,10 +1,12 @@
-[gd_resource type="Resource" script_class="GameLevel" load_steps=8 format=3 uid="uid://b06v7yeywaslo"]
+[gd_resource type="Resource" script_class="GameLevel" load_steps=11 format=3 uid="uid://b06v7yeywaslo"]
 
-[ext_resource type="Resource" uid="uid://dr63t6ot3vcxv" path="res://modules/game_progression/game_level/events/enemies_groups_spawn/1_melee_fat_3_ranger.tres" id="1_givl0"]
 [ext_resource type="Script" path="res://modules/game_progression/game_level/game_level.gd" id="1_kcjs3"]
+[ext_resource type="Resource" uid="uid://dr63t6ot3vcxv" path="res://modules/game_progression/game_level/events/enemies_groups_spawn/1_melee_fat_3_ranger.tres" id="1_scduv"]
 [ext_resource type="Script" path="res://modules/game_progression/game_level/events/wait_time.gd" id="2_kex3n"]
 [ext_resource type="Resource" uid="uid://4ksk40gy07gy" path="res://modules/game_progression/game_level/events/enemies_groups_spawn/2_melee_1_ranger.tres" id="3_vaxe5"]
 [ext_resource type="Resource" uid="uid://bkac6w0sr080c" path="res://modules/game_progression/game_level/events/enemies_groups_spawn/5_melee_row.tres" id="4_t86du"]
+[ext_resource type="Script" path="res://modules/game_progression/game_level/events/unlock_summon.gd" id="5_6dttt"]
+[ext_resource type="Resource" uid="uid://ddgubjuv1pmjs" path="res://modules/summon/default_range_summon/default_range_summon.tres" id="6_1dk7e"]
 
 [sub_resource type="Resource" id="Resource_fmod0"]
 script = ExtResource("2_kex3n")
@@ -14,6 +16,10 @@ time_seconds = 5.0
 script = ExtResource("2_kex3n")
 time_seconds = 3.0
 
+[sub_resource type="Resource" id="Resource_npxrd"]
+script = ExtResource("5_6dttt")
+summon_type = ExtResource("6_1dk7e")
+
 [resource]
 script = ExtResource("1_kcjs3")
-events_queue = Array[Resource("res://modules/game_progression/game_level/game_level_event.gd")]([ExtResource("1_givl0"), SubResource("Resource_fmod0"), ExtResource("3_vaxe5"), SubResource("Resource_x75kt"), ExtResource("4_t86du")])
+events_queue = Array[Resource("res://modules/game_progression/game_level/game_level_event.gd")]([ExtResource("1_scduv"), SubResource("Resource_fmod0"), ExtResource("3_vaxe5"), SubResource("Resource_x75kt"), ExtResource("4_t86du"), SubResource("Resource_npxrd")])
