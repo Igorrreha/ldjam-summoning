@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" path="res://modules/enemies/human_ranger/human_range.gd" id="1_v260s"]
 [ext_resource type="Script" path="res://modules/damageable_area_2d/damageable_area_2d.gd" id="2_7i4fa"]
-[ext_resource type="AudioStream" uid="uid://dalnd7yuv25" path="res://modules/enemies/human_punch.mp3" id="2_ieqk4"]
+[ext_resource type="AudioStream" uid="uid://cc3qucc5fylmb" path="res://modules/enemies/human_punch.ogg" id="2_sr7ow"]
 [ext_resource type="Texture2D" uid="uid://ditbmtbwqlxh5" path="res://modules/enemies/human_ranger/human_ranger_stone.png" id="3_8ehle"]
-[ext_resource type="AudioStream" uid="uid://ci1jbtlc5otbf" path="res://modules/enemies/human_steps.mp3" id="3_csaqm"]
+[ext_resource type="AudioStream" uid="uid://cowvu678h4ayn" path="res://modules/enemies/human_steps.ogg" id="3_w80c3"]
 [ext_resource type="Script" path="res://modules/look_updater/look_updater.gd" id="4_lyw3x"]
-[ext_resource type="AudioStream" uid="uid://dww6sd78hdi62" path="res://modules/enemies/human_death.mp3" id="4_o4wp4"]
+[ext_resource type="AudioStream" uid="uid://dvvt8ad321l1d" path="res://modules/enemies/human_death.ogg" id="4_vuj5h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_53o53"]
 radius = 7.0
@@ -541,9 +541,9 @@ attack_power = 2.0
 damageable_area = NodePath("DamageableArea2D")
 attack_area = NodePath("AttackArea")
 detect_area = NodePath("DetectArea")
-attack_sound = ExtResource("2_ieqk4")
-steps_sound = ExtResource("3_csaqm")
-death_sound = ExtResource("4_o4wp4")
+attack_sound = ExtResource("2_sr7ow")
+steps_sound = ExtResource("3_w80c3")
+death_sound = ExtResource("4_vuj5h")
 
 [node name="BodyCollider" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_53o53")
