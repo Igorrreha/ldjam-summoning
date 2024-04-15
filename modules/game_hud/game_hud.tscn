@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ovxlsequh7vl"]
+[gd_scene load_steps=9 format=3 uid="uid://ovxlsequh7vl"]
 
 [ext_resource type="PackedScene" uid="uid://cg4na16ooxpyl" path="res://modules/game_hud/select_summon_button/select_summon_button.tscn" id="1_pkhr3"]
 [ext_resource type="PackedScene" uid="uid://hto3iib8j1gh" path="res://modules/game_hud/ingame_resource_bar/ingame_resource_bar.tscn" id="2_33cgp"]
@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://c8t8oyii45f06" path="res://modules/summon/summons_signals.tres" id="3_6xgsq"]
 [ext_resource type="Resource" uid="uid://cxpqrg70ms4p2" path="res://modules/session_resources/nexus_energy.tres" id="3_me45r"]
 [ext_resource type="Resource" uid="uid://ddgubjuv1pmjs" path="res://modules/summon/default_range_summon/default_range_summon.tres" id="4_in4ea"]
+[ext_resource type="Texture2D" uid="uid://h5otucd56pw2" path="res://modules/game_hud/flower_bar.png" id="8_usca8"]
 
 [node name="GameHud" type="Control"]
 layout_mode = 3
@@ -59,4 +60,18 @@ _summon_type = ExtResource("4_in4ea")
 
 [node name="IngameResourceBar" parent="." instance=ExtResource("2_33cgp")]
 layout_mode = 0
+offset_left = 29.0
+offset_top = 9.0
+offset_right = 459.0
+offset_bottom = 36.0
 _ingame_resource = ExtResource("3_me45r")
+
+[node name="FlowerBar" type="Sprite2D" parent="IngameResourceBar"]
+position = Vector2(-7, 15)
+scale = Vector2(0.5375, 0.5375)
+texture = ExtResource("8_usca8")
+
+[node name="FlowerBar2" type="Sprite2D" parent="IngameResourceBar"]
+position = Vector2(428, 15)
+scale = Vector2(0.5375, 0.5375)
+texture = ExtResource("8_usca8")
