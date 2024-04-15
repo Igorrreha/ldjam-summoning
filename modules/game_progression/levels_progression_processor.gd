@@ -68,6 +68,9 @@ func _on_level_processing_completed() -> void:
 	if not _skip_delays:
 		await get_tree().create_timer(_level_end_delay).timeout
 	
+	if _stopped:
+		return
+	
 	_game_state_signals.level_completed.emit(_current_level_idx + 1)
 	
 	if _current_level_idx + 1 < _levels.size():
