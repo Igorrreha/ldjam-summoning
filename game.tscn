@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dtttoblwtuilw"]
+[gd_scene load_steps=29 format=3 uid="uid://dtttoblwtuilw"]
 
 [ext_resource type="Script" path="res://modules/game_progression/levels_progression_processor.gd" id="1_ngvcy"]
 [ext_resource type="PackedScene" uid="uid://c67nd8ymg0ffh" path="res://modules/summon_dragging_visualizer/summon_dragging_visulaizer.tscn" id="1_wrqsh"]
@@ -23,6 +23,7 @@
 [ext_resource type="Script" path="res://modules/session_resources_start_value_setter/session_resources_start_value_setter.gd" id="18_716ky"]
 [ext_resource type="Resource" uid="uid://c25qnl55makte" path="res://modules/enemies/human_fat_ranger/human_fat_ranger.tres" id="18_adxo7"]
 [ext_resource type="PackedScene" uid="uid://bpbituybtev3d" path="res://modules/enemies/human_fat_ranger/human_fat_ranger.tscn" id="19_6785f"]
+[ext_resource type="Script" path="res://modules/enemies_count_provider/enemies_count_provider.gd" id="20_2ce02"]
 
 [sub_resource type="Gradient" id="Gradient_7wdsv"]
 offsets = PackedFloat32Array(0, 0.324675, 0.772871, 1)
@@ -72,12 +73,13 @@ _default_meelee_summon_type = ExtResource("4_7npjl")
 
 [node name="MainTree" parent="." instance=ExtResource("4_42yk5")]
 
-[node name="EnemiesSpawner" type="Path2D" parent="." node_paths=PackedStringArray("main_tree")]
+[node name="EnemiesSpawner" type="Path2D" parent="." node_paths=PackedStringArray("_main_tree", "_enemies_container")]
 y_sort_enabled = true
 position = Vector2(201, -64)
 curve = SubResource("Curve2D_sv0k5")
 script = ExtResource("9_4ukip")
-main_tree = NodePath("../MainTree")
+_main_tree = NodePath("../MainTree")
+_enemies_container = NodePath("EnemiesContainer")
 _enemy_scene_by_type = {
 ExtResource("10_sh18u"): ExtResource("11_j74bq"),
 ExtResource("12_dg3lk"): ExtResource("13_57vcj"),
@@ -90,12 +92,19 @@ ExtResource("18_adxo7"): ExtResource("19_6785f")
 position = Vector2(-786, 392)
 rotation = 0.312902
 
-[node name="LevelsProgressionProcessor" type="Node" parent="." node_paths=PackedStringArray("_enemies_spawner")]
+[node name="EnemiesContainer" type="Node2D" parent="EnemiesSpawner"]
+y_sort_enabled = true
+
+[node name="EnemiesCountProvider" type="Node" parent="." node_paths=PackedStringArray("_enemies_container")]
+script = ExtResource("20_2ce02")
+_enemies_container = NodePath("../EnemiesSpawner/EnemiesContainer")
+
+[node name="LevelsProgressionProcessor" type="Node" parent="." node_paths=PackedStringArray("_enemies_spawner", "_enemies_count_provider")]
 script = ExtResource("1_ngvcy")
-_levels = Array[Resource("res://modules/game_progression/game_level/game_level.gd")]([ExtResource("13_qswsr")])
-_skip_delay = true
 _enemies_spawner = NodePath("../EnemiesSpawner")
 _game_state_signals = ExtResource("14_mn131")
+_enemies_count_provider = NodePath("../EnemiesCountProvider")
+_levels = Array[Resource("res://modules/game_progression/game_level/game_level.gd")]([ExtResource("13_qswsr")])
 
 [node name="SessionResourcesStartValueSetter" type="Node" parent="."]
 script = ExtResource("18_716ky")

@@ -8,3 +8,4 @@ signal game_over
 signal game_restart_requested
 
 signal level_started(number: int)
+signal level_completed(number: int)
