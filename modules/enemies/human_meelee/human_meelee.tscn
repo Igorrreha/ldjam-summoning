@@ -317,15 +317,16 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_53o53"]
-radius = 7.0
+radius = 25.02
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jjd5j"]
-radius = 28.0
+radius = 42.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g8x3i"]
-radius = 100.02
+radius = 114.004
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4to34"]
+radius = 24.0
 
 [node name="HumanMelee" type="CharacterBody2D" node_paths=PackedStringArray("damageable_area", "attack_area", "detect_area")]
 motion_mode = 1

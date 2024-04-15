@@ -1,16 +1,35 @@
-[gd_scene load_steps=2 format=3 uid="uid://l0rbhm8o4stw"]
+[gd_scene load_steps=7 format=3 uid="uid://l0rbhm8o4stw"]
 
 [ext_resource type="PackedScene" uid="uid://bcq8bgxrc4d5g" path="res://modules/enemies/human_meelee/human_meelee.tscn" id="1_ypi1i"]
+[ext_resource type="Shader" path="res://modules/shaders/damage.gdshader" id="2_qf5fo"]
+
+[sub_resource type="Gradient" id="Gradient_fhvdv"]
+offsets = PackedFloat32Array(0.331839, 0.681614)
+colors = PackedColorArray(1, 0, 0, 0.705882, 1, 0, 0, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_38g4g"]
+frequency = 0.2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_cqox1"]
+width = 64
+height = 64
+color_ramp = SubResource("Gradient_fhvdv")
+noise = SubResource("FastNoiseLite_38g4g")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iype8"]
+resource_local_to_scene = true
+shader = ExtResource("2_qf5fo")
+shader_parameter/_hit_color = Color(1, 0, 0, 0.54902)
+shader_parameter/_hit_amount = 0.0
+shader_parameter/_blood_amount = 0.0
+shader_parameter/_blood_texture = SubResource("NoiseTexture2D_cqox1")
 
 [node name="FastGuy" instance=ExtResource("1_ypi1i")]
 speed = 150.0
 attack_power = 0.5
 
-[node name="AnimationPlayer" parent="." index="1"]
-speed_scale = 2.0
+[node name="Icon" parent="Visual" index="1"]
+material = SubResource("ShaderMaterial_iype8")
 
 [node name="AttackCollider" parent="AttackArea" index="0"]
 debug_color = Color(1, 0, 0, 0.419608)
-
-[node name="Icon" parent="." index="5"]
-modulate = Color(0, 0, 1, 1)
