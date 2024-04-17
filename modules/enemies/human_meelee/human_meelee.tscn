@@ -404,7 +404,7 @@ _damageable_area = NodePath("../DamageableArea2D")
 _sprite = NodePath("../Visual/Icon")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-volume_db = -20.0
+volume_db = -5.0
 
 [connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_area_entered"]
 [connection signal="area_entered" from="DetectArea" to="." method="_on_detect_area_area_entered"]
