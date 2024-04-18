@@ -22,9 +22,9 @@ layout_mode = 2
 item_count = 3
 item_0/text = "Refresh"
 item_0/id = 0
-item_1/text = "Save positions"
+item_1/text = "Load"
 item_1/id = 1
-item_2/text = "Load positions"
+item_2/text = "Save"
 item_2/id = 2
 script = ExtResource("1_fy0cb")
 
@@ -40,6 +40,6 @@ text = "Refresh"
 layout_mode = 2
 scroll_offset = Vector2(-100, -100)
 
-[connection signal="graph_modules_positions_loading_requested" from="PanelContainer/MenuBar/Graph" to="ModulesGraph" method="restore_positions"]
-[connection signal="graph_modules_positions_saving_requested" from="PanelContainer/MenuBar/Graph" to="ModulesGraph" method="store_positions"]
+[connection signal="graph_loading_requested" from="PanelContainer/MenuBar/Graph" to="ModulesGraph" method="load_from_cache"]
 [connection signal="graph_refreshing_requested" from="PanelContainer/MenuBar/Graph" to="ModulesGraph" method="refresh"]
+[connection signal="graph_saving_requested" from="PanelContainer/MenuBar/Graph" to="ModulesGraph" method="save_to_cache"]

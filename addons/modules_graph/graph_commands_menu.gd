@@ -3,8 +3,8 @@ extends PopupMenu
 
 
 signal graph_refreshing_requested
-signal graph_modules_positions_saving_requested
-signal graph_modules_positions_loading_requested
+signal graph_saving_requested
+signal graph_loading_requested
 
 
 func _ready() -> void:
@@ -15,14 +15,14 @@ func _on_id_pressed(id: int) -> void:
 	match id:
 		CommandType.REFRESH:
 			graph_refreshing_requested.emit()
-		CommandType.SAVE_POSITIONS:
-			graph_modules_positions_saving_requested.emit()
-		CommandType.LOAD_POSITIONS:
-			graph_modules_positions_loading_requested.emit()
+		CommandType.RESTORE:
+			graph_loading_requested.emit()
+		CommandType.STORE:
+			graph_saving_requested.emit()
 
 
 enum CommandType {
 	REFRESH = 0,
-	SAVE_POSITIONS = 1,
-	LOAD_POSITIONS = 2,
+	RESTORE = 1,
+	STORE = 2,
 }
