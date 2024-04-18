@@ -11,10 +11,10 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
 		if event.is_pressed()\
 		and event.physical_keycode == KEY_R:
-			_refresh()
+			refresh()
 
 
-func _refresh() -> void:
+func refresh() -> void:
 	clear_connections()
 	for child in get_children():
 		if child is GraphNode:

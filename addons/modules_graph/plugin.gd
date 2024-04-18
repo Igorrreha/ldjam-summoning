@@ -2,19 +2,19 @@
 extends EditorPlugin
 
 
-const MODULES_GRAPH_SCENE: PackedScene = preload("res://addons/modules_graph/modules_graph.tscn")
-var _modules_graph: GraphEdit
+const PLUGIN_SCENE: PackedScene = preload("res://addons/modules_graph/plugin.tscn")
+var _plugin_node: Control
 var _container_type = EditorPlugin.CONTAINER_CANVAS_EDITOR_MENU
 
 
 func _enter_tree() -> void:
-	_modules_graph = MODULES_GRAPH_SCENE.instantiate() as GraphEdit
-	EditorInterface.get_editor_main_screen().add_child(_modules_graph)
+	_plugin_node = PLUGIN_SCENE.instantiate() as Control
+	EditorInterface.get_editor_main_screen().add_child(_plugin_node)
 	_make_visible(false)
 
 
 func _exit_tree() -> void:
-	_modules_graph.queue_free()
+	_plugin_node.queue_free()
 
 
 func _has_main_screen() -> bool:
@@ -22,8 +22,8 @@ func _has_main_screen() -> bool:
 
 
 func _make_visible(visible: bool) -> void:
-	if _modules_graph:
-		_modules_graph.visible = visible
+	if _plugin_node:
+		_plugin_node.visible = visible
 
 
 func _get_plugin_name():

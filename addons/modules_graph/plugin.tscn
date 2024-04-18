@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://ia5ibsfavpv7"]
+
+[ext_resource type="Script" path="res://addons/modules_graph/graph_commands_menu.gd" id="1_fy0cb"]
+[ext_resource type="PackedScene" uid="uid://c6tf6uuenblqi" path="res://addons/modules_graph/modules_graph.tscn" id="1_qrhe8"]
+
+[node name="Plugin" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+
+[node name="MenuBar" type="MenuBar" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="Graph" type="PopupMenu" parent="PanelContainer/MenuBar"]
+item_count = 1
+item_0/text = "Refresh"
+item_0/id = 0
+script = ExtResource("1_fy0cb")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer"]
+visible = false
+layout_mode = 2
+
+[node name="RefreshButton" type="Button" parent="PanelContainer/HBoxContainer"]
+layout_mode = 2
+text = "Refresh"
+
+[node name="ModulesGraph" parent="." instance=ExtResource("1_qrhe8")]
+layout_mode = 2
+scroll_offset = Vector2(-100, -100)
+
+[connection signal="graph_refreshing_requested" from="PanelContainer/MenuBar/Graph" to="ModulesGraph" method="refresh"]
