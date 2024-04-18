@@ -1,3 +1,4 @@
+@tool
 extends GraphEdit
 
 
@@ -6,7 +7,20 @@ extends GraphEdit
 var _node_name_by_module: Dictionary#[String, String]
 
 
-func _ready() -> void:
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey:
+		if event.is_pressed()\
+		and event.physical_keycode == KEY_R:
+			_refresh()
+
+
+func _refresh() -> void:
+	clear_connections()
+	for child in get_children():
+		if child is GraphNode:
+			child.queue_free()
+	_node_name_by_module.clear()
+	
 	var dependencies_provider = DependenciesProvider.new()
 	var dependencies_by_module = dependencies_provider.get_dependencies()
 	

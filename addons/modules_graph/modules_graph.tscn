@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6tf6uuenblqi"]
+
+[ext_resource type="Script" path="res://addons/modules_graph/modules_graph.gd" id="1_eecse"]
+[ext_resource type="PackedScene" uid="uid://bcp7bwfeh1enc" path="res://addons/modules_graph/module_graph_node.tscn" id="2_nyj4v"]
+
+[node name="ModulesGraph" type="GraphEdit"]
+custom_minimum_size = Vector2(100, 100)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_eecse")
+_module_node_scene = ExtResource("2_nyj4v")
