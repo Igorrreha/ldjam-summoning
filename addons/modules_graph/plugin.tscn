@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://ia5ibsfavpv7"]
+[gd_scene load_steps=4 format=3 uid="uid://ia5ibsfavpv7"]
 
 [ext_resource type="Script" path="res://addons/modules_graph/graph_commands_menu.gd" id="1_fy0cb"]
 [ext_resource type="PackedScene" uid="uid://c6tf6uuenblqi" path="res://addons/modules_graph/modules_graph.tscn" id="1_qrhe8"]
+[ext_resource type="Script" path="res://addons/modules_graph/modules_search_field/modules_search_field.gd" id="2_t6ow8"]
 
 [node name="Plugin" type="VBoxContainer"]
 anchors_preset = 15
@@ -15,10 +16,13 @@ size_flags_vertical = 3
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 2
 
-[node name="MenuBar" type="MenuBar" parent="PanelContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer"]
 layout_mode = 2
 
-[node name="Graph" type="PopupMenu" parent="PanelContainer/MenuBar"]
+[node name="MenuBar" type="MenuBar" parent="PanelContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Graph" type="PopupMenu" parent="PanelContainer/HBoxContainer/MenuBar"]
 item_count = 3
 item_0/text = "Refresh"
 item_0/id = 0
@@ -28,18 +32,19 @@ item_2/text = "Save"
 item_2/id = 2
 script = ExtResource("1_fy0cb")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer"]
-visible = false
+[node name="ModulesSearchField" type="LineEdit" parent="PanelContainer/HBoxContainer" node_paths=PackedStringArray("_modules_graph")]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
-
-[node name="RefreshButton" type="Button" parent="PanelContainer/HBoxContainer"]
-layout_mode = 2
-text = "Refresh"
+size_flags_horizontal = 10
+placeholder_text = "Search"
+expand_to_text_length = true
+script = ExtResource("2_t6ow8")
+_modules_graph = NodePath("../../../ModulesGraph")
 
 [node name="ModulesGraph" parent="." instance=ExtResource("1_qrhe8")]
 layout_mode = 2
 scroll_offset = Vector2(-100, -100)
 
-[connection signal="graph_loading_requested" from="PanelContainer/MenuBar/Graph" to="ModulesGraph" method="load_from_cache"]
-[connection signal="graph_refreshing_requested" from="PanelContainer/MenuBar/Graph" to="ModulesGraph" method="refresh"]
-[connection signal="graph_saving_requested" from="PanelContainer/MenuBar/Graph" to="ModulesGraph" method="save_to_cache"]
+[connection signal="graph_loading_requested" from="PanelContainer/HBoxContainer/MenuBar/Graph" to="ModulesGraph" method="load_from_cache"]
+[connection signal="graph_refreshing_requested" from="PanelContainer/HBoxContainer/MenuBar/Graph" to="ModulesGraph" method="refresh"]
+[connection signal="graph_saving_requested" from="PanelContainer/HBoxContainer/MenuBar/Graph" to="ModulesGraph" method="save_to_cache"]
