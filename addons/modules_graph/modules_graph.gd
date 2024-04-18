@@ -14,6 +14,10 @@ func _input(event: InputEvent) -> void:
 			refresh()
 
 
+func _get_cache_file_path() -> String:
+	return "res://addons/modules_graph/modules_data_cache.tmp"
+
+
 func refresh() -> void:
 	clear_connections()
 	for child in get_children():
@@ -29,7 +33,7 @@ func refresh() -> void:
 		module_node.title = module
 		add_child(module_node)
 		
-		_node_name_by_module[module] = module_node.name
+		_node_name_by_module[module] = str(module_node.name)
 		
 		module_node.selected = true
 	
@@ -44,3 +48,36 @@ func refresh() -> void:
 	for child in get_children():
 		if child is GraphNode:
 			child.selected = false
+	
+	restore_positions()
+
+
+func store_positions() -> void:
+	var file = FileAccess.open(_get_cache_file_path(), FileAccess.WRITE)
+	for module in _node_name_by_module:
+		var node_name = _node_name_by_module[module]
+		var node = get_node(node_name) as Control
+		
+		var data = [module, floori(node.position_offset.x),
+			floori(node.position_offset.y)]
+		file.store_line(",".join(data))
+
+
+func restore_positions() -> void:
+	var cache_file_path = _get_cache_file_path()
+	if not FileAccess.file_exists(cache_file_path):
+		return
+	
+	var file = FileAccess.open(cache_file_path, FileAccess.READ)
+	while file.get_position() < file.get_length():
+		var data: Array = file.get_line().split(",")
+		
+		var module = data[0]
+		var module_node_name = _node_name_by_module[module]
+		
+		if not has_node(module_node_name):
+			continue
+		
+		var node = get_node(module_node_name) as GraphNode
+		var module_position = Vector2(float(data[1]), float(data[2]))
+		node.position_offset = module_position
