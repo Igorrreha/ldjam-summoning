@@ -12,12 +12,20 @@ extends GraphEdit
 var node_name_by_module: Dictionary#[String, String]
 var module_by_node_name: Dictionary#[String, String]
 
+var is_active: bool
+
 
 func _ready() -> void:
-	load_from_cache()
+	is_active = not "CanvasItemEditor" in str(get_path())
+	
+	if is_active:
+		load_from_cache()
 
 
 func _input(event: InputEvent) -> void:
+	if not is_active:
+		return
+	
 	if event is InputEventKey:
 		if event.is_pressed()\
 		and event.physical_keycode == KEY_R:
