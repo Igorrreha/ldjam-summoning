@@ -73,8 +73,10 @@ func restore_positions() -> void:
 		var data: Array = file.get_line().split(",")
 		
 		var module = data[0]
-		var module_node_name = _node_name_by_module[module]
+		if not _node_name_by_module.has(module):
+			continue
 		
+		var module_node_name = _node_name_by_module[module]
 		if not has_node(module_node_name):
 			continue
 		
