@@ -5,9 +5,9 @@ default_theme,
 dissolve_shader,
 enemies,shaders/damageable_area_2d/look_updater
 enemies_count_provider,
-game_completed_menu,default_theme/game_state_signals
+game_completed_menu,game_state_signals
 game_hud,summon/session_resources
-game_over_menu,default_theme/game_state_signals
+game_over_menu,game_state_signals
 game_progression,enemies/summon
 game_restarter,
 game_state_signals,
@@ -15,7 +15,7 @@ gamestart_splashscreen,company_intro/dissolve_shader
 ingame_resource,
 level_start_panel,title_label_settings/game_state_signals
 look_updater,
-main_menu,default_theme/game_state_signals
+main_menu,game_state_signals
 nexus,game_state_signals/shaders/damageable_area_2d
 session_resources,
 session_start_values_setter,

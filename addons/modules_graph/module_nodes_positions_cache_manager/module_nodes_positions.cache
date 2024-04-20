@@ -1,7 +1,7 @@
 company_intro,300,-600
 damageable_area_2d,360,720
 debug_toolkit,-340,600
-default_theme,560,-160
+default_theme,-340,240
 dissolve_shader,300,-420
 enemies,860,1020
 enemies_count_provider,-340,720

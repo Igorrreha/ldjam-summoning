@@ -1,6 +1,5 @@
-[gd_scene load_steps=6 format=3 uid="uid://c05exain5xqqy"]
+[gd_scene load_steps=5 format=3 uid="uid://c05exain5xqqy"]
 
-[ext_resource type="Theme" uid="uid://bbgunevbft2h4" path="res://modules/default_theme/default_theme.tres" id="1_brjyq"]
 [ext_resource type="Script" path="res://modules/game_over_menu/game_over_menu.gd" id="2_rasn0"]
 [ext_resource type="Script" path="res://modules/game_over_menu/play_again_button.gd" id="2_sksfq"]
 [ext_resource type="Resource" uid="uid://cfduuk254rjq8" path="res://modules/game_state_signals/game_state_signals.tres" id="3_unjni"]
@@ -17,7 +16,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_brjyq")
 script = ExtResource("2_rasn0")
 _game_state_signals = ExtResource("3_unjni")
 
