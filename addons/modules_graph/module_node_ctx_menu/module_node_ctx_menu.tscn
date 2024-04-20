@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://k8shmvrihwel"]
+
+[ext_resource type="Script" path="res://addons/modules_graph/module_node_ctx_menu/module_node_ctx_menu.gd" id="1_wgt6t"]
+[ext_resource type="Resource" uid="uid://cmsi1wdw34415" path="res://addons/modules_graph/module_node/module_nodes_signals.tres" id="2_osukc"]
+
+[node name="ModuleNodeCtxMenu" type="PopupMenu"]
+size = Vector2i(186, 100)
+item_count = 1
+item_0/text = "Select dependencies"
+item_0/id = 0
+script = ExtResource("1_wgt6t")
+_module_nodes_signals = ExtResource("2_osukc")

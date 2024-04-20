@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://c6tf6uuenblqi"]
 
 [ext_resource type="Script" path="res://addons/modules_graph/modules_graph.gd" id="1_eecse"]
-[ext_resource type="PackedScene" uid="uid://bcp7bwfeh1enc" path="res://addons/modules_graph/module_graph_node.tscn" id="2_nyj4v"]
+[ext_resource type="PackedScene" uid="uid://bcp7bwfeh1enc" path="res://addons/modules_graph/module_node/module_graph_node.tscn" id="2_ijooj"]
 [ext_resource type="Script" path="res://addons/modules_graph/modules_list_cache_manager/modules_list_cache_manager.gd" id="3_jmp6j"]
 [ext_resource type="Script" path="res://addons/modules_graph/connections_cache_manager/modules_connections_cache_manager.gd" id="4_p65x5"]
 [ext_resource type="Script" path="res://addons/modules_graph/module_nodes_positions_cache_manager/module_nodes_positions_cache_manager.gd" id="5_bqp1l"]
@@ -18,7 +18,7 @@ size_flags_vertical = 3
 zoom_min = 0.05
 script = ExtResource("1_eecse")
 _modules_dir = "res://modules"
-_module_node_scene = ExtResource("2_nyj4v")
+_module_node_scene = ExtResource("2_ijooj")
 _modules_list_cache_manager = NodePath("CacheManagers/ModulesList")
 _modules_connections_cache_manager = NodePath("CacheManagers/ModulesConnections")
 _module_nodes_positions_cache_manager = NodePath("CacheManagers/ModuleNodesPositions")

@@ -14,18 +14,18 @@ extends GraphEdit
 var node_name_by_module: Dictionary#[String, String]
 var module_by_node_name: Dictionary#[String, String]
 
-var is_active: bool
+var _is_active: bool
 
 
 func _ready() -> void:
-	is_active = not "CanvasItemEditor" in str(get_path())
+	_is_active = not "CanvasItemEditor" in str(get_path())
 	
-	if is_active:
+	if _is_active:
 		load_from_cache()
 
 
 func _input(event: InputEvent) -> void:
-	if not is_active:
+	if not _is_active:
 		return
 	
 	if event is InputEventKey:
@@ -89,6 +89,18 @@ func create_module_node(module: String) -> GraphNode:
 func focus_on_module(module: String) -> void:
 	var module_node = get_node(node_name_by_module[module]) as GraphNode
 	scroll_offset = module_node.position_offset * zoom - get_rect().size / 2
+
+
+func select_dependencies_of_module(module: String) -> void:
+	var module_node_name = node_name_by_module[module]
+	
+	var dependencies: Array[String]
+	for connection in get_connection_list():
+		if connection.to_node == module_node_name:
+			dependencies.append(connection.from_node)
+	
+	for node_name in dependencies:
+		(get_node(node_name) as GraphNode).selected = true
 
 
 func _clear() -> void:
