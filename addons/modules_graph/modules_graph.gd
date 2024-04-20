@@ -86,6 +86,11 @@ func create_module_node(module: String) -> GraphNode:
 	return module_node
 
 
+func focus_on_module(module: String) -> void:
+	var module_node = get_node(node_name_by_module[module]) as GraphNode
+	scroll_offset = module_node.position_offset * zoom - get_rect().size / 2
+
+
 func _clear() -> void:
 	clear_connections()
 	

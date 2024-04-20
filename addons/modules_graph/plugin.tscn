@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://addons/modules_graph/graph_commands_menu.gd" id="1_fy0cb"]
 [ext_resource type="PackedScene" uid="uid://c6tf6uuenblqi" path="res://addons/modules_graph/modules_graph.tscn" id="1_qrhe8"]
-[ext_resource type="Script" path="res://addons/modules_graph/modules_search_field/modules_search_field.gd" id="2_t6ow8"]
+[ext_resource type="PackedScene" uid="uid://bso741qg37m5y" path="res://addons/modules_graph/modules_search_field/modules_search_field.tscn" id="2_e36or"]
 
 [node name="Plugin" type="VBoxContainer"]
 anchors_preset = 15
@@ -32,13 +32,8 @@ item_2/text = "Save"
 item_2/id = 2
 script = ExtResource("1_fy0cb")
 
-[node name="ModulesSearchField" type="LineEdit" parent="PanelContainer/HBoxContainer" node_paths=PackedStringArray("_modules_graph")]
-custom_minimum_size = Vector2(250, 0)
+[node name="ModulesSearchField" parent="PanelContainer/HBoxContainer" node_paths=PackedStringArray("_modules_graph") instance=ExtResource("2_e36or")]
 layout_mode = 2
-size_flags_horizontal = 10
-placeholder_text = "Search for module"
-expand_to_text_length = true
-script = ExtResource("2_t6ow8")
 _modules_graph = NodePath("../../../ModulesGraph")
 
 [node name="ModulesGraph" parent="." instance=ExtResource("1_qrhe8")]
