@@ -1,17 +1,23 @@
-class_name DependenciesProvider
+class_name ModulesDependenciesProvider
 extends RefCounted
 
 
+var _modules_dir: String
+
+
+func _init(modules_dir: String) -> void:
+	_modules_dir = modules_dir
+
+
 func get_dependencies() -> Dictionary:
-	var modules_dir = "res://modules"
-	var modules_dir_slices_count = modules_dir.get_slice_count("/")
-	var modules = DirAccess.get_directories_at(modules_dir)
+	var modules_dir_slices_count = _modules_dir.get_slice_count("/")
+	var modules = DirAccess.get_directories_at(_modules_dir)
 	
 	var dependencies_by_module: Dictionary
 	for module in modules:
 		var base_modules: Dictionary
 		
-		var module_dir = modules_dir.path_join(module)
+		var module_dir = _modules_dir.path_join(module)
 		var file_paths = _get_file_paths_from_dir_recursive(module_dir)
 		for file_path in file_paths:
 			var dependencies = ResourceLoader.get_dependencies(file_path)
@@ -19,7 +25,7 @@ func get_dependencies() -> Dictionary:
 			for dependency in dependencies:
 				var dependency_path = dependency.get_slice("::", 2)
 				
-				if not dependency_path.begins_with(modules_dir):
+				if not dependency_path.begins_with(_modules_dir):
 					continue
 					
 				var dependency_module = dependency_path\

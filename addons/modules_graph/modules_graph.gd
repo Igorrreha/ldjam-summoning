@@ -3,6 +3,8 @@ class_name ModulesGraph
 extends GraphEdit
 
 
+@export_dir var _modules_dir: String
+
 @export var _module_node_scene: PackedScene
 
 @export var _modules_list_cache_manager: CacheManager
@@ -49,7 +51,7 @@ func save_to_cache() -> void:
 func refresh() -> void:
 	_clear()
 	
-	var dependencies_provider = DependenciesProvider.new()
+	var dependencies_provider = ModulesDependenciesProvider.new(_modules_dir)
 	var dependencies_by_module = dependencies_provider.get_dependencies()
 	
 	for module in dependencies_by_module:
@@ -73,9 +75,11 @@ func refresh() -> void:
 
 
 func create_module_node(module: String) -> GraphNode:
-	var module_node = _module_node_scene.instantiate() as GraphNode
+	var module_node = _module_node_scene.instantiate() as ModulesGraphNode
 	module_node.title = module
 	add_child(module_node)
+	
+	module_node.double_clicked.connect(_focus_module_dir.bind(module))
 	
 	node_name_by_module[module] = str(module_node.name)
 	module_by_node_name[str(module_node.name)] = module
@@ -86,8 +90,14 @@ func _clear() -> void:
 	clear_connections()
 	
 	for child in get_children():
-		if child is GraphNode:
+		if child is ModulesGraphNode:
+			child.double_clicked.disconnect(_focus_module_dir)
 			child.queue_free()
 	
 	node_name_by_module.clear()
 	module_by_node_name.clear()
+
+
+func _focus_module_dir(module: String) -> void:
+	var module_path = _modules_dir.path_join(module)
+	EditorInterface.get_file_system_dock().navigate_to_path(module_path)

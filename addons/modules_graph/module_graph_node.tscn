@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://bcp7bwfeh1enc"]
+[gd_scene load_steps=2 format=3 uid="uid://bcp7bwfeh1enc"]
+
+[ext_resource type="Script" path="res://addons/modules_graph/module_graph_node.gd" id="1_fevxt"]
 
 [node name="ModuleGraphNode" type="GraphNode"]
 offset_right = 37.0
@@ -13,6 +15,7 @@ slot/0/right_type = 0
 slot/0/right_color = Color(0.368627, 0.368627, 0.368627, 1)
 slot/0/right_icon = null
 slot/0/draw_stylebox = true
+script = ExtResource("1_fevxt")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
