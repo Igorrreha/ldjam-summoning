@@ -91,16 +91,53 @@ func focus_on_module(module: String) -> void:
 	scroll_offset = module_node.position_offset * zoom - get_rect().size / 2
 
 
-func select_dependencies_of_module(module: String) -> void:
-	var module_node_name = node_name_by_module[module]
+func get_graph_nodes_connected_to(to_node: GraphNode) -> Array[GraphNode]:
+	var to_node_name = to_node.name
 	
-	var dependencies: Array[String]
+	var connected_nodes: Array[GraphNode]
 	for connection in get_connection_list():
-		if connection.to_node == module_node_name:
-			dependencies.append(connection.from_node)
+		if connection.to_node == to_node_name:
+			var from_node_name = str(connection.from_node)
+			connected_nodes.append(get_node(from_node_name))
 	
-	for node_name in dependencies:
-		(get_node(node_name) as GraphNode).selected = true
+	return connected_nodes
+
+
+func get_graph_nodes_connected_to_recursive(to_node: GraphNode) -> Array[GraphNode]:
+	var nodes_to_process: Dictionary#[GraphNode, bool]
+	nodes_to_process[to_node] = true
+	
+	var processed_nodes: Dictionary#[GraphNode, bool]
+	var all_dependencies: Dictionary#[GraphNode, bool]
+	
+	while not nodes_to_process.is_empty():
+		var processing_step_nodes = nodes_to_process.keys()
+		nodes_to_process.clear()
+		
+		for processing_step_node: GraphNode in processing_step_nodes:
+			var dependencies = get_graph_nodes_connected_to(processing_step_node)
+			processed_nodes[processing_step_node] = true
+			
+			for dependency in dependencies:
+				all_dependencies[dependency] = true
+				
+				if not processed_nodes.has(dependency):
+					nodes_to_process[dependency] = true
+	
+	var all_dependencies_array: Array[GraphNode]
+	all_dependencies_array.assign(all_dependencies.keys()) 
+	return all_dependencies_array
+
+
+func select_dependencies_of_module(module: String, recursive = false) -> void:
+	var module_node_name = node_name_by_module[module]
+	var module_node = get_node(module_node_name)
+	
+	var dependencies = get_graph_nodes_connected_to_recursive(module_node) if recursive\
+		else get_graph_nodes_connected_to(module_node)
+	
+	for node: GraphNode in dependencies:
+		node.selected = true
 
 
 func _clear() -> void:

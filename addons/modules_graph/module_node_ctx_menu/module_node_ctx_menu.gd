@@ -34,8 +34,12 @@ func _on_id_pressed(id: int) -> void:
 		MenuItemType.SELECT_DEPENDENCIES:
 			var module = _current_node.title
 			_modules_graph.select_dependencies_of_module(module)
+		MenuItemType.SELECT_DEPENDENCIES_RECURSIVE:
+			var module = _current_node.title
+			_modules_graph.select_dependencies_of_module(module, true)
 
 
 enum MenuItemType {
 	SELECT_DEPENDENCIES = 0,
+	SELECT_DEPENDENCIES_RECURSIVE = 1,
 }
