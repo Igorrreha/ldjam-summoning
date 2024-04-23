@@ -1,5 +1,5 @@
 @tool
-class_name ModulesGraph
+class_name ModulesMap
 extends GraphEdit
 
 
@@ -75,7 +75,7 @@ func refresh() -> void:
 
 
 func create_module_node(module: String) -> GraphNode:
-	var module_node = _module_node_scene.instantiate() as ModulesGraphNode
+	var module_node = _module_node_scene.instantiate() as ModulesMapNode
 	module_node.title = module
 	add_child(module_node)
 	
@@ -91,7 +91,7 @@ func focus_on_module(module: String) -> void:
 	scroll_offset = module_node.position_offset * zoom - get_rect().size / 2
 
 
-func get_graph_nodes_connected_to(to_node: GraphNode) -> Array[GraphNode]:
+func get_map_nodes_connected_to(to_node: GraphNode) -> Array[GraphNode]:
 	var to_node_name = to_node.name
 	
 	var connected_nodes: Array[GraphNode]
@@ -103,7 +103,7 @@ func get_graph_nodes_connected_to(to_node: GraphNode) -> Array[GraphNode]:
 	return connected_nodes
 
 
-func get_graph_nodes_connected_to_recursive(to_node: GraphNode) -> Array[GraphNode]:
+func get_map_nodes_connected_to_recursive(to_node: GraphNode) -> Array[GraphNode]:
 	var nodes_to_process: Dictionary#[GraphNode, bool]
 	nodes_to_process[to_node] = true
 	
@@ -115,7 +115,7 @@ func get_graph_nodes_connected_to_recursive(to_node: GraphNode) -> Array[GraphNo
 		nodes_to_process.clear()
 		
 		for processing_step_node: GraphNode in processing_step_nodes:
-			var dependencies = get_graph_nodes_connected_to(processing_step_node)
+			var dependencies = get_map_nodes_connected_to(processing_step_node)
 			processed_nodes[processing_step_node] = true
 			
 			for dependency in dependencies:
@@ -133,8 +133,8 @@ func select_dependencies_of_module(module: String, recursive = false) -> void:
 	var module_node_name = node_name_by_module[module]
 	var module_node = get_node(module_node_name)
 	
-	var dependencies = get_graph_nodes_connected_to_recursive(module_node) if recursive\
-		else get_graph_nodes_connected_to(module_node)
+	var dependencies = get_map_nodes_connected_to_recursive(module_node) if recursive\
+		else get_map_nodes_connected_to(module_node)
 	
 	for node: GraphNode in dependencies:
 		node.selected = true
@@ -144,7 +144,7 @@ func _clear() -> void:
 	clear_connections()
 	
 	for child in get_children():
-		if child is ModulesGraphNode:
+		if child is ModulesMapNode:
 			child.double_clicked.disconnect(_focus_module_dir)
 			child.queue_free()
 	

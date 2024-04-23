@@ -2,9 +2,9 @@
 extends PopupMenu
 
 
-signal graph_refreshing_requested
-signal graph_saving_requested
-signal graph_loading_requested
+signal map_refreshing_requested
+signal map_saving_requested
+signal map_loading_requested
 
 
 func _ready() -> void:
@@ -14,11 +14,11 @@ func _ready() -> void:
 func _on_id_pressed(id: int) -> void:
 	match id:
 		CommandType.REFRESH:
-			graph_refreshing_requested.emit()
+			map_refreshing_requested.emit()
 		CommandType.RESTORE:
-			graph_loading_requested.emit()
+			map_loading_requested.emit()
 		CommandType.STORE:
-			graph_saving_requested.emit()
+			map_saving_requested.emit()
 
 
 enum CommandType {

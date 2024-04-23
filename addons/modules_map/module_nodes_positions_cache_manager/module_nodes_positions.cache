@@ -4,7 +4,7 @@ debug_toolkit,3000,1380
 default_theme,-1420,280
 dissolve_shader,-1420,-200
 enemies,480,1660
-enemies_count_provider,40,1040
+enemies_count_provider,60,1080
 game_completed_menu,100,220
 game_hud,2080,700
 game_over_menu,280,340

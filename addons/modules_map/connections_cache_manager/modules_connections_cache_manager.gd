@@ -2,19 +2,19 @@
 extends CacheManager
 
 
-@export var _modules_graph: ModulesGraph
+@export var _modules_map: ModulesMap
 
 
 func store() -> void:
 	super.store()
 	
 	var connections: Dictionary#[String, Array[String]]
-	for module in _modules_graph.node_name_by_module:
+	for module in _modules_map.node_name_by_module:
 		connections[module] = []
 	
-	for connection in _modules_graph.get_connection_list():
-		var module_to = _modules_graph.module_by_node_name[connection.to_node]
-		var module_from = _modules_graph.module_by_node_name[connection.from_node]
+	for connection in _modules_map.get_connection_list():
+		var module_to = _modules_map.module_by_node_name[connection.to_node]
+		var module_from = _modules_map.module_by_node_name[connection.from_node]
 		connections[module_to].append(module_from)
 	
 	var file = FileAccess.open(_cache_file_path, FileAccess.WRITE)
@@ -44,15 +44,15 @@ func restore() -> void:
 			if not node_from:
 				continue
 			
-			_modules_graph.connect_node(node_from.name, 0, node_to.name, 0)
+			_modules_map.connect_node(node_from.name, 0, node_to.name, 0)
 
 
 func _try_get_node_by_module(module: String) -> GraphNode:
-	if not _modules_graph.node_name_by_module.has(module):
+	if not _modules_map.node_name_by_module.has(module):
 		return null
 	
-	var module_to_node_name = _modules_graph.node_name_by_module[module]
-	if not _modules_graph.has_node(module_to_node_name):
+	var module_to_node_name = _modules_map.node_name_by_module[module]
+	if not _modules_map.has_node(module_to_node_name):
 		return null
 	
-	return _modules_graph.get_node(module_to_node_name) as GraphNode
+	return _modules_map.get_node(module_to_node_name) as GraphNode

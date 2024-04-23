@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://bcp7bwfeh1enc"]
 
-[ext_resource type="Script" path="res://addons/modules_graph/module_node/module_graph_node.gd" id="1_tp0vl"]
-[ext_resource type="Resource" uid="uid://cmsi1wdw34415" path="res://addons/modules_graph/module_node/module_nodes_signals.tres" id="2_s0a4a"]
+[ext_resource type="Script" path="res://addons/modules_map/module_node/modules_map_node.gd" id="1_dhs3o"]
+[ext_resource type="Resource" uid="uid://cmsi1wdw34415" path="res://addons/modules_map/module_node/module_nodes_signals.tres" id="2_ha1gs"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2tfpr"]
 content_margin_top = 1.0
@@ -43,7 +43,7 @@ border_color = Color(0.443137, 0.737255, 0.988235, 1)
 font_size = 24
 outline_size = 2
 
-[node name="ModuleGraphNode" type="GraphNode"]
+[node name="ModulesMapNode" type="GraphNode"]
 offset_right = 37.0
 offset_bottom = 78.0
 mouse_filter = 1
@@ -61,8 +61,8 @@ slot/0/right_type = 0
 slot/0/right_color = Color(0.368627, 0.368627, 0.368627, 1)
 slot/0/right_icon = null
 slot/0/draw_stylebox = true
-script = ExtResource("1_tp0vl")
-_module_node_graphs_signal = ExtResource("2_s0a4a")
+script = ExtResource("1_dhs3o")
+_module_nodes_signals = ExtResource("2_ha1gs")
 _title_label_settings = SubResource("LabelSettings_aqfe2")
 
 [node name="Label" type="Label" parent="."]

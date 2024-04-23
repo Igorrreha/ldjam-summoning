@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://ia5ibsfavpv7"]
+
+[ext_resource type="Script" path="res://addons/modules_map/map_commands_menu.gd" id="1_qo7b5"]
+[ext_resource type="PackedScene" uid="uid://c6tf6uuenblqi" path="res://addons/modules_map/modules_map.tscn" id="1_qrhe8"]
+[ext_resource type="PackedScene" uid="uid://bso741qg37m5y" path="res://addons/modules_map/modules_search_field/modules_search_field.tscn" id="2_e36or"]
+[ext_resource type="PackedScene" uid="uid://k8shmvrihwel" path="res://addons/modules_map/module_node_ctx_menu/module_node_ctx_menu.tscn" id="4_m5ks6"]
+
+[node name="Plugin" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="MenuBar" type="MenuBar" parent="PanelContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Map" type="PopupMenu" parent="PanelContainer/HBoxContainer/MenuBar"]
+item_count = 3
+item_0/text = "Refresh"
+item_0/id = 0
+item_1/text = "Load"
+item_1/id = 1
+item_2/text = "Save"
+item_2/id = 2
+script = ExtResource("1_qo7b5")
+
+[node name="ModulesSearchField" parent="PanelContainer/HBoxContainer" node_paths=PackedStringArray("_modules_map") instance=ExtResource("2_e36or")]
+layout_mode = 2
+_modules_map = NodePath("../../../ModulesMap")
+
+[node name="ModulesMap" parent="." instance=ExtResource("1_qrhe8")]
+layout_mode = 2
+scroll_offset = Vector2(-100, -100)
+
+[node name="ModuleNodeCtxMenu" parent="ModulesMap" node_paths=PackedStringArray("_modules_map") instance=ExtResource("4_m5ks6")]
+_modules_map = NodePath("..")
+
+[connection signal="map_loading_requested" from="PanelContainer/HBoxContainer/MenuBar/Map" to="ModulesMap" method="load_from_cache"]
+[connection signal="map_refreshing_requested" from="PanelContainer/HBoxContainer/MenuBar/Map" to="ModulesMap" method="refresh"]
+[connection signal="map_saving_requested" from="PanelContainer/HBoxContainer/MenuBar/Map" to="ModulesMap" method="save_to_cache"]

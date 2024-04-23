@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bso741qg37m5y"]
 
-[ext_resource type="Script" path="res://addons/modules_graph/modules_search_field/modules_search_field.gd" id="1_htisb"]
+[ext_resource type="Script" path="res://addons/modules_map/modules_search_field/modules_search_field.gd" id="1_htisb"]
 
 [node name="ModulesSearchField" type="LineEdit" node_paths=PackedStringArray("_result_popup_menu")]
 custom_minimum_size = Vector2(250, 0)

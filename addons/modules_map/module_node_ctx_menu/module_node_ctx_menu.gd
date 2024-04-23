@@ -3,7 +3,7 @@ extends PopupMenu
 
 
 @export var _module_nodes_signals: ModuleNodesSignals
-@export var _modules_graph: ModulesGraph
+@export var _modules_map: ModulesMap
 
 
 var _current_node: GraphNode
@@ -33,10 +33,10 @@ func _on_id_pressed(id: int) -> void:
 	match id:
 		MenuItemType.SELECT_DEPENDENCIES:
 			var module = _current_node.title
-			_modules_graph.select_dependencies_of_module(module)
+			_modules_map.select_dependencies_of_module(module)
 		MenuItemType.SELECT_DEPENDENCIES_RECURSIVE:
 			var module = _current_node.title
-			_modules_graph.select_dependencies_of_module(module, true)
+			_modules_map.select_dependencies_of_module(module, true)
 
 
 enum MenuItemType {

@@ -2,7 +2,7 @@
 extends EditorPlugin
 
 
-const PLUGIN_SCENE: PackedScene = preload("res://addons/modules_graph/plugin.tscn")
+const PLUGIN_SCENE: PackedScene = preload("res://addons/modules_map/plugin.tscn")
 var _plugin_node: Control
 var _container_type = EditorPlugin.CONTAINER_CANVAS_EDITOR_MENU
 
@@ -27,7 +27,7 @@ func _make_visible(visible: bool) -> void:
 
 
 func _get_plugin_name():
-	return "Modules"
+	return "ModulesMap"
 
 
 func _get_plugin_icon():

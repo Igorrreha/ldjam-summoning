@@ -1,12 +1,12 @@
 @tool
-class_name ModulesGraphNode
+class_name ModulesMapNode
 extends GraphNode
 
 
 signal double_clicked
 
 
-@export var _module_node_graphs_signal: ModuleNodesSignals
+@export var _module_nodes_signals: ModuleNodesSignals
 @export var _title_label_settings: LabelSettings
 
 
@@ -21,4 +21,4 @@ func _gui_input(event: InputEvent) -> void:
 			double_clicked.emit()
 		
 		elif event.button_index == MOUSE_BUTTON_RIGHT:
-			_module_node_graphs_signal.module_node_right_clicked.emit(self)
+			_module_nodes_signals.module_node_right_clicked.emit(self)
