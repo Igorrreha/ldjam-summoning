@@ -68,7 +68,7 @@ func refresh() -> void:
 	arrange_nodes()
 	
 	for child in get_children():
-		if child is GraphNode:
+		if child is ModulesMapNode:
 			child.selected = false
 	
 	_module_nodes_positions_cache_manager.restore()
@@ -76,8 +76,8 @@ func refresh() -> void:
 
 func create_module_node(module: String) -> GraphNode:
 	var module_node = _module_node_scene.instantiate() as ModulesMapNode
-	module_node.title = module
 	add_child(module_node)
+	module_node.setup(module)
 	
 	module_node.double_clicked.connect(_focus_module_dir.bind(module))
 	
@@ -124,6 +124,8 @@ func get_map_nodes_connected_to_recursive(to_node: GraphNode) -> Array[GraphNode
 				if not processed_nodes.has(dependency):
 					nodes_to_process[dependency] = true
 	
+	all_dependencies.erase(to_node)
+	
 	var all_dependencies_array: Array[GraphNode]
 	all_dependencies_array.assign(all_dependencies.keys()) 
 	return all_dependencies_array
@@ -138,6 +140,23 @@ func select_dependencies_of_module(module: String, recursive = false) -> void:
 	
 	for node: GraphNode in dependencies:
 		node.selected = true
+
+
+func show_connections_to_count() -> void:
+	for module in node_name_by_module:
+		var module_node_name = node_name_by_module[module]
+		var module_node = get_node(module_node_name)
+		var connections_to_count = get_map_nodes_connected_to_recursive(module_node)\
+			.size()
+		module_node.set_connections_to_count(connections_to_count)
+		module_node.show_connections_to_count()
+
+
+func hide_connections_to_count() -> void:
+	for module in node_name_by_module:
+		var module_node_name = node_name_by_module[module]
+		var module_node = get_node(module_node_name)
+		module_node.hide_connections_to_count()
 
 
 func _clear() -> void:

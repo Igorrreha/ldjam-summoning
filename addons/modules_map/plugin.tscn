@@ -24,13 +24,16 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Map" type="PopupMenu" parent="PanelContainer/HBoxContainer/MenuBar"]
-item_count = 3
+item_count = 4
 item_0/text = "Refresh"
 item_0/id = 0
 item_1/text = "Load"
 item_1/id = 1
 item_2/text = "Save"
 item_2/id = 2
+item_3/text = "Show connections to count"
+item_3/checkable = 1
+item_3/id = 3
 script = ExtResource("1_qo7b5")
 
 [node name="ModulesSearchField" parent="PanelContainer/HBoxContainer" node_paths=PackedStringArray("_modules_map") instance=ExtResource("2_e36or")]
@@ -44,6 +47,8 @@ scroll_offset = Vector2(-100, -100)
 [node name="ModuleNodeCtxMenu" parent="ModulesMap" node_paths=PackedStringArray("_modules_map") instance=ExtResource("4_m5ks6")]
 _modules_map = NodePath("..")
 
+[connection signal="hiding_connections_to_count_requested" from="PanelContainer/HBoxContainer/MenuBar/Map" to="ModulesMap" method="hide_connections_to_count"]
 [connection signal="map_loading_requested" from="PanelContainer/HBoxContainer/MenuBar/Map" to="ModulesMap" method="load_from_cache"]
 [connection signal="map_refreshing_requested" from="PanelContainer/HBoxContainer/MenuBar/Map" to="ModulesMap" method="refresh"]
 [connection signal="map_saving_requested" from="PanelContainer/HBoxContainer/MenuBar/Map" to="ModulesMap" method="save_to_cache"]
+[connection signal="showing_connections_to_count_requested" from="PanelContainer/HBoxContainer/MenuBar/Map" to="ModulesMap" method="show_connections_to_count"]

@@ -6,7 +6,7 @@ extends PopupMenu
 @export var _modules_map: ModulesMap
 
 
-var _current_node: GraphNode
+var _current_node: ModulesMapNode
 var _is_active: bool
 
 
@@ -20,7 +20,7 @@ func _ready() -> void:
 	id_pressed.connect(_on_id_pressed)
 
 
-func _on_popup_requested(node: GraphNode) -> void:
+func _on_popup_requested(node: ModulesMapNode) -> void:
 	_current_node = node
 	
 	var popup_position = get_mouse_position()\
@@ -32,10 +32,10 @@ func _on_popup_requested(node: GraphNode) -> void:
 func _on_id_pressed(id: int) -> void:
 	match id:
 		MenuItemType.SELECT_DEPENDENCIES:
-			var module = _current_node.title
+			var module = _current_node.get_module_name()
 			_modules_map.select_dependencies_of_module(module)
 		MenuItemType.SELECT_DEPENDENCIES_RECURSIVE:
-			var module = _current_node.title
+			var module = _current_node.get_module_name()
 			_modules_map.select_dependencies_of_module(module, true)
 
 
