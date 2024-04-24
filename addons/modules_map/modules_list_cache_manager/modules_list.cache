@@ -5,6 +5,9 @@ default_theme
 dissolve_shader
 enemies
 enemies_count_provider
+enemies_group
+enemies_spawner
+enemy_type
 game_completed_menu
 game_hud
 game_over_menu
@@ -26,4 +29,5 @@ summon_death_processor
 summon_dragging_visualizer
 summon_sacrificion_processor
 summon_spawner
+summon_type
 title_label_settings

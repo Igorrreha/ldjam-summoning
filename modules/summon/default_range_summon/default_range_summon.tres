@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="SummonType" load_steps=2 format=3 uid="uid://ddgubjuv1pmjs"]
 
-[ext_resource type="Script" path="res://modules/summon/summon_type.gd" id="1_f2crb"]
+[ext_resource type="Script" path="res://modules/summon_type/summon_type.gd" id="1_f2crb"]
 
 [resource]
 resource_name = "default_range_summon"

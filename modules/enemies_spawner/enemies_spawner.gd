@@ -24,7 +24,7 @@ func spawn_enemies(count: int):
 
 
 func _spawn_enemy(enemy_type: EnemyType, position: Vector2) -> void:
-	var enemy = _enemy_scene_by_type[enemy_type].instantiate()
+	var enemy: Enemy = _enemy_scene_by_type[enemy_type].instantiate()
 	_enemies_container.add_child(enemy)
 	enemy.setup(position, _main_tree)
 

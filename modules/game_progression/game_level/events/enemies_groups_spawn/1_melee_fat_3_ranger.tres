@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://modules/game_progression/game_level/events/enemies_group_spawn.gd" id="1_sql5q"]
 [ext_resource type="Resource" uid="uid://cvbhh85ldyrvp" path="res://modules/enemies/fat_guy/fat_guy.tres" id="2_cyfgb"]
-[ext_resource type="Script" path="res://modules/game_progression/game_level/events/enemies_group_slot.gd" id="3_jm5j8"]
+[ext_resource type="Script" path="res://modules/enemies_group/enemies_group_slot.gd" id="3_jm5j8"]
 [ext_resource type="Resource" uid="uid://bo2xmoupmm28o" path="res://modules/enemies/human_ranger/human_ranger.tres" id="4_m5ppb"]
 
 [sub_resource type="Resource" id="Resource_wvres"]

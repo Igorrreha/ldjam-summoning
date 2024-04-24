@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="EnemyType" load_steps=2 format=3 uid="uid://dkqib6vae41y4"]
 
-[ext_resource type="Script" path="res://modules/enemies/enemy_type.gd" id="1_5khk6"]
+[ext_resource type="Script" path="res://modules/enemy_type/enemy_type.gd" id="1_5khk6"]
 
 [resource]
 resource_name = "human"
