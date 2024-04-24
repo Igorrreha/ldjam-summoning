@@ -5,10 +5,12 @@
 
 [node name="ModuleNodeCtxMenu" type="PopupMenu"]
 size = Vector2i(261, 100)
-item_count = 2
+item_count = 3
 item_0/text = "Select dependencies"
 item_0/id = 0
 item_1/text = "Select dependencies recursive"
 item_1/id = 1
+item_2/text = "Select dependants"
+item_2/id = 2
 script = ExtResource("1_wgt6t")
 _module_nodes_signals = ExtResource("2_osukc")

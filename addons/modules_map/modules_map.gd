@@ -103,6 +103,18 @@ func get_map_nodes_connected_to(to_node: GraphNode) -> Array[GraphNode]:
 	return connected_nodes
 
 
+func get_map_nodes_connected_from(from_node: GraphNode) -> Array[GraphNode]:
+	var from_node_name = from_node.name
+	
+	var connected_nodes: Array[GraphNode]
+	for connection in get_connection_list():
+		if connection.from_node == from_node_name:
+			var to_node_name = str(connection.to_node)
+			connected_nodes.append(get_node(to_node_name))
+	
+	return connected_nodes
+
+
 func get_map_nodes_connected_to_recursive(to_node: GraphNode) -> Array[GraphNode]:
 	var nodes_to_process: Dictionary#[GraphNode, bool]
 	nodes_to_process[to_node] = true
@@ -137,6 +149,16 @@ func select_dependencies_of_module(module: String, recursive = false) -> void:
 	
 	var dependencies = get_map_nodes_connected_to_recursive(module_node) if recursive\
 		else get_map_nodes_connected_to(module_node)
+	
+	for node: GraphNode in dependencies:
+		node.selected = true
+
+
+func select_dependants_of_module(module: String) -> void:
+	var module_node_name = node_name_by_module[module]
+	var module_node = get_node(module_node_name)
+	
+	var dependencies = get_map_nodes_connected_from(module_node)
 	
 	for node: GraphNode in dependencies:
 		node.selected = true
