@@ -71,6 +71,10 @@ script = ExtResource("1_dhs3o")
 _module_nodes_signals = ExtResource("2_ha1gs")
 _title_label_settings = SubResource("LabelSettings_aqfe2")
 _connections_to_label = NodePath("MarginContainer/HBox/ConnectionsTo")
+_default_in_slot_color = Color(1, 1, 1, 1)
+_default_out_slot_color = Color(0.368627, 0.368627, 0.368627, 1)
+_selected_in_slot_color = Color(0.443137, 0.737255, 0.988235, 1)
+_selected_out_slot_color = Color(0.443137, 0.737255, 0.988235, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
