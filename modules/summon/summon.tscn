@@ -1,7 +1,7 @@
 [gd_scene load_steps=22 format=3 uid="uid://kl8xnd8il83h"]
 
 [ext_resource type="Script" path="res://modules/summon/summon.gd" id="1_e1k8t"]
-[ext_resource type="Resource" uid="uid://c8t8oyii45f06" path="res://modules/summon/summons_signals.tres" id="2_5l2wv"]
+[ext_resource type="Resource" uid="uid://c8t8oyii45f06" path="res://modules/summons_signals/summons_signals.tres" id="2_5l2wv"]
 [ext_resource type="Texture2D" uid="uid://cllir73812ifw" path="res://modules/nexus/under_tree.png" id="2_cses6"]
 [ext_resource type="Shader" path="res://modules/shaders/damage.gdshader" id="4_x25wd"]
 [ext_resource type="Texture2D" uid="uid://djde3pxrhu3vt" path="res://modules/summon/defaul_meelee_summon/standard_summon.png" id="5_bd234"]

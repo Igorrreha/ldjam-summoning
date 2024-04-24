@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://modules/summon/summon.gd" id="1_4h8vp"]
 [ext_resource type="Resource" uid="uid://pksiotgaoyis" path="res://modules/summon/defaul_meelee_summon/default_meelee_summon.tres" id="2_fb8qm"]
 [ext_resource type="Shader" path="res://modules/shaders/mix_color.gdshader" id="3_4sprt"]
-[ext_resource type="Resource" uid="uid://c8t8oyii45f06" path="res://modules/summon/summons_signals.tres" id="3_hg7wh"]
+[ext_resource type="Resource" uid="uid://c8t8oyii45f06" path="res://modules/summons_signals/summons_signals.tres" id="3_hg7wh"]
 [ext_resource type="Texture2D" uid="uid://cllir73812ifw" path="res://modules/nexus/under_tree.png" id="4_vvvaf"]
 [ext_resource type="AudioStream" uid="uid://dl6wdltc14dqp" path="res://modules/summon/plant_spawn.ogg" id="4_x0hnk"]
 [ext_resource type="AudioStream" uid="uid://cmmj4y6lfagwd" path="res://modules/summon/plant_attack.ogg" id="5_usx4x"]

@@ -8,14 +8,12 @@ extends Node
 @export var _level_start_delay: float = 3
 @export var _level_end_delay: float = 3
 
-@export var _enemies_spawner: EnemiesSpawner
 @export var _game_state_signals: GameStateSignals
-@export var _summons_signals: SummonsSignals
 @export var _enemies_count_provider: EnemiesCountProvider
 
-@export var _session_resources: SessionResources
-
 @export var _levels: Array[GameLevel]
+
+@export var _event_processors: Dictionary#[Script, GameLevelEventProcessor]
 
 
 var _started: bool
@@ -53,15 +51,9 @@ func _process_current_level() -> void:
 		if _stopped:
 			return
 		
-		if event is EnemiesGroupSpawnGameLevelEvent:
-			_enemies_spawner.spawn_wave(event.slots)
-		elif event is WaitTimeGameLevelEvent:
-			await get_tree().create_timer(event.time_seconds).timeout
-		elif event is UnlockSummonGameLevelEvent:
-			_summons_signals.summon_unlock_requested.emit(event.summon_type)
-		elif event is IncreaseMaxNexusEnergyGameLevelEvent:
-			_session_resources.nexus_energy.max_value += event.increase_amount
-			_session_resources.nexus_energy.value += event.increase_amount
+		var processor_path = _event_processors[event.get_script()]
+		var processor = get_node(processor_path) as GameLevelEventProcessor
+		await processor.process_event(event)
 	
 	_on_level_processing_completed()
 

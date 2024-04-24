@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://hto3iib8j1gh" path="res://modules/game_hud/ingame_resource_bar/ingame_resource_bar.tscn" id="2_33cgp"]
 [ext_resource type="Texture2D" uid="uid://djde3pxrhu3vt" path="res://modules/summon/defaul_meelee_summon/standard_summon.png" id="2_x6ei7"]
 [ext_resource type="Texture2D" uid="uid://d057qhr8407av" path="res://modules/summon/default_range_summon/idle.png" id="3_1g5qu"]
-[ext_resource type="Resource" uid="uid://c8t8oyii45f06" path="res://modules/summon/summons_signals.tres" id="3_6xgsq"]
+[ext_resource type="Resource" uid="uid://c8t8oyii45f06" path="res://modules/summons_signals/summons_signals.tres" id="3_6xgsq"]
 [ext_resource type="Resource" uid="uid://cxpqrg70ms4p2" path="res://modules/session_resources/nexus_energy.tres" id="3_me45r"]
 [ext_resource type="Resource" uid="uid://ddgubjuv1pmjs" path="res://modules/summon/default_range_summon/default_range_summon.tres" id="4_in4ea"]
 [ext_resource type="Texture2D" uid="uid://h5otucd56pw2" path="res://modules/game_hud/flower_bar.png" id="8_usca8"]

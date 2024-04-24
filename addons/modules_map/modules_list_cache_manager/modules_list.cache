@@ -6,15 +6,18 @@ dissolve_shader
 enemies
 enemies_count_provider
 enemies_group
+enemies_group_spawn_game_level_event
 enemies_spawner
 enemy_type
 game_completed_menu
 game_hud
+game_levels
 game_over_menu
 game_progression
 game_restarter
 game_state_signals
 gamestart_splashscreen
+increase_max_nexus_energy_game_level_event
 ingame_resource
 level_start_panel
 look_updater
@@ -30,4 +33,7 @@ summon_dragging_visualizer
 summon_sacrificion_processor
 summon_spawner
 summon_type
+summons_signals
 title_label_settings
+unlock_summon_game_level_event
+wait_time_game_level_event

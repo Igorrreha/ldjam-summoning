@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="SummonSignals" load_steps=2 format=3 uid="uid://c8t8oyii45f06"]
+
+[ext_resource type="Script" path="res://modules/summons_signals/summons_signals.gd" id="1_olaj7"]
+
+[resource]
+script = ExtResource("1_olaj7")

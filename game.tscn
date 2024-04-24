@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://dtttoblwtuilw"]
+[gd_scene load_steps=51 format=3 uid="uid://dtttoblwtuilw"]
 
 [ext_resource type="Script" path="res://modules/game_progression/levels_progression_processor.gd" id="1_ngvcy"]
 [ext_resource type="PackedScene" uid="uid://c67nd8ymg0ffh" path="res://modules/summon_dragging_visualizer/summon_dragging_visulaizer.tscn" id="1_wrqsh"]
@@ -9,9 +9,9 @@
 [ext_resource type="Resource" uid="uid://ddgubjuv1pmjs" path="res://modules/summon/default_range_summon/default_range_summon.tres" id="4_ga1b4"]
 [ext_resource type="PackedScene" uid="uid://cvhov4t3e5g7d" path="res://modules/summon/defaul_meelee_summon/default_meelee_summon.tscn" id="5_pso5y"]
 [ext_resource type="Script" path="res://modules/summon_sacrificion_processor/summon_sacrifition_processor.gd" id="6_bwpnp"]
-[ext_resource type="Resource" uid="uid://c8t8oyii45f06" path="res://modules/summon/summons_signals.tres" id="7_e2u6w"]
 [ext_resource type="PackedScene" uid="uid://bl4px13v58q61" path="res://modules/summon/default_range_summon/default_range_summon.tscn" id="8_gv7hc"]
 [ext_resource type="Script" path="res://modules/enemies_spawner/enemies_spawner.gd" id="9_4ukip"]
+[ext_resource type="Resource" uid="uid://c8t8oyii45f06" path="res://modules/summons_signals/summons_signals.tres" id="9_34uwu"]
 [ext_resource type="Resource" uid="uid://dkqib6vae41y4" path="res://modules/enemies/human_meelee/human_meelee.tres" id="10_sh18u"]
 [ext_resource type="PackedScene" uid="uid://bcq8bgxrc4d5g" path="res://modules/enemies/human_meelee/human_meelee.tscn" id="11_j74bq"]
 [ext_resource type="Resource" uid="uid://bo2xmoupmm28o" path="res://modules/enemies/human_ranger/human_ranger.tres" id="12_dg3lk"]
@@ -25,19 +25,27 @@
 [ext_resource type="Resource" uid="uid://c25qnl55makte" path="res://modules/enemies/human_fat_ranger/human_fat_ranger.tres" id="18_adxo7"]
 [ext_resource type="PackedScene" uid="uid://bpbituybtev3d" path="res://modules/enemies/human_fat_ranger/human_fat_ranger.tscn" id="19_6785f"]
 [ext_resource type="Script" path="res://modules/enemies_count_provider/enemies_count_provider.gd" id="20_2ce02"]
-[ext_resource type="Resource" uid="uid://b784081uyclan" path="res://modules/game_progression/game_level/levels/level_10.tres" id="27_hme1h"]
 [ext_resource type="Script" path="res://modules/session_start_values_setter/session_start_values_setter.gd" id="27_hndhk"]
-[ext_resource type="Resource" uid="uid://b06v7yeywaslo" path="res://modules/game_progression/game_level/levels/level_1.tres" id="27_i1nr5"]
+[ext_resource type="Resource" uid="uid://b06v7yeywaslo" path="res://modules/game_levels/level_1.tres" id="27_rlbxu"]
 [ext_resource type="Script" path="res://modules/summon_death_processor/summon_death_processor.gd" id="27_wmc14"]
-[ext_resource type="Resource" uid="uid://d0rthi3ed5712" path="res://modules/game_progression/game_level/levels/level_2.tres" id="28_4rhuc"]
+[ext_resource type="Resource" uid="uid://d0rthi3ed5712" path="res://modules/game_levels/level_2.tres" id="28_eud4j"]
 [ext_resource type="AudioStream" uid="uid://cqt6po72e5vdn" path="res://modules/sounds/rise_of_spirits.ogg" id="28_q01g6"]
-[ext_resource type="Resource" uid="uid://2xy5dh4371xd" path="res://modules/game_progression/game_level/levels/level_3.tres" id="29_17t7e"]
-[ext_resource type="Resource" uid="uid://dcwllferpntxs" path="res://modules/game_progression/game_level/levels/level_4.tres" id="30_2gnyo"]
-[ext_resource type="Resource" uid="uid://beh7s0xj71o8" path="res://modules/game_progression/game_level/levels/level_5.tres" id="31_e7nb4"]
-[ext_resource type="Resource" uid="uid://ddfna6vpmg6bq" path="res://modules/game_progression/game_level/levels/level_6.tres" id="32_lfdc8"]
-[ext_resource type="Resource" uid="uid://cn5cjvx1thhph" path="res://modules/game_progression/game_level/levels/level_7.tres" id="33_bkqcp"]
-[ext_resource type="Resource" uid="uid://bsodcla3jo3hl" path="res://modules/game_progression/game_level/levels/level_8.tres" id="34_uahe1"]
-[ext_resource type="Resource" uid="uid://bkk3yxnxhaf8n" path="res://modules/game_progression/game_level/levels/level_9.tres" id="35_80yhn"]
+[ext_resource type="Resource" uid="uid://2xy5dh4371xd" path="res://modules/game_levels/level_3.tres" id="29_i1iv2"]
+[ext_resource type="Resource" uid="uid://dcwllferpntxs" path="res://modules/game_levels/level_4.tres" id="30_a5rxn"]
+[ext_resource type="Resource" uid="uid://beh7s0xj71o8" path="res://modules/game_levels/level_5.tres" id="31_cevwb"]
+[ext_resource type="Resource" uid="uid://ddfna6vpmg6bq" path="res://modules/game_levels/level_6.tres" id="32_jqg7t"]
+[ext_resource type="Resource" uid="uid://cn5cjvx1thhph" path="res://modules/game_levels/level_7.tres" id="33_fedn8"]
+[ext_resource type="Resource" uid="uid://bsodcla3jo3hl" path="res://modules/game_levels/level_8.tres" id="34_nl6rs"]
+[ext_resource type="Resource" uid="uid://bkk3yxnxhaf8n" path="res://modules/game_levels/level_9.tres" id="35_qwcta"]
+[ext_resource type="Resource" uid="uid://b784081uyclan" path="res://modules/game_levels/level_10.tres" id="36_l0hvw"]
+[ext_resource type="Script" path="res://modules/wait_time_game_level_event/wait_time_game_level_event_processor.gd" id="37_4rw2a"]
+[ext_resource type="Script" path="res://modules/wait_time_game_level_event/wait_time.gd" id="37_34tgk"]
+[ext_resource type="Script" path="res://modules/unlock_summon_game_level_event/unlock_summon.gd" id="38_wjors"]
+[ext_resource type="Script" path="res://modules/increase_max_nexus_energy_game_level_event/increase_max_nexus_energy.gd" id="39_2wrkr"]
+[ext_resource type="Script" path="res://modules/enemies_group_spawn_game_level_event/enemies_group_spawn.gd" id="40_t3als"]
+[ext_resource type="Script" path="res://modules/enemies_group_spawn_game_level_event/enemies_group_spawn_game_level_event_processor.gd" id="42_xvq0i"]
+[ext_resource type="Script" path="res://modules/increase_max_nexus_energy_game_level_event/increase_max_nexus_energy_game_level_event_processor.gd" id="43_lgg35"]
+[ext_resource type="Script" path="res://modules/unlock_summon_game_level_event/unlock_summon_game_level_event_processor.gd" id="44_cdndl"]
 
 [sub_resource type="Gradient" id="Gradient_7wdsv"]
 offsets = PackedFloat32Array(0, 0.413793, 0.697318, 0.988506)
@@ -86,14 +94,14 @@ ExtResource("4_ga1b4"): ExtResource("8_gv7hc")
 
 [node name="SummonSacrifitionProcessor" type="Node" parent="."]
 script = ExtResource("6_bwpnp")
-_summons_signals = ExtResource("7_e2u6w")
+_summons_signals = ExtResource("9_34uwu")
 _session_resources = ExtResource("3_l8twg")
 _default_melee_summon_type = ExtResource("4_7npjl")
 _default_range_summon_type = ExtResource("4_ga1b4")
 
 [node name="SummonDeathProcessor" type="Node" parent="."]
 script = ExtResource("27_wmc14")
-_summons_signals = ExtResource("7_e2u6w")
+_summons_signals = ExtResource("9_34uwu")
 _session_resources = ExtResource("3_l8twg")
 _default_melee_summon_type = ExtResource("4_7npjl")
 _default_range_summon_type = ExtResource("4_ga1b4")
@@ -130,20 +138,38 @@ y_sort_enabled = true
 script = ExtResource("20_2ce02")
 _enemies_container = NodePath("../EnemiesSpawner/EnemiesContainer")
 
-[node name="LevelsProgressionProcessor" type="Node" parent="." node_paths=PackedStringArray("_enemies_spawner", "_enemies_count_provider")]
+[node name="LevelsProgressionProcessor" type="Node" parent="." node_paths=PackedStringArray("_enemies_count_provider")]
 script = ExtResource("1_ngvcy")
 _level_end_delay = 2.0
-_enemies_spawner = NodePath("../EnemiesSpawner")
 _game_state_signals = ExtResource("14_mn131")
-_summons_signals = ExtResource("7_e2u6w")
 _enemies_count_provider = NodePath("../EnemiesCountProvider")
+_levels = Array[Resource("res://modules/game_progression/game_level.gd")]([ExtResource("27_rlbxu"), ExtResource("28_eud4j"), ExtResource("29_i1iv2"), ExtResource("30_a5rxn"), ExtResource("31_cevwb"), ExtResource("32_jqg7t"), ExtResource("33_fedn8"), ExtResource("34_nl6rs"), ExtResource("35_qwcta"), ExtResource("36_l0hvw")])
+_event_processors = {
+ExtResource("37_34tgk"): NodePath("WaitTimeProcessor"),
+ExtResource("38_wjors"): NodePath("UnlockSummonProcessor"),
+ExtResource("39_2wrkr"): NodePath("IncreaseMaxNexusEnergyProcessor"),
+ExtResource("40_t3als"): NodePath("EnemiesGroupSpawnProcessor")
+}
+
+[node name="WaitTimeProcessor" type="Node" parent="LevelsProgressionProcessor"]
+script = ExtResource("37_4rw2a")
+
+[node name="EnemiesGroupSpawnProcessor" type="Node" parent="LevelsProgressionProcessor" node_paths=PackedStringArray("_enemies_spawner")]
+script = ExtResource("42_xvq0i")
+_enemies_spawner = NodePath("../../EnemiesSpawner")
+
+[node name="IncreaseMaxNexusEnergyProcessor" type="Node" parent="LevelsProgressionProcessor"]
+script = ExtResource("43_lgg35")
 _session_resources = ExtResource("3_l8twg")
-_levels = Array[Resource("res://modules/game_progression/game_level/game_level.gd")]([ExtResource("27_i1nr5"), ExtResource("28_4rhuc"), ExtResource("29_17t7e"), ExtResource("30_2gnyo"), ExtResource("31_e7nb4"), ExtResource("32_lfdc8"), ExtResource("33_bkqcp"), ExtResource("34_uahe1"), ExtResource("35_80yhn"), ExtResource("27_hme1h")])
+
+[node name="UnlockSummonProcessor" type="Node" parent="LevelsProgressionProcessor"]
+script = ExtResource("44_cdndl")
+_summons_signals = ExtResource("9_34uwu")
 
 [node name="SessionStartValuesSetter" type="Node" parent="."]
 script = ExtResource("27_hndhk")
 _session_resources = ExtResource("3_l8twg")
-_summons_signals = ExtResource("7_e2u6w")
+_summons_signals = ExtResource("9_34uwu")
 _locked_summons = Array[Resource("res://modules/summon_type/summon_type.gd")]([ExtResource("4_ga1b4")])
 
 [node name="MusicStartTimer" type="Timer" parent="."]

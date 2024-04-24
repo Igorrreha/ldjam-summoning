@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="EnemiesGroupSpawnGameLevelEvent" load_steps=7 format=3 uid="uid://hwkjxx86siug"]
+
+[ext_resource type="Script" path="res://modules/enemies_group_spawn_game_level_event/enemies_group_spawn.gd" id="1_hl0vn"]
+[ext_resource type="Resource" uid="uid://bo2xmoupmm28o" path="res://modules/enemies/human_ranger/human_ranger.tres" id="2_l14i5"]
+[ext_resource type="Script" path="res://modules/enemies_group/enemies_group_slot.gd" id="3_bcdxa"]
+
+[sub_resource type="Resource" id="Resource_j14ne"]
+script = ExtResource("3_bcdxa")
+position = Vector2(0, 0)
+enemy_type = ExtResource("2_l14i5")
+
+[sub_resource type="Resource" id="Resource_463je"]
+script = ExtResource("3_bcdxa")
+position = Vector2(-50, 0)
+enemy_type = ExtResource("2_l14i5")
+
+[sub_resource type="Resource" id="Resource_jh2kr"]
+script = ExtResource("3_bcdxa")
+position = Vector2(50, 0)
+enemy_type = ExtResource("2_l14i5")
+
+[resource]
+script = ExtResource("1_hl0vn")
+slots = Array[ExtResource("3_bcdxa")]([SubResource("Resource_j14ne"), SubResource("Resource_463je"), SubResource("Resource_jh2kr")])

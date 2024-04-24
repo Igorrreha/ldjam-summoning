@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="EnemiesGroupSpawnGameLevelEvent" load_steps=6 format=3 uid="uid://wsb07eihh6nt"]
+
+[ext_resource type="Script" path="res://modules/enemies_group_spawn_game_level_event/enemies_group_spawn.gd" id="1_o3qeh"]
+[ext_resource type="Resource" uid="uid://dkqib6vae41y4" path="res://modules/enemies/human_meelee/human_meelee.tres" id="2_g18et"]
+[ext_resource type="Script" path="res://modules/enemies_group/enemies_group_slot.gd" id="3_05cax"]
+
+[sub_resource type="Resource" id="Resource_oin2p"]
+script = ExtResource("3_05cax")
+position = Vector2(30, 0)
+enemy_type = ExtResource("2_g18et")
+
+[sub_resource type="Resource" id="Resource_r1gij"]
+script = ExtResource("3_05cax")
+position = Vector2(-30, 0)
+enemy_type = ExtResource("2_g18et")
+
+[resource]
+script = ExtResource("1_o3qeh")
+slots = Array[ExtResource("3_05cax")]([SubResource("Resource_oin2p"), SubResource("Resource_r1gij")])
