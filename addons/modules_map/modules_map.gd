@@ -15,6 +15,7 @@ var node_name_by_module: Dictionary#[String, String]
 var module_by_node_name: Dictionary#[String, String]
 
 var _is_active: bool
+var _connections_to_count_showed: bool
 
 
 func _ready() -> void:
@@ -40,6 +41,11 @@ func load_from_cache() -> void:
 	_modules_list_cache_manager.restore()
 	_module_nodes_positions_cache_manager.restore()
 	_modules_connections_cache_manager.restore()
+	
+	if _connections_to_count_showed:
+		show_connections_to_count()
+	else:
+		hide_connections_to_count()
 
 
 func save_to_cache() -> void:
@@ -72,6 +78,11 @@ func refresh() -> void:
 			child.selected = false
 	
 	_module_nodes_positions_cache_manager.restore()
+	
+	if _connections_to_count_showed:
+		show_connections_to_count()
+	else:
+		hide_connections_to_count()
 
 
 func create_module_node(module: String) -> GraphNode:
@@ -165,6 +176,7 @@ func select_dependants_of_module(module: String) -> void:
 
 
 func show_connections_to_count() -> void:
+	_connections_to_count_showed = true
 	for module in node_name_by_module:
 		var module_node_name = node_name_by_module[module]
 		var module_node = get_node(module_node_name)
@@ -175,6 +187,7 @@ func show_connections_to_count() -> void:
 
 
 func hide_connections_to_count() -> void:
+	_connections_to_count_showed = false
 	for module in node_name_by_module:
 		var module_node_name = node_name_by_module[module]
 		var module_node = get_node(module_node_name)
