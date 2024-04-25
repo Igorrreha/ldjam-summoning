@@ -13,6 +13,7 @@ extends GraphEdit
 
 var node_name_by_module: Dictionary#[String, String]
 var module_by_node_name: Dictionary#[String, String]
+var connections: Dictionary#[String, String]
 
 var _is_active: bool
 var _connections_to_count_showed: bool
@@ -42,6 +43,8 @@ func load_from_cache() -> void:
 	_module_nodes_positions_cache_manager.restore()
 	_modules_connections_cache_manager.restore()
 	
+	redraw_connections()
+	
 	if _connections_to_count_showed:
 		show_connections_to_count()
 	else:
@@ -60,20 +63,23 @@ func refresh() -> void:
 	var dependencies_provider = ModulesDependenciesProvider.new(_modules_dir)
 	var dependencies_by_module = dependencies_provider.get_dependencies()
 	
+	connections = {}
 	for module in dependencies_by_module:
 		var module_node = create_module_node(module)
 		
 		module_node.selected = true
+		connections[module] = []
 	
 	for module_to in dependencies_by_module:
 		for module_from in dependencies_by_module[module_to]:
-			var node_from = node_name_by_module[module_from]
-			var node_to = node_name_by_module[module_to]
-			connect_node(node_from, 0, node_to, 0)
+			connections[module_from].append(module_to)
 	
-	arrange_nodes()
+	redraw_connections()
 	
 	for child in get_children():
+		if child.is_queued_for_deletion():
+			continue
+		
 		if child is ModulesMapNode:
 			child.selected = false
 	
@@ -194,10 +200,72 @@ func hide_connections_to_count() -> void:
 		module_node.hide_connections_to_count()
 
 
-func _clear() -> void:
+func show_all_nodes() -> void:
+	for child in get_children():
+		if child.is_queued_for_deletion():
+			continue
+		
+		if child is GraphElement:
+			child.show()
+	
+	redraw_connections()
+
+
+func hide_selected_nodes() -> void:
+	for child in get_children():
+		if child.is_queued_for_deletion():
+			continue
+		
+		if child is GraphElement\
+		and child.selected:
+			child.hide()
+	
+	redraw_connections()
+
+
+func hide_not_selected_nodes() -> void:
+	for child in get_children():
+		if child.is_queued_for_deletion():
+			continue
+		
+		if child is GraphElement\
+		and not child.selected:
+			child.hide()
+	
+	redraw_connections()
+
+
+func redraw_connections() -> void:
 	clear_connections()
 	
 	for child in get_children():
+		if child.is_queued_for_deletion():
+			continue
+		
+		var node_from = child as ModulesMapNode
+		if not (node_from and node_from.visible):
+			continue
+		
+		var module_from = node_from.get_module_name()
+		if not connections.has(module_from):
+			continue
+		
+		for module_to in connections[module_from]:
+			var node_to_name = node_name_by_module[module_to]
+			var node_to = get_node(node_to_name)
+			
+			if node_to.visible:
+				connect_node(node_from.name, 0, node_to_name, 0)
+
+
+func _clear() -> void:
+	clear_connections()
+	connections = {}
+	
+	for child in get_children():
+		if child.is_queued_for_deletion():
+			continue
+		
 		if child is ModulesMapNode:
 			child.double_clicked.disconnect(_focus_module_dir)
 			child.queue_free()

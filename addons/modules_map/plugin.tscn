@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://ia5ibsfavpv7"]
+[gd_scene load_steps=6 format=3 uid="uid://ia5ibsfavpv7"]
 
 [ext_resource type="Script" path="res://addons/modules_map/map_commands_menu.gd" id="1_qo7b5"]
 [ext_resource type="PackedScene" uid="uid://c6tf6uuenblqi" path="res://addons/modules_map/modules_map.tscn" id="1_qrhe8"]
+[ext_resource type="Script" path="res://addons/modules_map/visibility_commands_menu.gd" id="2_2mybr"]
 [ext_resource type="PackedScene" uid="uid://bso741qg37m5y" path="res://addons/modules_map/modules_search_field/modules_search_field.tscn" id="2_e36or"]
 [ext_resource type="PackedScene" uid="uid://k8shmvrihwel" path="res://addons/modules_map/module_node_ctx_menu/module_node_ctx_menu.tscn" id="4_m5ks6"]
 
@@ -36,6 +37,16 @@ item_3/checkable = 1
 item_3/id = 3
 script = ExtResource("1_qo7b5")
 
+[node name="Visibility" type="PopupMenu" parent="PanelContainer/HBoxContainer/MenuBar"]
+item_count = 3
+item_0/text = "Show all"
+item_0/id = 0
+item_1/text = "Hide selected"
+item_1/id = 1
+item_2/text = "Hide not selected"
+item_2/id = 2
+script = ExtResource("2_2mybr")
+
 [node name="ModulesSearchField" parent="PanelContainer/HBoxContainer" node_paths=PackedStringArray("_modules_map") instance=ExtResource("2_e36or")]
 layout_mode = 2
 _modules_map = NodePath("../../../ModulesMap")
@@ -52,3 +63,6 @@ _modules_map = NodePath("..")
 [connection signal="map_refreshing_requested" from="PanelContainer/HBoxContainer/MenuBar/Map" to="ModulesMap" method="refresh"]
 [connection signal="map_saving_requested" from="PanelContainer/HBoxContainer/MenuBar/Map" to="ModulesMap" method="save_to_cache"]
 [connection signal="showing_connections_to_count_requested" from="PanelContainer/HBoxContainer/MenuBar/Map" to="ModulesMap" method="show_connections_to_count"]
+[connection signal="all_nodes_showing_requested" from="PanelContainer/HBoxContainer/MenuBar/Visibility" to="ModulesMap" method="show_all_nodes"]
+[connection signal="not_selected_nodes_hiding_requested" from="PanelContainer/HBoxContainer/MenuBar/Visibility" to="ModulesMap" method="hide_not_selected_nodes"]
+[connection signal="selected_nodes_hiding_requested" from="PanelContainer/HBoxContainer/MenuBar/Visibility" to="ModulesMap" method="hide_selected_nodes"]
