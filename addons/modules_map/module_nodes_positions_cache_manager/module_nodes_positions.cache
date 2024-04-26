@@ -11,7 +11,7 @@ enemies_spawner,680,2140
 enemy_type,-400,2040
 game_completed_menu,60,400
 game_hud,2140,600
-game_levels,4000,2040
+game_levels_pack,4040,2120
 game_over_menu,240,520
 game_progression,2300,2040
 game_restarter,60,280

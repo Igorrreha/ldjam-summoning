@@ -11,7 +11,7 @@ enemies_spawner
 enemy_type
 game_completed_menu
 game_hud
-game_levels
+game_levels_pack
 game_over_menu
 game_progression
 game_restarter
