@@ -1,5 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://ia5ibsfavpv7"]
 
+[ext_resource type="Script" path="res://addons/modules_map/toggleable_split_container/toggleable_split_container.gd" id="1_moc2b"]
 [ext_resource type="Script" path="res://addons/modules_map/map_commands_menu.gd" id="1_qo7b5"]
 [ext_resource type="PackedScene" uid="uid://c6tf6uuenblqi" path="res://addons/modules_map/modules_map.tscn" id="1_qrhe8"]
 [ext_resource type="Script" path="res://addons/modules_map/visibility_commands_menu.gd" id="2_2mybr"]
@@ -14,32 +15,6 @@ content_margin_top = 0.0
 content_margin_right = 0.0
 content_margin_bottom = 0.0
 bg_color = Color(0.113725, 0.133333, 0.160784, 1)
-
-[sub_resource type="GDScript" id="GDScript_lywrv"]
-resource_name = "root_hsplit"
-script/source = "@tool
-extends HSplitContainer
-
-
-@export var _toggle_button: CheckButton
-
-var _is_active: bool
-
-
-func _ready() -> void:
-	_is_active = not \"CanvasItemEditor\" in str(get_path())
-	
-	if _is_active:
-		_toggle_button.toggled.connect(set_collapsed)
-
-
-func set_collapsed(value: bool) -> void:
-	collapsed = value
-	if collapsed:
-		dragger_visibility = SplitContainer.DRAGGER_HIDDEN_COLLAPSED
-	else:
-		dragger_visibility = SplitContainer.DRAGGER_VISIBLE
-"
 
 [node name="Plugin" type="PanelContainer"]
 anchors_preset = 15
@@ -56,7 +31,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 split_offset = -175
-script = SubResource("GDScript_lywrv")
+script = ExtResource("1_moc2b")
 _toggle_button = NodePath("VBox/PanelContainer/HBoxContainer/RightPanelCollapseToggle")
 
 [node name="VBox" type="VBoxContainer" parent="HSplitContainer"]
@@ -108,7 +83,7 @@ theme_override_icons/unchecked = ExtResource("5_unwam")
 
 [node name="ModulesMap" parent="HSplitContainer/VBox" instance=ExtResource("1_qrhe8")]
 layout_mode = 2
-scroll_offset = Vector2(-395, -100)
+scroll_offset = Vector2(-100, -100)
 
 [node name="ModuleNodeCtxMenu" parent="HSplitContainer/VBox/ModulesMap" node_paths=PackedStringArray("_modules_map") instance=ExtResource("4_m5ks6")]
 _modules_map = NodePath("..")
