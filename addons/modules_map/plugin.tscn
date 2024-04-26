@@ -1,12 +1,47 @@
-[gd_scene load_steps=6 format=3 uid="uid://ia5ibsfavpv7"]
+[gd_scene load_steps=10 format=3 uid="uid://ia5ibsfavpv7"]
 
 [ext_resource type="Script" path="res://addons/modules_map/map_commands_menu.gd" id="1_qo7b5"]
 [ext_resource type="PackedScene" uid="uid://c6tf6uuenblqi" path="res://addons/modules_map/modules_map.tscn" id="1_qrhe8"]
 [ext_resource type="Script" path="res://addons/modules_map/visibility_commands_menu.gd" id="2_2mybr"]
 [ext_resource type="PackedScene" uid="uid://bso741qg37m5y" path="res://addons/modules_map/modules_search_field/modules_search_field.tscn" id="2_e36or"]
+[ext_resource type="Texture2D" uid="uid://1rbgymq6g7on" path="res://addons/modules_map/arrow_left.svg" id="4_cf0dv"]
 [ext_resource type="PackedScene" uid="uid://k8shmvrihwel" path="res://addons/modules_map/module_node_ctx_menu/module_node_ctx_menu.tscn" id="4_m5ks6"]
+[ext_resource type="Texture2D" uid="uid://6ytuwue03vtj" path="res://addons/modules_map/arrow_right.svg" id="5_unwam"]
 
-[node name="Plugin" type="VBoxContainer"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_43nt0"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.113725, 0.133333, 0.160784, 1)
+
+[sub_resource type="GDScript" id="GDScript_lywrv"]
+resource_name = "root_hsplit"
+script/source = "@tool
+extends HSplitContainer
+
+
+@export var _toggle_button: CheckButton
+
+var _is_active: bool
+
+
+func _ready() -> void:
+	_is_active = not \"CanvasItemEditor\" in str(get_path())
+	
+	if _is_active:
+		_toggle_button.toggled.connect(set_collapsed)
+
+
+func set_collapsed(value: bool) -> void:
+	collapsed = value
+	if collapsed:
+		dragger_visibility = SplitContainer.DRAGGER_HIDDEN_COLLAPSED
+	else:
+		dragger_visibility = SplitContainer.DRAGGER_VISIBLE
+"
+
+[node name="Plugin" type="PanelContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -14,17 +49,32 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_43nt0")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="HSplitContainer" type="HSplitContainer" parent="." node_paths=PackedStringArray("_toggle_button")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+split_offset = -175
+script = SubResource("GDScript_lywrv")
+_toggle_button = NodePath("VBox/PanelContainer/HBoxContainer/RightPanelCollapseToggle")
+
+[node name="VBox" type="VBoxContainer" parent="HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="HSplitContainer/VBox"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HSplitContainer/VBox/PanelContainer"]
 layout_mode = 2
 
-[node name="MenuBar" type="MenuBar" parent="PanelContainer/HBoxContainer"]
+[node name="MenuBar" type="MenuBar" parent="HSplitContainer/VBox/PanelContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="Map" type="PopupMenu" parent="PanelContainer/HBoxContainer/MenuBar"]
+[node name="Map" type="PopupMenu" parent="HSplitContainer/VBox/PanelContainer/HBoxContainer/MenuBar"]
 item_count = 4
 item_0/text = "Refresh"
 item_0/id = 0
@@ -37,7 +87,7 @@ item_3/checkable = 1
 item_3/id = 3
 script = ExtResource("1_qo7b5")
 
-[node name="Visibility" type="PopupMenu" parent="PanelContainer/HBoxContainer/MenuBar"]
+[node name="Visibility" type="PopupMenu" parent="HSplitContainer/VBox/PanelContainer/HBoxContainer/MenuBar"]
 item_count = 3
 item_0/text = "Show all"
 item_0/id = 0
@@ -47,22 +97,37 @@ item_2/text = "Hide not selected"
 item_2/id = 2
 script = ExtResource("2_2mybr")
 
-[node name="ModulesSearchField" parent="PanelContainer/HBoxContainer" node_paths=PackedStringArray("_modules_map") instance=ExtResource("2_e36or")]
+[node name="ModulesSearchField" parent="HSplitContainer/VBox/PanelContainer/HBoxContainer" node_paths=PackedStringArray("_modules_map") instance=ExtResource("2_e36or")]
 layout_mode = 2
 _modules_map = NodePath("../../../ModulesMap")
 
-[node name="ModulesMap" parent="." instance=ExtResource("1_qrhe8")]
+[node name="RightPanelCollapseToggle" type="CheckButton" parent="HSplitContainer/VBox/PanelContainer/HBoxContainer"]
 layout_mode = 2
-scroll_offset = Vector2(-100, -100)
+theme_override_icons/checked = ExtResource("4_cf0dv")
+theme_override_icons/unchecked = ExtResource("5_unwam")
 
-[node name="ModuleNodeCtxMenu" parent="ModulesMap" node_paths=PackedStringArray("_modules_map") instance=ExtResource("4_m5ks6")]
+[node name="ModulesMap" parent="HSplitContainer/VBox" instance=ExtResource("1_qrhe8")]
+layout_mode = 2
+scroll_offset = Vector2(-395, -100)
+
+[node name="ModuleNodeCtxMenu" parent="HSplitContainer/VBox/ModulesMap" node_paths=PackedStringArray("_modules_map") instance=ExtResource("4_m5ks6")]
 _modules_map = NodePath("..")
 
-[connection signal="hiding_connections_to_count_requested" from="PanelContainer/HBoxContainer/MenuBar/Map" to="ModulesMap" method="hide_connections_to_count"]
-[connection signal="map_loading_requested" from="PanelContainer/HBoxContainer/MenuBar/Map" to="ModulesMap" method="load_from_cache"]
-[connection signal="map_refreshing_requested" from="PanelContainer/HBoxContainer/MenuBar/Map" to="ModulesMap" method="refresh"]
-[connection signal="map_saving_requested" from="PanelContainer/HBoxContainer/MenuBar/Map" to="ModulesMap" method="save_to_cache"]
-[connection signal="showing_connections_to_count_requested" from="PanelContainer/HBoxContainer/MenuBar/Map" to="ModulesMap" method="show_connections_to_count"]
-[connection signal="all_nodes_showing_requested" from="PanelContainer/HBoxContainer/MenuBar/Visibility" to="ModulesMap" method="show_all_nodes"]
-[connection signal="not_selected_nodes_hiding_requested" from="PanelContainer/HBoxContainer/MenuBar/Visibility" to="ModulesMap" method="hide_not_selected_nodes"]
-[connection signal="selected_nodes_hiding_requested" from="PanelContainer/HBoxContainer/MenuBar/Visibility" to="ModulesMap" method="hide_selected_nodes"]
+[node name="TabContainer" type="TabContainer" parent="HSplitContainer"]
+clip_contents = true
+layout_mode = 2
+theme_override_constants/side_margin = 0
+drag_to_rearrange_enabled = true
+
+[node name="Inspector" type="VBoxContainer" parent="HSplitContainer/TabContainer"]
+clip_contents = true
+layout_mode = 2
+
+[connection signal="hiding_connections_to_count_requested" from="HSplitContainer/VBox/PanelContainer/HBoxContainer/MenuBar/Map" to="HSplitContainer/VBox/ModulesMap" method="hide_connections_to_count"]
+[connection signal="map_loading_requested" from="HSplitContainer/VBox/PanelContainer/HBoxContainer/MenuBar/Map" to="HSplitContainer/VBox/ModulesMap" method="load_from_cache"]
+[connection signal="map_refreshing_requested" from="HSplitContainer/VBox/PanelContainer/HBoxContainer/MenuBar/Map" to="HSplitContainer/VBox/ModulesMap" method="refresh"]
+[connection signal="map_saving_requested" from="HSplitContainer/VBox/PanelContainer/HBoxContainer/MenuBar/Map" to="HSplitContainer/VBox/ModulesMap" method="save_to_cache"]
+[connection signal="showing_connections_to_count_requested" from="HSplitContainer/VBox/PanelContainer/HBoxContainer/MenuBar/Map" to="HSplitContainer/VBox/ModulesMap" method="show_connections_to_count"]
+[connection signal="all_nodes_showing_requested" from="HSplitContainer/VBox/PanelContainer/HBoxContainer/MenuBar/Visibility" to="HSplitContainer/VBox/ModulesMap" method="show_all_nodes"]
+[connection signal="not_selected_nodes_hiding_requested" from="HSplitContainer/VBox/PanelContainer/HBoxContainer/MenuBar/Visibility" to="HSplitContainer/VBox/ModulesMap" method="hide_not_selected_nodes"]
+[connection signal="selected_nodes_hiding_requested" from="HSplitContainer/VBox/PanelContainer/HBoxContainer/MenuBar/Visibility" to="HSplitContainer/VBox/ModulesMap" method="hide_selected_nodes"]
