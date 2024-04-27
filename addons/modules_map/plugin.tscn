@@ -34,8 +34,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 split_offset = -175
-collapsed = true
-dragger_visibility = 2
 script = ExtResource("1_moc2b")
 _toggle_button = NodePath("VBox/PanelContainer/MarginContainer/HBoxContainer/RightPanelCollapseToggle")
 
@@ -96,7 +94,7 @@ button_pressed = true
 
 [node name="ModulesMap" parent="HSplitContainer/VBox" instance=ExtResource("1_qrhe8")]
 layout_mode = 2
-scroll_offset = Vector2(-100, -100)
+scroll_offset = Vector2(-175, -100)
 
 [node name="ModuleNodeCtxMenu" parent="HSplitContainer/VBox/ModulesMap" node_paths=PackedStringArray("_modules_map") instance=ExtResource("4_m5ks6")]
 _modules_map = NodePath("..")

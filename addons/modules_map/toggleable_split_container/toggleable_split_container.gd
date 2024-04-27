@@ -12,6 +12,7 @@ func _ready() -> void:
 	
 	if _is_active:
 		_toggle_button.toggled.connect(_on_toggled)
+		_on_toggled(_toggle_button.button_pressed)
 
 
 func _on_toggled(value: bool) -> void:
