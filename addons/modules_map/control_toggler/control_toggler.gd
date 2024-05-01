@@ -1,8 +1,10 @@
 @tool
-extends SplitContainer
+extends Node
 
 
 @export var _toggle_button: CheckButton
+@export var _control: Control
+@export var _invert: bool
 
 var _is_active: bool
 
@@ -16,8 +18,4 @@ func _ready() -> void:
 
 
 func _on_toggled(value: bool) -> void:
-	collapsed = value
-	if collapsed:
-		dragger_visibility = SplitContainer.DRAGGER_HIDDEN_COLLAPSED
-	else:
-		dragger_visibility = SplitContainer.DRAGGER_VISIBLE
+	_control.set_visible.call_deferred(not value if _invert else value)

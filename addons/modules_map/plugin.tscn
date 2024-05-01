@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ia5ibsfavpv7"]
+[gd_scene load_steps=14 format=3 uid="uid://ia5ibsfavpv7"]
 
 [ext_resource type="Script" path="res://addons/modules_map/toggleable_split_container/toggleable_split_container.gd" id="1_moc2b"]
 [ext_resource type="Script" path="res://addons/modules_map/map_commands_menu.gd" id="1_qo7b5"]
@@ -6,9 +6,11 @@
 [ext_resource type="Script" path="res://addons/modules_map/visibility_commands_menu.gd" id="2_2mybr"]
 [ext_resource type="StyleBox" uid="uid://csc11g1bbv387" path="res://addons/modules_map/editor_base_color_style_box.tres" id="2_de6bq"]
 [ext_resource type="PackedScene" uid="uid://bso741qg37m5y" path="res://addons/modules_map/modules_search_field/modules_search_field.tscn" id="2_e36or"]
-[ext_resource type="Texture2D" uid="uid://1rbgymq6g7on" path="res://addons/modules_map/arrow_left.svg" id="4_cf0dv"]
 [ext_resource type="PackedScene" uid="uid://k8shmvrihwel" path="res://addons/modules_map/module_node_ctx_menu/module_node_ctx_menu.tscn" id="4_m5ks6"]
-[ext_resource type="Texture2D" uid="uid://6ytuwue03vtj" path="res://addons/modules_map/arrow_right.svg" id="5_unwam"]
+[ext_resource type="Texture2D" uid="uid://6fk67y33tfqs" path="res://addons/modules_map/arrow_up.svg" id="7_gfoit"]
+[ext_resource type="Texture2D" uid="uid://dhu2w514mn33j" path="res://addons/modules_map/arrow_down.svg" id="8_relic"]
+[ext_resource type="PackedScene" uid="uid://ca1slqpsengmq" path="res://addons/modules_map/module_settings/module_settings.tscn" id="10_j1uof"]
+[ext_resource type="Script" path="res://addons/modules_map/control_toggler/control_toggler.gd" id="10_t4hhj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_43nt0"]
 content_margin_left = 0.0
@@ -29,37 +31,47 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_43nt0")
 
-[node name="HSplitContainer" type="HSplitContainer" parent="." node_paths=PackedStringArray("_toggle_button")]
+[node name="SplitContainer" type="SplitContainer" parent="." node_paths=PackedStringArray("_toggle_button")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-split_offset = -175
+split_offset = -140
+vertical = true
 script = ExtResource("1_moc2b")
-_toggle_button = NodePath("VBox/PanelContainer/MarginContainer/HBoxContainer/RightPanelCollapseToggle")
+_toggle_button = NodePath("Container/ToggleButton")
 
-[node name="VBox" type="VBoxContainer" parent="HSplitContainer"]
+[node name="Container" type="Control" parent="SplitContainer"]
 layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBox" type="VBoxContainer" parent="SplitContainer/Container"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 0
 
-[node name="PanelContainer" type="PanelContainer" parent="HSplitContainer/VBox"]
+[node name="PanelContainer" type="PanelContainer" parent="SplitContainer/Container/VBox"]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("2_de6bq")
 
-[node name="MarginContainer" type="MarginContainer" parent="HSplitContainer/VBox/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="SplitContainer/Container/VBox/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HSplitContainer/VBox/PanelContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="SplitContainer/Container/VBox/PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="MenuBar" type="MenuBar" parent="HSplitContainer/VBox/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="MenuBar" type="MenuBar" parent="SplitContainer/Container/VBox/PanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="Map" type="PopupMenu" parent="HSplitContainer/VBox/PanelContainer/MarginContainer/HBoxContainer/MenuBar"]
+[node name="Map" type="PopupMenu" parent="SplitContainer/Container/VBox/PanelContainer/MarginContainer/HBoxContainer/MenuBar"]
 item_count = 4
 item_0/text = "Refresh"
 item_0/id = 0
@@ -72,7 +84,7 @@ item_3/checkable = 1
 item_3/id = 3
 script = ExtResource("1_qo7b5")
 
-[node name="Visibility" type="PopupMenu" parent="HSplitContainer/VBox/PanelContainer/MarginContainer/HBoxContainer/MenuBar"]
+[node name="Visibility" type="PopupMenu" parent="SplitContainer/Container/VBox/PanelContainer/MarginContainer/HBoxContainer/MenuBar"]
 item_count = 3
 item_0/text = "Show all"
 item_0/id = 0
@@ -82,43 +94,60 @@ item_2/text = "Hide not selected"
 item_2/id = 2
 script = ExtResource("2_2mybr")
 
-[node name="ModulesSearchField" parent="HSplitContainer/VBox/PanelContainer/MarginContainer/HBoxContainer" node_paths=PackedStringArray("_modules_map") instance=ExtResource("2_e36or")]
+[node name="ModulesSearchField" parent="SplitContainer/Container/VBox/PanelContainer/MarginContainer/HBoxContainer" node_paths=PackedStringArray("_modules_map") instance=ExtResource("2_e36or")]
 layout_mode = 2
 _modules_map = NodePath("../../../../ModulesMap")
 
-[node name="RightPanelCollapseToggle" type="CheckButton" parent="HSplitContainer/VBox/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="ModulesMap" parent="SplitContainer/Container/VBox" instance=ExtResource("1_qrhe8")]
 layout_mode = 2
-theme_override_icons/checked = ExtResource("4_cf0dv")
-theme_override_icons/unchecked = ExtResource("5_unwam")
-button_pressed = true
+scroll_offset = Vector2(-100, -100)
 
-[node name="ModulesMap" parent="HSplitContainer/VBox" instance=ExtResource("1_qrhe8")]
-layout_mode = 2
-scroll_offset = Vector2(-175, -100)
-
-[node name="ModuleNodeCtxMenu" parent="HSplitContainer/VBox/ModulesMap" node_paths=PackedStringArray("_modules_map") instance=ExtResource("4_m5ks6")]
+[node name="ModuleNodeCtxMenu" parent="SplitContainer/Container/VBox/ModulesMap" node_paths=PackedStringArray("_modules_map") instance=ExtResource("4_m5ks6")]
 _modules_map = NodePath("..")
 
-[node name="TabContainer" type="TabContainer" parent="HSplitContainer"]
+[node name="ToggleButton" type="CheckButton" parent="SplitContainer/Container"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -24.0
+offset_right = 16.0
+offset_bottom = -8.0
+grow_vertical = 0
+size_flags_horizontal = 4
+theme_override_icons/checked = ExtResource("7_gfoit")
+theme_override_icons/unchecked = ExtResource("8_relic")
+button_pressed = true
+
+[node name="TabContainer" type="TabContainer" parent="SplitContainer"]
 clip_contents = true
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_rcknl")
 drag_to_rearrange_enabled = true
 
-[node name="Inspector" type="PanelContainer" parent="HSplitContainer/TabContainer"]
+[node name="Toggler" type="Node" parent="SplitContainer/TabContainer" node_paths=PackedStringArray("_toggle_button", "_control")]
+script = ExtResource("10_t4hhj")
+_toggle_button = NodePath("../../Container/ToggleButton")
+_control = NodePath("..")
+_invert = true
+
+[node name="Inspector" type="PanelContainer" parent="SplitContainer/TabContainer"]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("2_de6bq")
 
-[node name="VBox" type="VBoxContainer" parent="HSplitContainer/TabContainer/Inspector"]
+[node name="VBox" type="VBoxContainer" parent="SplitContainer/TabContainer/Inspector"]
 clip_contents = true
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[connection signal="hiding_connections_to_count_requested" from="HSplitContainer/VBox/PanelContainer/MarginContainer/HBoxContainer/MenuBar/Map" to="HSplitContainer/VBox/ModulesMap" method="hide_connections_to_count"]
-[connection signal="map_loading_requested" from="HSplitContainer/VBox/PanelContainer/MarginContainer/HBoxContainer/MenuBar/Map" to="HSplitContainer/VBox/ModulesMap" method="load_from_cache"]
-[connection signal="map_refreshing_requested" from="HSplitContainer/VBox/PanelContainer/MarginContainer/HBoxContainer/MenuBar/Map" to="HSplitContainer/VBox/ModulesMap" method="refresh"]
-[connection signal="map_saving_requested" from="HSplitContainer/VBox/PanelContainer/MarginContainer/HBoxContainer/MenuBar/Map" to="HSplitContainer/VBox/ModulesMap" method="save_to_cache"]
-[connection signal="showing_connections_to_count_requested" from="HSplitContainer/VBox/PanelContainer/MarginContainer/HBoxContainer/MenuBar/Map" to="HSplitContainer/VBox/ModulesMap" method="show_connections_to_count"]
-[connection signal="all_nodes_showing_requested" from="HSplitContainer/VBox/PanelContainer/MarginContainer/HBoxContainer/MenuBar/Visibility" to="HSplitContainer/VBox/ModulesMap" method="show_all_nodes"]
-[connection signal="not_selected_nodes_hiding_requested" from="HSplitContainer/VBox/PanelContainer/MarginContainer/HBoxContainer/MenuBar/Visibility" to="HSplitContainer/VBox/ModulesMap" method="hide_not_selected_nodes"]
-[connection signal="selected_nodes_hiding_requested" from="HSplitContainer/VBox/PanelContainer/MarginContainer/HBoxContainer/MenuBar/Visibility" to="HSplitContainer/VBox/ModulesMap" method="hide_selected_nodes"]
+[node name="ModuleSettings" parent="SplitContainer/TabContainer/Inspector/VBox" instance=ExtResource("10_j1uof")]
+layout_mode = 2
+
+[connection signal="hiding_connections_to_count_requested" from="SplitContainer/Container/VBox/PanelContainer/MarginContainer/HBoxContainer/MenuBar/Map" to="SplitContainer/Container/VBox/ModulesMap" method="hide_connections_to_count"]
+[connection signal="map_loading_requested" from="SplitContainer/Container/VBox/PanelContainer/MarginContainer/HBoxContainer/MenuBar/Map" to="SplitContainer/Container/VBox/ModulesMap" method="load_from_cache"]
+[connection signal="map_refreshing_requested" from="SplitContainer/Container/VBox/PanelContainer/MarginContainer/HBoxContainer/MenuBar/Map" to="SplitContainer/Container/VBox/ModulesMap" method="refresh"]
+[connection signal="map_saving_requested" from="SplitContainer/Container/VBox/PanelContainer/MarginContainer/HBoxContainer/MenuBar/Map" to="SplitContainer/Container/VBox/ModulesMap" method="save_to_cache"]
+[connection signal="showing_connections_to_count_requested" from="SplitContainer/Container/VBox/PanelContainer/MarginContainer/HBoxContainer/MenuBar/Map" to="SplitContainer/Container/VBox/ModulesMap" method="show_connections_to_count"]
+[connection signal="all_nodes_showing_requested" from="SplitContainer/Container/VBox/PanelContainer/MarginContainer/HBoxContainer/MenuBar/Visibility" to="SplitContainer/Container/VBox/ModulesMap" method="show_all_nodes"]
+[connection signal="not_selected_nodes_hiding_requested" from="SplitContainer/Container/VBox/PanelContainer/MarginContainer/HBoxContainer/MenuBar/Visibility" to="SplitContainer/Container/VBox/ModulesMap" method="hide_not_selected_nodes"]
+[connection signal="selected_nodes_hiding_requested" from="SplitContainer/Container/VBox/PanelContainer/MarginContainer/HBoxContainer/MenuBar/Visibility" to="SplitContainer/Container/VBox/ModulesMap" method="hide_selected_nodes"]
