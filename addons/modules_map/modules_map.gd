@@ -10,10 +10,12 @@ extends GraphEdit
 @export var _modules_list_cache_manager: CacheManager
 @export var _modules_connections_cache_manager: CacheManager
 @export var _module_nodes_positions_cache_manager: CacheManager
+@export var _modules_tags_cache_manager: CacheManager
 
 var node_name_by_module: Dictionary#[String, String]
 var module_by_node_name: Dictionary#[String, String]
 var connections: Dictionary#[String, String]
+var tags_by_module: Dictionary#[String, Array[ModulesMapNodeTag]]
 
 var _is_active: bool
 var _connections_to_count_showed: bool
@@ -42,6 +44,7 @@ func load_from_cache() -> void:
 	_modules_list_cache_manager.restore()
 	_module_nodes_positions_cache_manager.restore()
 	_modules_connections_cache_manager.restore()
+	_modules_tags_cache_manager.restore()
 	
 	redraw_connections()
 	
@@ -55,6 +58,7 @@ func save_to_cache() -> void:
 	_modules_list_cache_manager.store()
 	_module_nodes_positions_cache_manager.store()
 	_modules_connections_cache_manager.store()
+	_modules_tags_cache_manager.store()
 
 
 func refresh() -> void:
@@ -256,6 +260,21 @@ func redraw_connections() -> void:
 			
 			if node_to.visible:
 				connect_node(node_from.name, 0, node_to_name, 0)
+
+
+func add_tag(module: String, tag: String) -> void:
+	if not tags_by_module.has(module):
+		var tags: Array[String]
+		tags_by_module[module] = tags
+	
+	var tags: Array[String] = tags_by_module[module]
+	if not tags.has(tag):
+		tags.append(tag)
+
+
+func remove_tag(module: String, tag: String) -> void:
+	if tags_by_module.has(module):
+		tags_by_module[module].erase(tag)
 
 
 func _clear() -> void:

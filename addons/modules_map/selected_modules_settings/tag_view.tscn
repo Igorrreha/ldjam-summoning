@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://vgoxf0pe1nr4"]
+
+[ext_resource type="Script" path="res://addons/modules_map/selected_modules_settings/tag_view.gd" id="1_30b3c"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r8yt7"]
+resource_local_to_scene = true
+content_margin_left = 4.0
+content_margin_right = 4.0
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="TagView" type="PanelContainer" node_paths=PackedStringArray("_name", "_remove_button")]
+theme_override_styles/panel = SubResource("StyleBoxFlat_r8yt7")
+script = ExtResource("1_30b3c")
+_name = NodePath("HBoxContainer/Name")
+_remove_button = NodePath("HBoxContainer/RemoveButton")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "tag_name"
+
+[node name="RemoveButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "x"

@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cypn0at7p2xud"]
+
+[ext_resource type="Script" path="res://addons/modules_map/tags_editor/tags_editor.gd" id="1_cdwbp"]
+[ext_resource type="PackedScene" uid="uid://cqair8k0sdg5m" path="res://addons/modules_map/tags_editor/tag_editor.tscn" id="2_63pdw"]
+[ext_resource type="Resource" uid="uid://bv1adx3mds02c" path="res://addons/modules_map/module_node/tag/tags_storage.tres" id="2_vauao"]
+
+[node name="TagsEditor" type="FlowContainer" node_paths=PackedStringArray("_create_tag_button")]
+clip_contents = true
+size_flags_horizontal = 3
+script = ExtResource("1_cdwbp")
+_tags_storage = ExtResource("2_vauao")
+_tag_editor_scene = ExtResource("2_63pdw")
+_create_tag_button = NodePath("AddTagButton")
+
+[node name="AddTagButton" type="Button" parent="."]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "+"

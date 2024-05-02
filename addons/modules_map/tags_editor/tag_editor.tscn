@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://cqair8k0sdg5m"]
+
+[ext_resource type="Script" path="res://addons/modules_map/tags_editor/tag_editor.gd" id="1_suycq"]
+[ext_resource type="Resource" uid="uid://bv1adx3mds02c" path="res://addons/modules_map/module_node/tag/tags_storage.tres" id="2_gipi0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_greqe"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.145098, 0.168627, 0.203922, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uintx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_354xb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_36sno"]
+
+[node name="TagEditor" type="PanelContainer" node_paths=PackedStringArray("_name", "_color_picker")]
+clip_contents = true
+theme_override_styles/panel = SubResource("StyleBoxFlat_greqe")
+script = ExtResource("1_suycq")
+_name = NodePath("HBoxContainer/Name")
+_color_picker = NodePath("HBoxContainer/ColorPickerButton")
+_tags_storage = ExtResource("2_gipi0")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Name" type="LineEdit" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/minimum_character_width = 1
+theme_override_styles/normal = SubResource("StyleBoxEmpty_uintx")
+expand_to_text_length = true
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="HBoxContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_354xb")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_36sno")
+color = Color(0.54902, 0.470588, 0.521569, 1)
+edit_alpha = false

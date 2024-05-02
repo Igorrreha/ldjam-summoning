@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="ModulesMapNodeTagsStorage" load_steps=9 format=3 uid="uid://bv1adx3mds02c"]
+
+[ext_resource type="Script" path="res://addons/modules_map/module_node/tag/modules_node_tags_storage.gd" id="1_h360x"]
+[ext_resource type="Script" path="res://addons/modules_map/module_node/tag/module_node_tag.gd" id="2_4s4o7"]
+
+[sub_resource type="Resource" id="Resource_bjwfe"]
+resource_name = "new_tag_0"
+script = ExtResource("2_4s4o7")
+color = Color(0, 0.294118, 0.52549, 1)
+
+[sub_resource type="Resource" id="Resource_0aaq1"]
+resource_name = "new_tag_1"
+script = ExtResource("2_4s4o7")
+color = Color(0.54902, 0.470588, 0.521569, 1)
+
+[sub_resource type="Resource" id="Resource_xoiwb"]
+resource_name = "new_tag_2"
+script = ExtResource("2_4s4o7")
+color = Color(1, 0, 0.65098, 1)
+
+[sub_resource type="Resource" id="Resource_nntpv"]
+resource_name = "new_tag_3"
+script = ExtResource("2_4s4o7")
+color = Color(1, 0, 0.65098, 1)
+
+[sub_resource type="Resource" id="Resource_7hx8e"]
+resource_name = "new_tag_4"
+script = ExtResource("2_4s4o7")
+color = Color(0, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_06a6o"]
+resource_name = "title_label_settings"
+script = ExtResource("2_4s4o7")
+color = Color(0, 0, 0, 1)
+
+[resource]
+script = ExtResource("1_h360x")
+tags = Array[ExtResource("2_4s4o7")]([SubResource("Resource_bjwfe"), SubResource("Resource_0aaq1"), SubResource("Resource_xoiwb"), SubResource("Resource_nntpv"), SubResource("Resource_7hx8e"), SubResource("Resource_06a6o")])
