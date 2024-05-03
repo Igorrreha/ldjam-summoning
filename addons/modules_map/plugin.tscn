@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ia5ibsfavpv7"]
+[gd_scene load_steps=15 format=3 uid="uid://ia5ibsfavpv7"]
 
 [ext_resource type="Script" path="res://addons/modules_map/toggleable_split_container/toggleable_split_container.gd" id="1_moc2b"]
 [ext_resource type="Script" path="res://addons/modules_map/map_commands_menu.gd" id="1_qo7b5"]
@@ -9,8 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://k8shmvrihwel" path="res://addons/modules_map/module_node_ctx_menu/module_node_ctx_menu.tscn" id="4_m5ks6"]
 [ext_resource type="Texture2D" uid="uid://6fk67y33tfqs" path="res://addons/modules_map/arrow_up.svg" id="7_gfoit"]
 [ext_resource type="Texture2D" uid="uid://dhu2w514mn33j" path="res://addons/modules_map/arrow_down.svg" id="8_relic"]
-[ext_resource type="PackedScene" uid="uid://ca1slqpsengmq" path="res://addons/modules_map/module_settings/module_settings.tscn" id="10_j1uof"]
 [ext_resource type="Script" path="res://addons/modules_map/control_toggler/control_toggler.gd" id="10_t4hhj"]
+[ext_resource type="PackedScene" uid="uid://ca1slqpsengmq" path="res://addons/modules_map/selected_modules_settings/selected_modules_settings.tscn" id="11_4gqu3"]
+[ext_resource type="PackedScene" uid="uid://cypn0at7p2xud" path="res://addons/modules_map/tags_editor/tags_editor.tscn" id="12_sqv1o"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_43nt0"]
 content_margin_left = 0.0
@@ -140,7 +141,23 @@ clip_contents = true
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="ModuleSettings" parent="SplitContainer/TabContainer/Inspector/VBox" instance=ExtResource("10_j1uof")]
+[node name="ModuleSettings" parent="SplitContainer/TabContainer/Inspector/VBox" node_paths=PackedStringArray("_modules_map") instance=ExtResource("11_4gqu3")]
+layout_mode = 2
+_modules_map = NodePath("../../../../Container/VBox/ModulesMap")
+
+[node name="Tags" type="PanelContainer" parent="SplitContainer/TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_styles/panel = ExtResource("2_de6bq")
+
+[node name="MarginContainer" type="MarginContainer" parent="SplitContainer/TabContainer/Tags"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="TagsEditor" parent="SplitContainer/TabContainer/Tags/MarginContainer" instance=ExtResource("12_sqv1o")]
 layout_mode = 2
 
 [connection signal="hiding_connections_to_count_requested" from="SplitContainer/Container/VBox/PanelContainer/MarginContainer/HBoxContainer/MenuBar/Map" to="SplitContainer/Container/VBox/ModulesMap" method="hide_connections_to_count"]

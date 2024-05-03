@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="ModulesMapNodeTagsStorage" load_steps=5 format=3 uid="uid://bv1adx3mds02c"]
+
+[ext_resource type="Script" path="res://addons/modules_map/module_node/tag/modules_node_tags_storage.gd" id="1_h360x"]
+[ext_resource type="Script" path="res://addons/modules_map/module_node/tag/module_node_tag.gd" id="2_0c5hy"]
+
+[sub_resource type="Resource" id="Resource_ns4fl"]
+resource_name = "some"
+script = ExtResource("2_0c5hy")
+color = Color(0.631373, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_0jl6p"]
+resource_name = "sds"
+script = ExtResource("2_0c5hy")
+color = Color(0, 0, 0, 1)
+
+[resource]
+script = ExtResource("1_h360x")
+tags = Array[ExtResource("2_0c5hy")]([SubResource("Resource_ns4fl"), SubResource("Resource_0jl6p")])

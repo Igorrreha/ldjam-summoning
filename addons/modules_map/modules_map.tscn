@@ -1,12 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://c6tf6uuenblqi"]
+[gd_scene load_steps=8 format=3 uid="uid://c6tf6uuenblqi"]
 
 [ext_resource type="Script" path="res://addons/modules_map/modules_map.gd" id="1_eecse"]
 [ext_resource type="PackedScene" uid="uid://bcp7bwfeh1enc" path="res://addons/modules_map/module_node/modules_map_node.tscn" id="2_ijooj"]
 [ext_resource type="Script" path="res://addons/modules_map/modules_list_cache_manager/modules_list_cache_manager.gd" id="3_jmp6j"]
 [ext_resource type="Script" path="res://addons/modules_map/connections_cache_manager/modules_connections_cache_manager.gd" id="4_p65x5"]
 [ext_resource type="Script" path="res://addons/modules_map/module_nodes_positions_cache_manager/module_nodes_positions_cache_manager.gd" id="5_bqp1l"]
+[ext_resource type="Script" path="res://addons/modules_map/tags_cache_manager/modules_tags_cache_manager.gd" id="6_qp86t"]
+[ext_resource type="Resource" uid="uid://bv1adx3mds02c" path="res://addons/modules_map/module_node/tag/tags_storage.tres" id="7_kqni5"]
 
-[node name="ModulesMap" type="GraphEdit" node_paths=PackedStringArray("_modules_list_cache_manager", "_modules_connections_cache_manager", "_module_nodes_positions_cache_manager")]
+[node name="ModulesMap" type="GraphEdit" node_paths=PackedStringArray("_modules_list_cache_manager", "_modules_connections_cache_manager", "_module_nodes_positions_cache_manager", "_modules_tags_cache_manager")]
 custom_minimum_size = Vector2(100, 100)
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,9 +21,11 @@ zoom_min = 0.05
 script = ExtResource("1_eecse")
 _modules_dir = "res://modules"
 _module_node_scene = ExtResource("2_ijooj")
+_tags_storage = ExtResource("7_kqni5")
 _modules_list_cache_manager = NodePath("CacheManagers/ModulesList")
 _modules_connections_cache_manager = NodePath("CacheManagers/ModulesConnections")
 _module_nodes_positions_cache_manager = NodePath("CacheManagers/ModuleNodesPositions")
+_modules_tags_cache_manager = NodePath("CacheManagers/ModulesTags")
 
 [node name="CacheManagers" type="Node" parent="."]
 
@@ -39,3 +43,10 @@ _cache_file_path = "res://addons/modules_map/connections_cache_manager/connectio
 script = ExtResource("5_bqp1l")
 _modules_map = NodePath("../..")
 _cache_file_path = "res://addons/modules_map/module_nodes_positions_cache_manager/module_nodes_positions.cache"
+
+[node name="ModulesTags" type="Node" parent="CacheManagers" node_paths=PackedStringArray("_modules_map")]
+script = ExtResource("6_qp86t")
+_modules_map = NodePath("../..")
+_tags_storage = ExtResource("7_kqni5")
+_tags_cache_file_path = "res://addons/modules_map/tags_cache_manager/tags.cache"
+_cache_file_path = "res://addons/modules_map/tags_cache_manager/modules_tags.cache"

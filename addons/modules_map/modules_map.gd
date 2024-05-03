@@ -7,13 +7,19 @@ extends GraphEdit
 
 @export var _module_node_scene: PackedScene
 
+@export var _tags_storage: ModulesMapNodeTagsStorage
+
+@export_group("Cache managers")
 @export var _modules_list_cache_manager: CacheManager
 @export var _modules_connections_cache_manager: CacheManager
 @export var _module_nodes_positions_cache_manager: CacheManager
+@export var _modules_tags_cache_manager: CacheManager
 
+var modules: Array[String]
 var node_name_by_module: Dictionary#[String, String]
 var module_by_node_name: Dictionary#[String, String]
 var connections: Dictionary#[String, String]
+var tags_by_module: Dictionary#[String, Array[ModulesMapNodeTag]]
 
 var _is_active: bool
 var _connections_to_count_showed: bool
@@ -24,22 +30,19 @@ func _ready() -> void:
 	
 	if _is_active:
 		load_from_cache()
-
-
-func _input(event: InputEvent) -> void:
-	if not _is_active:
-		return
-	
-	if event is InputEventKey:
-		if event.is_pressed()\
-		and event.physical_keycode == KEY_R:
-			refresh()
+		_tags_storage.tag_removed.connect(_on_tag_destroyed)
+		_tags_storage.tag_changed.connect(_on_tag_edited)
 
 
 func load_from_cache() -> void:
 	_clear()
 	
 	_modules_list_cache_manager.restore()
+	_modules_tags_cache_manager.restore()
+	
+	for module in modules:
+		create_module_node(module)
+	
 	_module_nodes_positions_cache_manager.restore()
 	_modules_connections_cache_manager.restore()
 	
@@ -55,6 +58,7 @@ func save_to_cache() -> void:
 	_modules_list_cache_manager.store()
 	_module_nodes_positions_cache_manager.store()
 	_modules_connections_cache_manager.store()
+	_modules_tags_cache_manager.store()
 
 
 func refresh() -> void:
@@ -94,7 +98,12 @@ func refresh() -> void:
 func create_module_node(module: String) -> GraphNode:
 	var module_node = _module_node_scene.instantiate() as ModulesMapNode
 	add_child(module_node)
-	module_node.setup(module)
+	
+	var tags: Array[ModulesMapNodeTag]
+	tags.assign(tags_by_module[module]\
+		if tags_by_module.has(module)\
+		else [])
+	module_node.setup(module, tags)
 	
 	module_node.double_clicked.connect(_focus_module_dir.bind(module))
 	
@@ -256,6 +265,46 @@ func redraw_connections() -> void:
 			
 			if node_to.visible:
 				connect_node(node_from.name, 0, node_to_name, 0)
+
+
+func append_tag(module: String, tag: ModulesMapNodeTag) -> void:
+	if not tags_by_module.has(module):
+		var tags: Array[ModulesMapNodeTag]
+		tags_by_module[module] = tags
+	
+	if not tags_by_module[module].has(tag):
+		tags_by_module[module].append(tag)
+		_refresh_module_tags(module)
+
+
+func remove_tag(module: String, tag: ModulesMapNodeTag) -> void:
+	if not tags_by_module.has(module)\
+	or not tags_by_module[module].has(tag):
+		return
+	
+	tags_by_module[module].erase(tag)
+	_refresh_module_tags(module)
+
+
+func _on_tag_destroyed(tag: ModulesMapNodeTag) -> void:
+	for module in tags_by_module:
+		if tags_by_module[module].has(tag):
+			remove_tag(module, tag)
+
+
+func _on_tag_edited(tag: ModulesMapNodeTag) -> void:
+	for module in tags_by_module:
+		if tags_by_module[module].has(tag):
+			_refresh_module_tags(module)
+
+
+func _refresh_module_tags(module: String) -> void:
+	var module_node = _get_module_node(module)
+	module_node.refresh_tags(tags_by_module[module])
+
+
+func _get_module_node(module: String) -> ModulesMapNode:
+	return get_node(node_name_by_module[module])
 
 
 func _clear() -> void:

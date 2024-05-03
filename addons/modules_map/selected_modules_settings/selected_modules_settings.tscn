@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://ca1slqpsengmq"]
+
+[ext_resource type="Script" path="res://addons/modules_map/selected_modules_settings/selected_modules_settings.gd" id="1_ssv24"]
+[ext_resource type="PackedScene" uid="uid://vgoxf0pe1nr4" path="res://addons/modules_map/selected_modules_settings/tag_view.tscn" id="3_ar6xi"]
+[ext_resource type="Resource" uid="uid://bv1adx3mds02c" path="res://addons/modules_map/module_node/tag/tags_storage.tres" id="3_jxeaj"]
+
+[node name="SelectedModulesSettings" type="PanelContainer" node_paths=PackedStringArray("_names", "_tags_contianer", "_add_tag_button")]
+offset_top = 113.0
+offset_right = 245.0
+offset_bottom = 174.0
+script = ExtResource("1_ssv24")
+_names = NodePath("GridContainer/Names")
+_tags_contianer = NodePath("GridContainer/TagsContainer")
+_tag_scene = ExtResource("3_ar6xi")
+_add_tag_button = NodePath("GridContainer/TagsContainer/AddTagButton")
+_tags_storage = ExtResource("3_jxeaj")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+clip_contents = true
+layout_mode = 2
+columns = 2
+
+[node name="NamesTitle" type="Label" parent="GridContainer"]
+clip_contents = true
+layout_mode = 2
+text = "Names:"
+horizontal_alignment = 2
+
+[node name="Names" type="Label" parent="GridContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "test_name"
+clip_text = true
+
+[node name="TagsTitle" type="Label" parent="GridContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 0
+text = "Tags:"
+
+[node name="TagsContainer" type="FlowContainer" parent="GridContainer"]
+layout_mode = 2
+
+[node name="AddTagButton" type="OptionButton" parent="GridContainer/TagsContainer"]
+layout_mode = 2
+allow_reselect = true
