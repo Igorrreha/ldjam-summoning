@@ -21,6 +21,7 @@ zoom_min = 0.05
 script = ExtResource("1_eecse")
 _modules_dir = "res://modules"
 _module_node_scene = ExtResource("2_ijooj")
+_tags_storage = ExtResource("7_kqni5")
 _modules_list_cache_manager = NodePath("CacheManagers/ModulesList")
 _modules_connections_cache_manager = NodePath("CacheManagers/ModulesConnections")
 _module_nodes_positions_cache_manager = NodePath("CacheManagers/ModuleNodesPositions")

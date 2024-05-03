@@ -11,6 +11,7 @@ signal double_clicked
 
 @export var _connections_to_label: Label
 
+@export_group("Slot colors")
 @export var _default_in_slot_color: Color
 @export var _default_out_slot_color: Color
 @export var _selected_in_slot_color: Color

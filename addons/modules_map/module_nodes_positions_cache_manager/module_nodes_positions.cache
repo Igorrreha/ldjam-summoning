@@ -13,10 +13,10 @@ game_completed_menu,60,400
 game_hud,2140,600
 game_levels_pack,4040,2120
 game_over_menu,240,520
-game_progression,2300,2040
+game_progression,2360,2040
 game_restarter,60,280
 game_state_signals,-580,640
-gamestart_splashscreen,-1120,-260
+gamestart_splashscreen,-1100,-260
 increase_max_nexus_energy_game_level_event,3040,2400
 ingame_resource,1280,620
 level_start_panel,60,160

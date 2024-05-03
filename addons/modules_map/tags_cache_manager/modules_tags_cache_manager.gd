@@ -62,14 +62,20 @@ func _restore_modules_tags() -> void:
 	
 	var file = FileAccess.open(_cache_file_path, FileAccess.READ)
 	while file.get_position() < file.get_length():
-		var data: Array = file.get_line().split(",")
+		var line = file.get_line()
+		if line.is_empty():
+			continue
+		
+		var data: Array = line.split(",")
 		
 		var module = data[0]
 		var tags: Array[ModulesMapNodeTag]
 		_modules_map.tags_by_module[module] = tags
 		
-		tags.assign(data[1].split("/"))
-		tags.assign(tags\
+		var tags_names: Array[String]
+		tags_names.assign(data[1].split("/"))
+		
+		tags.assign(tags_names\
 			.map(func(x: String):
 				return _tags_storage.get_tag_or_null(x))
 			.filter(func(x: ModulesMapNodeTag):

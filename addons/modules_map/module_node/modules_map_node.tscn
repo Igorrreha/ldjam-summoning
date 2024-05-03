@@ -70,7 +70,7 @@ slot/0/draw_stylebox = true
 script = ExtResource("1_dhs3o")
 _module_nodes_signals = ExtResource("2_ha1gs")
 _title_label_settings = SubResource("LabelSettings_aqfe2")
-_connections_to_label = NodePath("MarginContainer/HBox/ConnectionsTo")
+_connections_to_label = NodePath("MarginContainer/HBox/ConnectionsToCount")
 _default_in_slot_color = Color(1, 1, 1, 1)
 _default_out_slot_color = Color(0.368627, 0.368627, 0.368627, 1)
 _selected_in_slot_color = Color(0.443137, 0.737255, 0.988235, 1)
@@ -85,7 +85,7 @@ theme_override_constants/margin_right = 6
 [node name="HBox" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="ConnectionsTo" type="Label" parent="MarginContainer/HBox"]
+[node name="ConnectionsToCount" type="Label" parent="MarginContainer/HBox"]
 visible = false
 layout_mode = 2
 text = "0"

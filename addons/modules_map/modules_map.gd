@@ -7,6 +7,9 @@ extends GraphEdit
 
 @export var _module_node_scene: PackedScene
 
+@export var _tags_storage: ModulesMapNodeTagsStorage
+
+@export_group("Cache managers")
 @export var _modules_list_cache_manager: CacheManager
 @export var _modules_connections_cache_manager: CacheManager
 @export var _module_nodes_positions_cache_manager: CacheManager
@@ -26,6 +29,7 @@ func _ready() -> void:
 	
 	if _is_active:
 		load_from_cache()
+		_tags_storage.tag_removed.connect(_on_tag_removed)
 
 
 func _input(event: InputEvent) -> void:
@@ -262,18 +266,8 @@ func redraw_connections() -> void:
 				connect_node(node_from.name, 0, node_to_name, 0)
 
 
-func add_tag(module: String, tag: String) -> void:
-	if not tags_by_module.has(module):
-		var tags: Array[String]
-		tags_by_module[module] = tags
-	
-	var tags: Array[String] = tags_by_module[module]
-	if not tags.has(tag):
-		tags.append(tag)
-
-
-func remove_tag(module: String, tag: String) -> void:
-	if tags_by_module.has(module):
+func _on_tag_removed(tag: ModulesMapNodeTag) -> void:
+	for module in tags_by_module:
 		tags_by_module[module].erase(tag)
 
 
