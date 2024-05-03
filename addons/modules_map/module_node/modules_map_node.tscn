@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://bcp7bwfeh1enc"]
+[gd_scene load_steps=11 format=3 uid="uid://bcp7bwfeh1enc"]
 
 [ext_resource type="Script" path="res://addons/modules_map/module_node/modules_map_node.gd" id="1_dhs3o"]
 [ext_resource type="Resource" uid="uid://cmsi1wdw34415" path="res://addons/modules_map/module_node/module_nodes_signals.tres" id="2_ha1gs"]
+[ext_resource type="PackedScene" uid="uid://cy5h7k7b7ny2a" path="res://addons/modules_map/module_node/tag/tag.tscn" id="3_ujl6y"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2tfpr"]
 bg_color = Color(0.180392, 0.180392, 0.180392, 1)
@@ -48,9 +49,12 @@ font_size = 21
 outline_size = 1
 shadow_size = 0
 
-[node name="ModulesMapNode" type="GraphNode" node_paths=PackedStringArray("_connections_to_label")]
+[node name="ModulesMapNode" type="GraphNode" node_paths=PackedStringArray("_connections_to_label", "_tags_container")]
+custom_minimum_size = Vector2(0, 78)
 offset_right = 37.0
 offset_bottom = 78.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_2tfpr")
 theme_override_styles/panel_selected = SubResource("StyleBoxFlat_ci5yq")
@@ -70,7 +74,9 @@ slot/0/draw_stylebox = true
 script = ExtResource("1_dhs3o")
 _module_nodes_signals = ExtResource("2_ha1gs")
 _title_label_settings = SubResource("LabelSettings_aqfe2")
-_connections_to_label = NodePath("MarginContainer/HBox/ConnectionsToCount")
+_connections_to_label = NodePath("MarginContainer/BoxContainer/ConnectionsToCount")
+_tags_container = NodePath("MarginContainer/BoxContainer/FlowContainer")
+_tag_scene = ExtResource("3_ujl6y")
 _default_in_slot_color = Color(1, 1, 1, 1)
 _default_out_slot_color = Color(0.368627, 0.368627, 0.368627, 1)
 _selected_in_slot_color = Color(0.443137, 0.737255, 0.988235, 1)
@@ -80,14 +86,23 @@ _selected_out_slot_color = Color(0.443137, 0.737255, 0.988235, 1)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 4
 
-[node name="HBox" type="HBoxContainer" parent="MarginContainer"]
+[node name="BoxContainer" type="BoxContainer" parent="MarginContainer"]
 layout_mode = 2
+size_flags_vertical = 0
+alignment = 1
+vertical = true
 
-[node name="ConnectionsToCount" type="Label" parent="MarginContainer/HBox"]
+[node name="ConnectionsToCount" type="Label" parent="MarginContainer/BoxContainer"]
 visible = false
 layout_mode = 2
 text = "0"
 label_settings = SubResource("LabelSettings_k1eew")
 vertical_alignment = 1
+
+[node name="FlowContainer" type="FlowContainer" parent="MarginContainer/BoxContainer"]
+layout_mode = 2
+alignment = 1

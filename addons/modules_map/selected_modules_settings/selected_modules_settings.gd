@@ -101,7 +101,7 @@ func _on_tag_node_destroyed(tag_node: ModulesMapNodeTagView) -> void:
 	_tag_nodes.erase(tag_node)
 	
 	for module in _selected_modules:
-		_modules_map.tags_by_module[module].erase(tag_node.tag)
+		_modules_map.remove_tag(module, tag_node.tag)
 
 
 func _on_add_tag_button_item_selected(idx: int) -> void:
@@ -122,10 +122,6 @@ func _add_tag(tag_name: String) -> void:
 		return
 	
 	for module in _selected_modules:
-		if not _modules_map.tags_by_module.has(module):
-			var tags: Array[ModulesMapNodeTag]
-			_modules_map.tags_by_module[module] = tags
-		
-		_modules_map.tags_by_module[module].append(tag)
+		_modules_map.append_tag(module, tag)
 	
 	_refresh_tags()

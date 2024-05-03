@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://cy5h7k7b7ny2a"]
+
+[node name="Tag" type="ColorRect"]
+custom_minimum_size = Vector2(15, 15)

@@ -23,7 +23,7 @@ level_start_panel,60,160
 look_updater,-420,1900
 main_menu,240,640
 nexus,20,1200
-session_resources,1840,860
+session_resources,1800,840
 session_start_values_setter,2800,1360
 shaders,-400,1520
 sounds,-1420,400

@@ -23,9 +23,10 @@ func remove(tag_to_remove: ModulesMapNodeTag) -> void:
 	tags.erase(tag_to_remove)
 	tag_removed.emit(tag_to_remove)
 	
+	_on_tag_changed(tag_to_remove)
+	tag_to_remove.about_to_destroy.emit()
+	
 	if tag_to_remove.changed.is_connected(_on_tag_changed):
-		_on_tag_changed(tag_to_remove)
-		tag_to_remove.about_to_destroy.emit()
 		tag_to_remove.changed.disconnect(_on_tag_changed)
 
 
