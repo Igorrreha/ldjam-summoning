@@ -34,12 +34,18 @@ func restore() -> void:
 
 
 func _restore_tags() -> void:
+	_tags_storage.clear()
+	
 	if not FileAccess.file_exists(_tags_cache_file_path):
 		return
 	
 	var file = FileAccess.open(_tags_cache_file_path, FileAccess.READ)
 	while file.get_position() < file.get_length():
-		var data: Array = file.get_line().split(",")
+		var line = file.get_line()
+		if line.is_empty():
+			continue
+		
+		var data: Array = line.split(",")
 		
 		var tag = ModulesMapNodeTag.new()
 		tag.resource_name = data[0]

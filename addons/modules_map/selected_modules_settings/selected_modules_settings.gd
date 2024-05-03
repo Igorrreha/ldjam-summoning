@@ -21,6 +21,8 @@ func _ready() -> void:
 		_modules_map.node_selected.connect(_refresh.unbind(1))
 		_modules_map.node_deselected.connect(_refresh.unbind(1))
 		_add_tag_button.item_selected.connect(_on_add_tag_button_item_selected)
+		
+		_tags_storage.tag_changed.connect(_refresh_add_tag_button.unbind(1))
 
 
 func _refresh() -> void:
@@ -80,8 +82,8 @@ func _refresh_tags() -> void:
 	
 	for tag in common_tags:
 		var tag_node = _tag_scene.instantiate() as ModulesMapNodeTagView
-		tag_node.setup(tag)
 		_tags_contianer.add_child(tag_node)
+		tag_node.setup(tag)
 		tag_node.tree_exiting.connect(_on_tag_node_destroyed.bind(tag_node))
 		_tag_nodes.append(tag_node)
 	
@@ -104,7 +106,13 @@ func _on_tag_node_destroyed(tag_node: ModulesMapNodeTagView) -> void:
 
 func _on_add_tag_button_item_selected(idx: int) -> void:
 	var item_id = _add_tag_button.get_item_id(idx)
-	_add_tag(_add_tag_button.get_item_text(item_id))
+	var tag_name = _add_tag_button.get_item_text(item_id) 
+	
+	if _tag_nodes.any(func(x: ModulesMapNodeTagView):
+			return x.tag.resource_name == tag_name):
+		return
+	
+	_add_tag(tag_name)
 
 
 func _add_tag(tag_name: String) -> void:
