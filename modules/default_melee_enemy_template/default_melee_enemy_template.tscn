@@ -1,0 +1,510 @@
+[gd_scene load_steps=33 format=3 uid="uid://da0rc2p5183u3"]
+
+[ext_resource type="Script" path="res://modules/default_melee_enemy_template/default_melee_enemy.gd" id="1_4cnms"]
+[ext_resource type="AudioStream" uid="uid://cc3qucc5fylmb" path="res://modules/enemies/human_punch.ogg" id="2_lafrl"]
+[ext_resource type="AudioStream" uid="uid://cowvu678h4ayn" path="res://modules/enemies/human_steps.ogg" id="3_nkaa7"]
+[ext_resource type="AudioStream" uid="uid://dvvt8ad321l1d" path="res://modules/enemies/human_death.ogg" id="4_u22vd"]
+[ext_resource type="Shader" path="res://modules/shaders/damage.gdshader" id="5_oh586"]
+[ext_resource type="Texture2D" uid="uid://sig6o4ksllrl" path="res://modules/enemies/human_meelee/enemy_human.png" id="6_px8ca"]
+[ext_resource type="Script" path="res://modules/look_updater/look_updater.gd" id="7_fi0fg"]
+[ext_resource type="Script" path="res://modules/damageable_area_2d/damageable_area_2d.gd" id="8_1j2dr"]
+[ext_resource type="Script" path="res://modules/damageable_area_2d/blood_amount_setter/blood_amount_setter.gd" id="9_byr1q"]
+[ext_resource type="Script" path="res://modules/default_melee_enemy_template/behaviours/searching_for_target.gd" id="10_5na0t"]
+[ext_resource type="Script" path="res://modules/character_body_moving_to_target_behaviour/character_body_moving_to_target.gd" id="10_6lpd4"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="11_byv8l"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="12_e6eee"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="13_u1pws"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="14_x1kg4"]
+
+[sub_resource type="Animation" id="Animation_ufcsp"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual/Icon:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visual/Icon:scale:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visual/Icon:scale:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Visual/Icon:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -20)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Visual/Icon:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Visual/Icon:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(5, -15)]
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Visual/Icon:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_p8ash"]
+resource_name = "attack"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual/Icon:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(5, -15), Vector2(-6, -18), Vector2(12, -16), Vector2(4, -15)]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visual/Icon:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.117091, -0.229736, -0.401426, -0.154712, 0.028877, 0.0691549, 0.229872, 0.287979, -0.0316996, -0.00993913, 0.0665626, -0.0152285, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.3, 0.4, 0.8)
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.40267),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"attack"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_ifb3u"]
+resource_name = "death"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual/Icon:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(5, -15), Vector2(-3, -29), Vector2(-4, -10), Vector2(-5, -14), Vector2(-7, -10)]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visual/Icon:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.0659412, -0.358922, -1.68599, -0.128187, 0.635437, 0.0380125, 0.125219, -1.68599, -0.101848, 0.363322, 0.0591974, -0.0221764, -1.49274, -0.0386263, 0.00821805, 0.0331913, 0.0308944, -1.68599, -0.0341644, 0.113882, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.483137, 0.6)
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_86jl4"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual/Icon:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0.9), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visual/Icon:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(5, -15), Vector2(5, -14), Vector2(5, -15)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visual/Icon:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_trqbf"]
+resource_name = "walk"
+length = 0.2
+loop_mode = 2
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual/Icon:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-0.1, -0.25, 0, 0.2, 0.000302814, 0.1, -0.2, -0.00235443, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visual/Icon:scale:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1.1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1, 0.2)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visual/Icon:scale:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1.1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.1, 0.2)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ie52g"]
+_data = {
+"RESET": SubResource("Animation_ufcsp"),
+"attack": SubResource("Animation_p8ash"),
+"death": SubResource("Animation_ifb3u"),
+"idle": SubResource("Animation_86jl4"),
+"walk": SubResource("Animation_trqbf")
+}
+
+[sub_resource type="Gradient" id="Gradient_fhvdv"]
+offsets = PackedFloat32Array(0.331839, 0.681614)
+colors = PackedColorArray(1, 0, 0, 0.705882, 1, 0, 0, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_38g4g"]
+frequency = 0.2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_cqox1"]
+width = 64
+height = 64
+color_ramp = SubResource("Gradient_fhvdv")
+noise = SubResource("FastNoiseLite_38g4g")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_try8f"]
+resource_local_to_scene = true
+shader = ExtResource("5_oh586")
+shader_parameter/_hit_color = Color(1, 0, 0, 0.54902)
+shader_parameter/_hit_amount = 0.0
+shader_parameter/_blood_amount = 0.0
+shader_parameter/_blood_texture = SubResource("NoiseTexture2D_cqox1")
+
+[sub_resource type="Animation" id="Animation_6usdj"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Icon:material:shader_parameter/_hit_amount")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_t8n0v"]
+resource_name = "damaged"
+length = 0.2
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Icon:material:shader_parameter/_hit_amount")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.0725179, -0.0119955, 0, -0.0416862, 0.835007, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c1imb"]
+_data = {
+"RESET": SubResource("Animation_6usdj"),
+"damaged": SubResource("Animation_t8n0v")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_53o53"]
+radius = 25.02
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jjd5j"]
+radius = 42.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g8x3i"]
+radius = 114.004
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4to34"]
+radius = 24.0
+
+[node name="DefaultMeleeEnemyTemplate" type="CharacterBody2D" node_paths=PackedStringArray("damageable_area", "attack_area", "_targets_detect_area", "_state_chart", "_idle_state", "_moving_to_target_state", "_attacking_state", "_death_state", "_target_selecting_behaviour", "_moving_to_target_behaviour")]
+motion_mode = 1
+floor_stop_on_slope = false
+floor_block_on_wall = false
+platform_on_leave = 2
+script = ExtResource("1_4cnms")
+_moving_speed = 50.0
+attack_power = 1.0
+damageable_area = NodePath("DamageableArea2D")
+attack_area = NodePath("AttackArea")
+_targets_detect_area = NodePath("TargetsDetectArea")
+attack_sound = ExtResource("2_lafrl")
+steps_sound = ExtResource("3_nkaa7")
+death_sound = ExtResource("4_u22vd")
+_state_chart = NodePath("StateChart")
+_idle_state = NodePath("StateChart/StatesRoot/Active/Idle")
+_moving_to_target_state = NodePath("StateChart/StatesRoot/Active/MovingToTarget")
+_attacking_state = NodePath("StateChart/StatesRoot/Active/Attacking")
+_death_state = NodePath("StateChart/StatesRoot/Death")
+_target_selecting_behaviour = NodePath("Behaviours/SearchingForTarget")
+_moving_to_target_behaviour = NodePath("Behaviours/MovingToTarget")
+
+[node name="Visual" type="Node2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Visual"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_ie52g")
+}
+
+[node name="Icon" type="Sprite2D" parent="Visual"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_try8f")
+position = Vector2(5, -15)
+texture = ExtResource("6_px8ca")
+flip_h = true
+
+[node name="LookUpdater" type="Node2D" parent="Visual" node_paths=PackedStringArray("object_transform")]
+script = ExtResource("7_fi0fg")
+object_transform = NodePath("..")
+
+[node name="DamageEffectAnimationPlayer" type="AnimationPlayer" parent="Visual"]
+libraries = {
+"": SubResource("AnimationLibrary_c1imb")
+}
+
+[node name="BodyCollider" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_53o53")
+
+[node name="AttackArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 5
+monitorable = false
+
+[node name="AttackCollider" type="CollisionShape2D" parent="AttackArea"]
+shape = SubResource("CircleShape2D_jjd5j")
+debug_color = Color(1, 0, 0, 0.32549)
+
+[node name="TargetsDetectArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 5
+monitorable = false
+
+[node name="DetectCollider" type="CollisionShape2D" parent="TargetsDetectArea"]
+shape = SubResource("CircleShape2D_g8x3i")
+
+[node name="DamageableArea2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("8_1j2dr")
+
+[node name="BodyCollider" type="CollisionShape2D" parent="DamageableArea2D"]
+shape = SubResource("CircleShape2D_4to34")
+
+[node name="BloodAmountSetter" type="Node" parent="." node_paths=PackedStringArray("_damageable_area", "_sprite")]
+script = ExtResource("9_byr1q")
+_damageable_area = NodePath("../DamageableArea2D")
+_sprite = NodePath("../Visual/Icon")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+volume_db = -5.0
+
+[node name="Behaviours" type="Node" parent="."]
+
+[node name="SearchingForTarget" type="Node" parent="Behaviours"]
+script = ExtResource("10_5na0t")
+
+[node name="MovingToTarget" type="Node" parent="Behaviours"]
+script = ExtResource("10_6lpd4")
+
+[node name="StateChart" type="Node" parent="."]
+script = ExtResource("11_byv8l")
+
+[node name="StatesRoot" type="Node" parent="StateChart"]
+script = ExtResource("12_e6eee")
+initial_state = NodePath("Inactive")
+
+[node name="Inactive" type="Node" parent="StateChart/StatesRoot"]
+script = ExtResource("13_u1pws")
+
+[node name="ToActive" type="Node" parent="StateChart/StatesRoot/Inactive"]
+script = ExtResource("14_x1kg4")
+to = NodePath("../../Active")
+event = &"activated"
+
+[node name="Active" type="Node" parent="StateChart/StatesRoot"]
+script = ExtResource("12_e6eee")
+initial_state = NodePath("Idle")
+
+[node name="Transition" type="Node" parent="StateChart/StatesRoot/Active"]
+script = ExtResource("14_x1kg4")
+to = NodePath("../../Inactive")
+event = &"deactivated"
+
+[node name="Idle" type="Node" parent="StateChart/StatesRoot/Active"]
+script = ExtResource("13_u1pws")
+
+[node name="ToMovingToTarget" type="Node" parent="StateChart/StatesRoot/Active/Idle"]
+script = ExtResource("14_x1kg4")
+to = NodePath("../../MovingToTarget")
+event = &"target_found"
+
+[node name="ToDeath" type="Node" parent="StateChart/StatesRoot/Active/Idle"]
+script = ExtResource("14_x1kg4")
+to = NodePath("../../../Death")
+event = &"health_become_zero"
+
+[node name="MovingToTarget" type="Node" parent="StateChart/StatesRoot/Active"]
+script = ExtResource("13_u1pws")
+
+[node name="ToIdle" type="Node" parent="StateChart/StatesRoot/Active/MovingToTarget"]
+script = ExtResource("14_x1kg4")
+to = NodePath("../../Idle")
+event = &"target_lost"
+
+[node name="ToAttacking" type="Node" parent="StateChart/StatesRoot/Active/MovingToTarget"]
+script = ExtResource("14_x1kg4")
+to = NodePath("../../Attacking")
+event = &"target_reached"
+
+[node name="ToDeath" type="Node" parent="StateChart/StatesRoot/Active/MovingToTarget"]
+script = ExtResource("14_x1kg4")
+to = NodePath("../../../Death")
+event = &"health_become_zero"
+
+[node name="Attacking" type="Node" parent="StateChart/StatesRoot/Active"]
+script = ExtResource("13_u1pws")
+
+[node name="ToIdle" type="Node" parent="StateChart/StatesRoot/Active/Attacking"]
+script = ExtResource("14_x1kg4")
+to = NodePath("../../Idle")
+event = &"target_lost"
+
+[node name="ToMovingToTarget" type="Node" parent="StateChart/StatesRoot/Active/Attacking"]
+script = ExtResource("14_x1kg4")
+to = NodePath("../../MovingToTarget")
+event = &"target_moved_away"
+
+[node name="ToDeath" type="Node" parent="StateChart/StatesRoot/Active/Attacking"]
+script = ExtResource("14_x1kg4")
+to = NodePath("../../../Death")
+event = &"health_become_zero"
+
+[node name="Death" type="Node" parent="StateChart/StatesRoot"]
+script = ExtResource("13_u1pws")
+
+[connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_area_entered"]
+[connection signal="area_entered" from="TargetsDetectArea" to="." method="_on_detect_area_area_entered"]
+[connection signal="area_exited" from="TargetsDetectArea" to="." method="_on_detect_area_area_exited"]
+[connection signal="damaged" from="DamageableArea2D" to="Visual/DamageEffectAnimationPlayer" method="play" binds= ["damaged", 0.0]]
+[connection signal="dead" from="DamageableArea2D" to="." method="_on_damageable_area_2d_dead"]

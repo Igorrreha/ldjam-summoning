@@ -108,6 +108,7 @@ size = Vector2i(168, 60)
 [node name="YliIntro" parent="IntroViewport" instance=ExtResource("1_oucax")]
 position = Vector2(84, 30)
 _autostart = true
+_skip = true
 
 [node name="OuputScreen" type="TextureRect" parent="."]
 texture_filter = 1

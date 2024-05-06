@@ -2,7 +2,7 @@ class_name EnemiesSpawner
 extends Path2D
 
 
-@export var _main_tree: DamageableArea2D
+@export var _nexus: DamageableArea2D
 @export var _enemies_container: Node2D
 @export var _enemy_scene_by_type: Dictionary#[EnemyType, PackedScene]
 
@@ -11,7 +11,7 @@ extends Path2D
 
 func spawn_wave(group: Array[EnemiesGroupSlot]) -> void:
 	var wave_position = _get_random_spawn_position()
-	var moving_angle = _main_tree.global_position.angle_to(wave_position)
+	var moving_angle = _nexus.global_position.angle_to(wave_position)
 	for slot: EnemiesGroupSlot in group:
 		var spawn_position = slot.position.rotated(moving_angle)
 		_spawn_enemy(slot.enemy_type, wave_position - spawn_position)
@@ -24,9 +24,9 @@ func spawn_enemies(count: int):
 
 
 func _spawn_enemy(enemy_type: EnemyType, position: Vector2) -> void:
-	var enemy: Enemy = _enemy_scene_by_type[enemy_type].instantiate()
+	var enemy: DefaultMeleeEnemy = _enemy_scene_by_type[enemy_type].instantiate()
 	_enemies_container.add_child(enemy)
-	enemy.setup(position, _main_tree)
+	enemy.setup(position, _nexus)
 
 
 func _get_random_spawn_position() -> Vector2:

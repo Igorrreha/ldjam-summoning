@@ -25,19 +25,13 @@
 [ext_resource type="Resource" uid="uid://c25qnl55makte" path="res://modules/enemies/human_fat_ranger/human_fat_ranger.tres" id="18_adxo7"]
 [ext_resource type="PackedScene" uid="uid://bpbituybtev3d" path="res://modules/enemies/human_fat_ranger/human_fat_ranger.tscn" id="19_6785f"]
 [ext_resource type="Script" path="res://modules/enemies_count_provider/enemies_count_provider.gd" id="20_2ce02"]
+[ext_resource type="PackedScene" uid="uid://da0rc2p5183u3" path="res://modules/default_melee_enemy_template/default_melee_enemy_template.tscn" id="25_oa4j2"]
 [ext_resource type="Script" path="res://modules/session_start_values_setter/session_start_values_setter.gd" id="27_hndhk"]
-[ext_resource type="Resource" uid="uid://b06v7yeywaslo" path="res://modules/game_levels_pack/level_1.tres" id="27_rlbxu"]
 [ext_resource type="Script" path="res://modules/summon_death_processor/summon_death_processor.gd" id="27_wmc14"]
-[ext_resource type="Resource" uid="uid://d0rthi3ed5712" path="res://modules/game_levels_pack/level_2.tres" id="28_eud4j"]
+[ext_resource type="Resource" uid="uid://rfk1ws2jaynw" path="res://modules/default_melee_enemy_template/test_melee.tres" id="28_h80g3"]
 [ext_resource type="AudioStream" uid="uid://cqt6po72e5vdn" path="res://modules/sounds/rise_of_spirits.ogg" id="28_q01g6"]
-[ext_resource type="Resource" uid="uid://2xy5dh4371xd" path="res://modules/game_levels_pack/level_3.tres" id="29_i1iv2"]
-[ext_resource type="Resource" uid="uid://dcwllferpntxs" path="res://modules/game_levels_pack/level_4.tres" id="30_a5rxn"]
-[ext_resource type="Resource" uid="uid://beh7s0xj71o8" path="res://modules/game_levels_pack/level_5.tres" id="31_cevwb"]
-[ext_resource type="Resource" uid="uid://ddfna6vpmg6bq" path="res://modules/game_levels_pack/level_6.tres" id="32_jqg7t"]
-[ext_resource type="Resource" uid="uid://cn5cjvx1thhph" path="res://modules/game_levels_pack/level_7.tres" id="33_fedn8"]
-[ext_resource type="Resource" uid="uid://bsodcla3jo3hl" path="res://modules/game_levels_pack/level_8.tres" id="34_nl6rs"]
-[ext_resource type="Resource" uid="uid://bkk3yxnxhaf8n" path="res://modules/game_levels_pack/level_9.tres" id="35_qwcta"]
-[ext_resource type="Resource" uid="uid://b784081uyclan" path="res://modules/game_levels_pack/level_10.tres" id="36_l0hvw"]
+[ext_resource type="Script" path="res://modules/enemies_group/enemies_group_slot.gd" id="29_onm3i"]
+[ext_resource type="Script" path="res://modules/game_progression/game_level.gd" id="30_f6fkj"]
 [ext_resource type="Script" path="res://modules/wait_time_game_level_event/wait_time_game_level_event_processor.gd" id="37_4rw2a"]
 [ext_resource type="Script" path="res://modules/wait_time_game_level_event/wait_time.gd" id="37_34tgk"]
 [ext_resource type="Script" path="res://modules/unlock_summon_game_level_event/unlock_summon.gd" id="38_wjors"]
@@ -70,6 +64,33 @@ _data = {
 "points": PackedVector2Array(75.4303, 0.796488, -75.4303, -0.796488, -608, -292, 34.4611, -28.4678, -34.4611, 28.4678, -797, -276, -19.944, -21.5079, 19.944, 21.5079, -787, 399, -25.1984, 28.9782, 25.1984, -28.9782, 380, 396, 27.3724, 18.8775, -27.3724, -18.8775, 383, -269, 64.8411, 2.85724, -64.8411, -2.85724, 207, -283)
 }
 point_count = 6
+
+[sub_resource type="Resource" id="Resource_nvbgd"]
+script = ExtResource("29_onm3i")
+position = Vector2(0, 30)
+enemy_type = ExtResource("28_h80g3")
+
+[sub_resource type="Resource" id="Resource_ydvhj"]
+script = ExtResource("29_onm3i")
+position = Vector2(30, 0)
+enemy_type = ExtResource("28_h80g3")
+
+[sub_resource type="Resource" id="Resource_3x5in"]
+script = ExtResource("29_onm3i")
+position = Vector2(-30, 0)
+enemy_type = ExtResource("28_h80g3")
+
+[sub_resource type="Resource" id="Resource_y2wlc"]
+script = ExtResource("40_t3als")
+slots = Array[ExtResource("29_onm3i")]([SubResource("Resource_nvbgd"), SubResource("Resource_ydvhj"), SubResource("Resource_3x5in")])
+
+[sub_resource type="Resource" id="Resource_2gjyy"]
+script = ExtResource("37_34tgk")
+time_seconds = 3.0
+
+[sub_resource type="Resource" id="Resource_5ns3j"]
+script = ExtResource("30_f6fkj")
+events_queue = Array[Resource("res://modules/game_progression/game_level_event.gd")]([SubResource("Resource_y2wlc"), SubResource("Resource_2gjyy"), SubResource("Resource_y2wlc")])
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
@@ -108,23 +129,24 @@ _default_range_summon_type = ExtResource("4_ga1b4")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="MainTree" parent="." node_paths=PackedStringArray("audio_player") instance=ExtResource("4_42yk5")]
+[node name="Nexus" parent="." node_paths=PackedStringArray("audio_player") instance=ExtResource("4_42yk5")]
 audio_player = NodePath("../MusicStartTimer/AudioStreamPlayer2D")
 loose_game_sound = ExtResource("12_ge42t")
 
-[node name="EnemiesSpawner" type="Path2D" parent="." node_paths=PackedStringArray("_main_tree", "_enemies_container")]
+[node name="EnemiesSpawner" type="Path2D" parent="." node_paths=PackedStringArray("_nexus", "_enemies_container")]
 y_sort_enabled = true
 position = Vector2(201, -64)
 curve = SubResource("Curve2D_sv0k5")
 script = ExtResource("9_4ukip")
-_main_tree = NodePath("../MainTree")
+_nexus = NodePath("../Nexus")
 _enemies_container = NodePath("EnemiesContainer")
 _enemy_scene_by_type = {
 ExtResource("10_sh18u"): ExtResource("11_j74bq"),
 ExtResource("12_dg3lk"): ExtResource("13_57vcj"),
 ExtResource("14_ift2q"): ExtResource("15_cbixe"),
 ExtResource("16_jy4j1"): ExtResource("17_gxpvf"),
-ExtResource("18_adxo7"): ExtResource("19_6785f")
+ExtResource("18_adxo7"): ExtResource("19_6785f"),
+ExtResource("28_h80g3"): ExtResource("25_oa4j2")
 }
 
 [node name="SpawnPoint" type="PathFollow2D" parent="EnemiesSpawner"]
@@ -140,10 +162,11 @@ _enemies_container = NodePath("../EnemiesSpawner/EnemiesContainer")
 
 [node name="LevelsProgressionProcessor" type="Node" parent="." node_paths=PackedStringArray("_enemies_count_provider")]
 script = ExtResource("1_ngvcy")
+_skip_delays = true
 _level_end_delay = 2.0
 _game_state_signals = ExtResource("14_mn131")
 _enemies_count_provider = NodePath("../EnemiesCountProvider")
-_levels = Array[Resource("res://modules/game_progression/game_level.gd")]([ExtResource("27_rlbxu"), ExtResource("28_eud4j"), ExtResource("29_i1iv2"), ExtResource("30_a5rxn"), ExtResource("31_cevwb"), ExtResource("32_jqg7t"), ExtResource("33_fedn8"), ExtResource("34_nl6rs"), ExtResource("35_qwcta"), ExtResource("36_l0hvw")])
+_levels = Array[ExtResource("30_f6fkj")]([SubResource("Resource_5ns3j")])
 _event_processors = {
 ExtResource("37_34tgk"): NodePath("WaitTimeProcessor"),
 ExtResource("38_wjors"): NodePath("UnlockSummonProcessor"),
