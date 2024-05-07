@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://cnflh7eeu3l8u"]
+
+[ext_resource type="Script" path="res://modules/cutscene_manager/cut_scene_manager.gd" id="1_3ope6"]
+[ext_resource type="Texture2D" uid="uid://deew6qw4ptrq3" path="res://modules/cutscene_manager/grass_fon.png" id="2_l1jb2"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_uaak5"]
+
+[node name="CutSceneManager" type="Node"]
+script = ExtResource("1_3ope6")
+
+[node name="BlackBack" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(576.25, 323.75)
+scale = Vector2(1153.5, 648.5)
+texture = SubResource("CanvasTexture_uaak5")
+
+[node name="FrameTiles" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 346.0
+offset_top = 60.0
+offset_right = -291.0
+offset_bottom = -74.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_l1jb2")
+stretch_mode = 1
