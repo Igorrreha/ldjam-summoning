@@ -5,6 +5,10 @@ extends Node
 var _is_active: bool
 
 
+func is_active() -> bool:
+	return _is_active
+
+
 func activate() -> void:
 	if _is_active:
 		return

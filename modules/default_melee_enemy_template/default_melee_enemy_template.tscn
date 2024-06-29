@@ -337,7 +337,7 @@ radius = 114.004
 [sub_resource type="CircleShape2D" id="CircleShape2D_4to34"]
 radius = 24.0
 
-[node name="DefaultMeleeEnemyTemplate" type="CharacterBody2D" node_paths=PackedStringArray("damageable_area", "attack_area", "_targets_detect_area", "_state_chart", "_idle_state", "_moving_to_target_state", "_attacking_state", "_death_state", "_target_selecting_behaviour", "_moving_to_target_behaviour")]
+[node name="DefaultMeleeEnemyTemplate" type="CharacterBody2D" node_paths=PackedStringArray("damageable_area", "attack_area", "_targets_detect_area", "_state_chart", "_target_selecting_state", "_moving_to_optimal_attack_position_state", "_attacking_state", "_death_state", "_target_selecting_behaviour", "_moving_to_optimal_attack_position_behaviour")]
 motion_mode = 1
 floor_stop_on_slope = false
 floor_block_on_wall = false
@@ -352,12 +352,12 @@ attack_sound = ExtResource("2_lafrl")
 steps_sound = ExtResource("3_nkaa7")
 death_sound = ExtResource("4_u22vd")
 _state_chart = NodePath("StateChart")
-_idle_state = NodePath("StateChart/StatesRoot/Active/Idle")
-_moving_to_target_state = NodePath("StateChart/StatesRoot/Active/MovingToTarget")
+_target_selecting_state = NodePath("StateChart/StatesRoot/Active/TargetSelecting")
+_moving_to_optimal_attack_position_state = NodePath("StateChart/StatesRoot/Active/MovingToOptimalAttackPosition")
 _attacking_state = NodePath("StateChart/StatesRoot/Active/Attacking")
 _death_state = NodePath("StateChart/StatesRoot/Death")
 _target_selecting_behaviour = NodePath("Behaviours/SearchingForTarget")
-_moving_to_target_behaviour = NodePath("Behaviours/MovingToTarget")
+_moving_to_optimal_attack_position_behaviour = NodePath("Behaviours/MovingToOptimalAttackPosition")
 
 [node name="Visual" type="Node2D" parent="."]
 
@@ -424,7 +424,7 @@ volume_db = -5.0
 [node name="SearchingForTarget" type="Node" parent="Behaviours"]
 script = ExtResource("10_5na0t")
 
-[node name="MovingToTarget" type="Node" parent="Behaviours"]
+[node name="MovingToOptimalAttackPosition" type="Node" parent="Behaviours"]
 script = ExtResource("10_6lpd4")
 
 [node name="StateChart" type="Node" parent="."]
@@ -444,40 +444,40 @@ event = &"activated"
 
 [node name="Active" type="Node" parent="StateChart/StatesRoot"]
 script = ExtResource("12_e6eee")
-initial_state = NodePath("Idle")
+initial_state = NodePath("TargetSelecting")
 
 [node name="Transition" type="Node" parent="StateChart/StatesRoot/Active"]
 script = ExtResource("14_x1kg4")
 to = NodePath("../../Inactive")
 event = &"deactivated"
 
-[node name="Idle" type="Node" parent="StateChart/StatesRoot/Active"]
+[node name="TargetSelecting" type="Node" parent="StateChart/StatesRoot/Active"]
 script = ExtResource("13_u1pws")
 
-[node name="ToMovingToTarget" type="Node" parent="StateChart/StatesRoot/Active/Idle"]
+[node name="ToMovingToOptimalAttackPosition" type="Node" parent="StateChart/StatesRoot/Active/TargetSelecting"]
 script = ExtResource("14_x1kg4")
-to = NodePath("../../MovingToTarget")
+to = NodePath("../../MovingToOptimalAttackPosition")
 event = &"target_found"
 
-[node name="ToDeath" type="Node" parent="StateChart/StatesRoot/Active/Idle"]
+[node name="ToDeath" type="Node" parent="StateChart/StatesRoot/Active/TargetSelecting"]
 script = ExtResource("14_x1kg4")
 to = NodePath("../../../Death")
 event = &"health_become_zero"
 
-[node name="MovingToTarget" type="Node" parent="StateChart/StatesRoot/Active"]
+[node name="MovingToOptimalAttackPosition" type="Node" parent="StateChart/StatesRoot/Active"]
 script = ExtResource("13_u1pws")
 
-[node name="ToIdle" type="Node" parent="StateChart/StatesRoot/Active/MovingToTarget"]
+[node name="ToTargetSelecting" type="Node" parent="StateChart/StatesRoot/Active/MovingToOptimalAttackPosition"]
 script = ExtResource("14_x1kg4")
-to = NodePath("../../Idle")
+to = NodePath("../../TargetSelecting")
 event = &"target_lost"
 
-[node name="ToAttacking" type="Node" parent="StateChart/StatesRoot/Active/MovingToTarget"]
+[node name="ToAttacking" type="Node" parent="StateChart/StatesRoot/Active/MovingToOptimalAttackPosition"]
 script = ExtResource("14_x1kg4")
 to = NodePath("../../Attacking")
-event = &"target_reached"
+event = &"target_entered_optimal_distance"
 
-[node name="ToDeath" type="Node" parent="StateChart/StatesRoot/Active/MovingToTarget"]
+[node name="ToDeath" type="Node" parent="StateChart/StatesRoot/Active/MovingToOptimalAttackPosition"]
 script = ExtResource("14_x1kg4")
 to = NodePath("../../../Death")
 event = &"health_become_zero"
@@ -485,15 +485,15 @@ event = &"health_become_zero"
 [node name="Attacking" type="Node" parent="StateChart/StatesRoot/Active"]
 script = ExtResource("13_u1pws")
 
-[node name="ToIdle" type="Node" parent="StateChart/StatesRoot/Active/Attacking"]
+[node name="ToTargetSelecting" type="Node" parent="StateChart/StatesRoot/Active/Attacking"]
 script = ExtResource("14_x1kg4")
-to = NodePath("../../Idle")
+to = NodePath("../../TargetSelecting")
 event = &"target_lost"
 
-[node name="ToMovingToTarget" type="Node" parent="StateChart/StatesRoot/Active/Attacking"]
+[node name="ToMovingToOptimalAttackPosition" type="Node" parent="StateChart/StatesRoot/Active/Attacking"]
 script = ExtResource("14_x1kg4")
-to = NodePath("../../MovingToTarget")
-event = &"target_moved_away"
+to = NodePath("../../MovingToOptimalAttackPosition")
+event = &"target_exited_optimal_distance"
 
 [node name="ToDeath" type="Node" parent="StateChart/StatesRoot/Active/Attacking"]
 script = ExtResource("14_x1kg4")

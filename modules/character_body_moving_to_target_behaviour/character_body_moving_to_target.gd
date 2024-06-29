@@ -2,8 +2,8 @@ class_name CharacterBodyMovingToTargetBehaviour
 extends Behaviour
 
 
-signal target_exit_optimal_distance
-signal target_enter_optimal_distance
+signal target_exited_optimal_distance
+signal target_entered_optimal_distance
 
 
 var _owner: CharacterBody2D
@@ -33,12 +33,12 @@ func _on_activation() -> void:
 	if target_too_near\
 	or target_too_far:
 		_target_in_optimal_distance = false
-		target_exit_optimal_distance.emit()
+		target_exited_optimal_distance.emit()
 		
 		return
 	
 	_target_in_optimal_distance = true
-	target_enter_optimal_distance.emit()
+	target_entered_optimal_distance.emit()
 
 
 func _process_behaviour(delta: float) -> void:
@@ -54,13 +54,13 @@ func _process_behaviour(delta: float) -> void:
 			return
 		
 		_target_in_optimal_distance = false
-		target_exit_optimal_distance.emit()
+		target_exited_optimal_distance.emit()
 	
 	if not _target_in_optimal_distance:
 		if not target_too_near\
 		and not target_too_far:
 			_target_in_optimal_distance = true
-			target_enter_optimal_distance.emit()
+			target_entered_optimal_distance.emit()
 			
 			return
 		

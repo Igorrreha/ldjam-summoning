@@ -19,14 +19,14 @@ extends CharacterBody2D
 @export_group("State Chart")
 @export var _state_chart: StateChart
 @export_subgroup("States")
-@export var _idle_state: StateChartState
-@export var _moving_to_target_state: StateChartState
+@export var _target_selecting_state: StateChartState
+@export var _moving_to_optimal_attack_position_state: StateChartState
 @export var _attacking_state: StateChartState
 @export var _death_state: StateChartState
 
 @export_group("Behaviours")
 @export var _target_selecting_behaviour: DefaultMeleeTargetSelectingBehaviour
-@export var _moving_to_target_behaviour: CharacterBodyMovingToTargetBehaviour
+@export var _moving_to_optimal_attack_position_behaviour: CharacterBodyMovingToTargetBehaviour
 
 
 var _fallback_target: DamageableArea2D
@@ -53,11 +53,25 @@ var _is_active: bool:
 func _ready() -> void:
 	_target_selecting_behaviour.target_selected.connect(_change_target)
 	
-	_idle_state.state_entered.connect(_on_idle_state_entered)
-	_idle_state.state_exited.connect(_on_idle_state_exited)
+	_moving_to_optimal_attack_position_behaviour.target_entered_optimal_distance\
+		.connect(_on_target_entered_optimal_distance)
+	_moving_to_optimal_attack_position_behaviour.target_exited_optimal_distance\
+		.connect(_on_target_exited_optimal_distance)
 	
-	_moving_to_target_state.state_entered.connect(_on_moving_to_target_state_entered)
-	_moving_to_target_state.state_exited.connect(_on_moving_to_target_state_exited)
+	_target_selecting_state.state_entered\
+		.connect(_on_target_selecting_state_entered)
+	_target_selecting_state.state_exited\
+		.connect(_on_target_selecting_state_exited)
+	
+	_moving_to_optimal_attack_position_state.state_entered\
+		.connect(_on_moving_to_optimal_attack_position_state_entered)
+	_moving_to_optimal_attack_position_state.state_exited\
+		.connect(_on_moving_to_optimal_attack_position_state_exited)
+	
+	_attacking_state.state_entered\
+		.connect(_on_attacking_state_entered)
+	_attacking_state.state_exited\
+		.connect(_on_attacking_state_exited)
 
 
 func setup(position: Vector2, fallback_target: DamageableArea2D) -> void:
@@ -71,20 +85,44 @@ func _change_target(target: DamageableArea2D) -> void:
 	_target = target
 
 
-# States processing
-func _on_idle_state_entered() -> void:
+#region Behaviours callbacks
+func _on_target_entered_optimal_distance() -> void:
+	_state_chart.send_event("target_entered_optimal_distance")
+
+
+func _on_target_exited_optimal_distance() -> void:
+	_state_chart.send_event("target_exited_optimal_distance")
+#endregion
+
+
+#region States processing
+func _on_target_selecting_state_entered() -> void:
 	_target_selecting_behaviour.setup(self, _fallback_target, _targets_detect_area, 1)
 	_target_selecting_behaviour.activate()
+	
+	_moving_to_optimal_attack_position_behaviour.deactivate()
 
 
-func _on_idle_state_exited() -> void:
+func _on_target_selecting_state_exited() -> void:
 	_target_selecting_behaviour.deactivate()
 
 
-func _on_moving_to_target_state_entered() -> void:
-	_moving_to_target_behaviour.setup(self, _target, _moving_speed)
-	_moving_to_target_behaviour.activate()
+func _on_moving_to_optimal_attack_position_state_entered() -> void:
+	if not _moving_to_optimal_attack_position_behaviour.is_active():
+		_moving_to_optimal_attack_position_behaviour.setup(self, _target, _moving_speed)
+		_moving_to_optimal_attack_position_behaviour.activate()
 
 
-func _on_moving_to_target_state_exited() -> void:
-	_moving_to_target_behaviour.deactivate()
+func _on_moving_to_optimal_attack_position_state_exited() -> void:
+	pass
+
+
+func _on_attacking_state_entered() -> void:
+	if not _moving_to_optimal_attack_position_behaviour.is_active():
+		_moving_to_optimal_attack_position_behaviour.setup(self, _target, _moving_speed)
+		_moving_to_optimal_attack_position_behaviour.activate()
+
+
+func _on_attacking_state_exited() -> void:
+	pass
+#endregion
